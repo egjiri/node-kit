@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2018",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "outDir": "dist",
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

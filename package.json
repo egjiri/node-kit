@@ -1,0 +1,20 @@
+{
+  "name": "node-kit",
+  "version": "0.0.1",
+  "private": true,
+  "description": "TypeScript/Javascript Utilities",
+  "license": "MIT",
+  "author": "Endri Gjiri",
+  "repository": "git@github.com:egjiri/node-kit.git",
+  "scripts": {
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/node": "^10.7.1",
+    "nodemon": "^1.18.3",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1"
+  }
+}
