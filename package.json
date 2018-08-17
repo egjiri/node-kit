@@ -7,13 +7,17 @@
   "author": "Endri Gjiri",
   "repository": "git@github.com:egjiri/node-kit.git",
   "scripts": {
-    "start": "npm run build:live",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "watch": "tsc -w"
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "watch": "tsc -w",
+    "start": "npm run watch",
+    "test": "tsc && qunit dist",
+    "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
   },
   "devDependencies": {
     "@types/node": "^10.7.1",
     "nodemon": "^1.18.3",
+    "qunit": "^2.6.1",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.1"
   }
