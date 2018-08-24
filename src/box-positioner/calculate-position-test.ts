@@ -1,4 +1,4 @@
-import calculatePosition from './calculate-positions';
+import calculatePosition from './calculate-position';
 
 declare const QUnit;
 QUnit.test('test positions calculator', function(assert) {

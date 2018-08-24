@@ -6,12 +6,12 @@
 
 export default function calculatePosition(frame: frame, element: element, target: point): position {
   return {
-    point: calculatePoint(frame, element, target),
-    direction: calculateDirection(frame, element, target)
+    point: approximatePoint(frame, element, target),
+    direction: approximateDirection(frame, element, target)
   }
 }
 
-function calculatePoint(frame: frame, element: element, target: point): point {
+function approximatePoint(frame: frame, element: element, target: point): point {
   if (isCloseToTopEdge(element, target) || isCloseToBottomEdge(frame, element, target)) {
     return horizontalCentre(element, target);
   } else {
@@ -19,7 +19,7 @@ function calculatePoint(frame: frame, element: element, target: point): point {
   }
 }
 
-function calculateDirection(frame: frame, element: element, target: point): direction {
+function approximateDirection(frame: frame, element: element, target: point): direction {
   if (isCloseToTopEdge(element, target)) {
     return 'down';
   } else if (isCloseToBottomEdge(frame, element, target)) {
