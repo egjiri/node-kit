@@ -19,5 +19,5 @@ type direction = 'right' | 'left' | 'down' | 'up';
 
 type position = {
   point: point;
-  direction: direction;
+  directions: direction[];
 };

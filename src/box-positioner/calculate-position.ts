@@ -2,38 +2,51 @@
 // 1. frame xShift & yShift
 // 2. padding between frame & element
 // 3. padding between target & element
-// 4. nip position
+// 4. nib position
 
-export default function calculatePosition(frame: frame, element: element, target: point): position {
+export default function calculatePoint(frame: frame, element: element, target: point): point {
+  const { point, directions } = calculatePosition(frame, element, target);
+  return {
+    x: directions.includes('left') ? point.x - element.width : point.x,
+    y: directions.includes('up') ? point.y - element.height : point.y
+  };
+}
+
+export function calculatePosition(frame: frame, element: element, target: point): position {
   return {
     point: approximatePoint(frame, element, target),
-    direction: approximateDirection(frame, element, target)
+    directions: approximateDirection(frame, element, target)
   }
 }
 
 function approximatePoint(frame: frame, element: element, target: point): point {
   if (isCloseToTopEdge(element, target) || isCloseToBottomEdge(frame, element, target)) {
-    return horizontalCentre(element, target);
+    return horizontalCentre(frame, element, target);
   } else {
     return verticalCentre(element, target);
   }
 }
 
-function approximateDirection(frame: frame, element: element, target: point): direction {
+function approximateDirection(frame: frame, element: element, target: point): direction[] {
+  const directions: direction[] = [];
   if (isCloseToTopEdge(element, target)) {
-    return 'down';
+    directions.push('down');
   } else if (isCloseToBottomEdge(frame, element, target)) {
-    return 'up';
-  } else if (isCloseToRightEdge(frame, element, target)) {
-    return 'left';
-  } else {
-    return 'right';
+    directions.push('up');
   }
+  if (isCloseToRightEdge(frame, element, target)) {
+    directions.push('left');
+  }
+  if (isCloseToLeftEdge(target, element) || directions.length === 0) {
+    directions.push('right');
+  }
+  return directions;
 }
 
-function horizontalCentre(element: element, target: point): point {
+function horizontalCentre(frame: frame, element: element, target: point): point {
+  const x = Math.max(target.x - element.width / 2, 0);
   return {
-    x: target.x - element.width / 2,
+    x: x + element.width > frame.width ? frame.width : x,
     y: target.y
   };
 }
@@ -57,9 +70,6 @@ function isCloseToRightEdge(frame: frame, element: element, target: point): bool
   return target.x + element.width > frame.width;
 }
 
-// function position(p: Position, e: element): point {
-//   return {
-//     x: p.direction === 'left' ? p.point.x - e.width : p.point.x,
-//     y: p.direction === 'up' ? p.point.y - e.height : p.point.y
-//   };
-// }
+function isCloseToLeftEdge(target: point, element: element): boolean {
+  return target.x - element.width /2 <= 0;
+}
