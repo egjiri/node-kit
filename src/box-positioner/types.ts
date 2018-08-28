@@ -1,8 +1,7 @@
 type frame = {
   width: number;
   height: number;
-  xShift: number;
-  yShift: number;
+  padding: number;
 };
 
 type element = {
