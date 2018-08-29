@@ -10,19 +10,7 @@ export type point = {
   y: number;
 };
 
-export type frame = {
-  width: number;
-  height: number;
-  padding: number;
-};
-
-export type element = {
+export type rect = {
   width: number;
   height: number;
 };
-
-export type target = {
-  x: number,
-  y: number,
-  size: number
-}
