@@ -1,28 +1,28 @@
-type frame = {
+import Direction from './direction';
+
+export type position = {
+  point: point;
+  direction: Direction;
+};
+
+export type point = {
+  x: number;
+  y: number;
+};
+
+export type frame = {
   width: number;
   height: number;
   padding: number;
 };
 
-type element = {
+export type element = {
   width: number;
   height: number;
 };
 
-type target = {
+export type target = {
   x: number,
   y: number,
   size: number
 }
-
-type point = {
-  x: number;
-  y: number;
-};
-
-type direction = 'right' | 'left' | 'down' | 'up';
-
-type position = {
-  point: point;
-  directions: direction[];
-};

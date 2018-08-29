@@ -1,19 +1,22 @@
+import Direction from './direction';
+import { frame, element, target, point, position } from './types';
+
 // TODO: Also consider the following:
 // - padding between target & element
 // - nib position
 
 export default function calculatePoint(frame: frame, element: element, target: target): point {
-  const { point, directions } = calculatePosition(frame, element, target);
+  const { point, direction } = calculatePosition(frame, element, target);
   return {
-    x: directions.includes('left') ? point.x - element.width : point.x,
-    y: directions.includes('up') ? point.y - element.height : point.y
+    x: direction.pointsLeft ? point.x - element.width : point.x,
+    y: direction.pointsUp ? point.y - element.height : point.y
   };
 }
 
 export function calculatePosition(frame: frame, element: element, target: target): position {
   return {
     point: approximatePoint(frame, element, target),
-    directions: approximateDirection(frame, element, target)
+    direction: approximateDirection(frame, element, target)
   }
 }
 
@@ -25,19 +28,21 @@ function approximatePoint(frame: frame, element: element, target: target): point
   }
 }
 
-function approximateDirection(frame: frame, element: element, target: target): direction[] {
-  const directions: direction[] = [];
+function approximateDirection(frame: frame, element: element, target: target): Direction {
+  const direction = new Direction();
   if (isCloseToTopEdge(frame, element, target)) {
-    directions.push('down');
+    direction.add('down');
   } else if (isCloseToBottomEdge(frame, element, target)) {
-    directions.push('up');
+    direction.add('up');
   }
-  if (isCloseToRightEdge(frame, element, target, isHorizontal(directions))) {
-    directions.push('left');
-  } else if (isCloseToLeftEdge(frame, target, element) || directions.length === 0) {
-    directions.push('right');
+  if (isCloseToRightEdge(frame, element, target, direction.isHorizontal)) {
+    direction.add('left');
+  } else if (isCloseToLeftEdge(frame, target, element) || direction.isNone) {
+    direction.add('right');
   }
-  return directions;
+  return direction;
+}
+
 }
 
 function horizontalCentre(frame: frame, element: element, target: target): point {
@@ -84,8 +89,4 @@ function isCloseToLeftEdge(frame: frame, target: target, element: element): bool
 
 function limit(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
-}
-
-function isHorizontal(directions: direction[]): boolean {
-  return directions.includes('up') || directions.includes('down');
 }
