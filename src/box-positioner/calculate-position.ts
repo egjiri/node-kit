@@ -32,10 +32,9 @@ function approximateDirection(frame: frame, element: element, target: point): di
   } else if (isCloseToBottomEdge(frame, element, target)) {
     directions.push('up');
   }
-  if (isCloseToRightEdge(frame, element, target)) {
+  if (isCloseToRightEdge(frame, element, target, isHorizontal(directions))) {
     directions.push('left');
-  }
-  if (isCloseToLeftEdge(frame, target, element) || directions.length === 0) {
+  } else if (isCloseToLeftEdge(frame, target, element) || directions.length === 0) {
     directions.push('right');
   }
   return directions;
@@ -74,8 +73,9 @@ function isCloseToBottomEdge(frame: frame, element: element, target: point): boo
   return target.y + element.height / 2 > frame.height - frame.padding;
 }
 
-function isCloseToRightEdge(frame: frame, element: element, target: point): boolean {
-  return target.x + element.width > frame.width - frame.padding;
+function isCloseToRightEdge(frame: frame, element: element, target: point, isHorizontal: boolean): boolean {
+  const width = isHorizontal ? element.width / 2 : element.width;
+  return target.x + width > frame.width - frame.padding;
 }
 
 function isCloseToLeftEdge(frame: frame, target: point, element: element): boolean {
@@ -84,4 +84,8 @@ function isCloseToLeftEdge(frame: frame, target: point, element: element): boole
 
 function limit(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
+}
+
+function isHorizontal(directions: direction[]): boolean {
+  return directions.includes('up') || directions.includes('down');
 }

@@ -17,6 +17,7 @@ QUnit.test('test positions calculator', function(assert) {
     ["far enough from left edge",                  args(  5,  50),    expected(  5,  45),  expectedPosition(  5,  45, ['right'])],
     ["far enough from top edge",                   args( 50,   5),    expected( 50,   0),  expectedPosition( 50,   0, ['right'])],
     ["far enough from bottom edge",                args( 50,  95),    expected( 50,  90),  expectedPosition( 50,  90, ['right'])],
+    ["not as close to right edge",                 args( 95,  50),    expected( 85,  45),  expectedPosition( 95,  45, ['left'])],
     // Corner cases
     ["on top left edge",                           args(  0,   0),    expected(  0,   0),  expectedPosition(  0,   0, ['down', 'right'])],
     ["on top right edge",                          args(100,   0),    expected( 90,   0),  expectedPosition(100,   0, ['down', 'left'])],
@@ -30,6 +31,8 @@ QUnit.test('test positions calculator', function(assert) {
     ["far enough from top right edge",             args( 90,   5),    expected( 90,   0),  expectedPosition( 90,   0, ['right'])],
     ["far enough from bottom right edge",          args( 90,  95),    expected( 90,  90),  expectedPosition( 90,  90, ['right'])],
     ["far enough from bottom left edge",           args(  0,  95),    expected(  0,  90),  expectedPosition(  0,  90, ['right'])],
+    ["on bottom but far enough from right edge",   args( 91, 100),    expected( 86,  90),  expectedPosition( 86, 100, ['up'])],
+    ["on top but far enough from right edge",      args( 91,   0),    expected( 86,   0),  expectedPosition( 86,   0, ['down'])],
     // Padding between frame & element
     ["on centre with padding",                     args( 50,  50, 5), expected( 50,  45),  expectedPosition( 50,  45, ['right'])],
     ["on right edge with padding",                 args(100,  50, 5), expected( 85,  45),  expectedPosition( 95,  45, ['left'])],
