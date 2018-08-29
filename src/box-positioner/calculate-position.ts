@@ -2,7 +2,7 @@
 // - padding between target & element
 // - nib position
 
-export default function calculatePoint(frame: frame, element: element, target: point): point {
+export default function calculatePoint(frame: frame, element: element, target: target): point {
   const { point, directions } = calculatePosition(frame, element, target);
   return {
     x: directions.includes('left') ? point.x - element.width : point.x,
@@ -10,14 +10,14 @@ export default function calculatePoint(frame: frame, element: element, target: p
   };
 }
 
-export function calculatePosition(frame: frame, element: element, target: point): position {
+export function calculatePosition(frame: frame, element: element, target: target): position {
   return {
     point: approximatePoint(frame, element, target),
     directions: approximateDirection(frame, element, target)
   }
 }
 
-function approximatePoint(frame: frame, element: element, target: point): point {
+function approximatePoint(frame: frame, element: element, target: target): point {
   if (isCloseToTopEdge(frame, element, target) || isCloseToBottomEdge(frame, element, target)) {
     return horizontalCentre(frame, element, target);
   } else {
@@ -25,7 +25,7 @@ function approximatePoint(frame: frame, element: element, target: point): point 
   }
 }
 
-function approximateDirection(frame: frame, element: element, target: point): direction[] {
+function approximateDirection(frame: frame, element: element, target: target): direction[] {
   const directions: direction[] = [];
   if (isCloseToTopEdge(frame, element, target)) {
     directions.push('down');
@@ -40,7 +40,7 @@ function approximateDirection(frame: frame, element: element, target: point): di
   return directions;
 }
 
-function horizontalCentre(frame: frame, element: element, target: point): point {
+function horizontalCentre(frame: frame, element: element, target: target): point {
   const min = frame.padding;
   const maxX = frame.width - frame.padding;
   const maxY = frame.height - frame.padding;
@@ -53,7 +53,7 @@ function horizontalCentre(frame: frame, element: element, target: point): point 
   };
 }
 
-function verticalCentre(frame: frame, element: element, target: point): point {
+function verticalCentre(frame: frame, element: element, target: target): point {
   const min = frame.padding;
   const maxX = frame.width - frame.padding;
   const maxY = frame.height - frame.padding - element.height;
@@ -65,20 +65,20 @@ function verticalCentre(frame: frame, element: element, target: point): point {
   };
 }
 
-function isCloseToTopEdge(frame: frame, element: element, target: point): boolean {
+function isCloseToTopEdge(frame: frame, element: element, target: target): boolean {
   return target.y - element.height / 2 < frame.padding;
 }
 
-function isCloseToBottomEdge(frame: frame, element: element, target: point): boolean {
+function isCloseToBottomEdge(frame: frame, element: element, target: target): boolean {
   return target.y + element.height / 2 > frame.height - frame.padding;
 }
 
-function isCloseToRightEdge(frame: frame, element: element, target: point, isHorizontal: boolean): boolean {
+function isCloseToRightEdge(frame: frame, element: element, target: target, isHorizontal: boolean): boolean {
   const width = isHorizontal ? element.width / 2 : element.width;
   return target.x + width > frame.width - frame.padding;
 }
 
-function isCloseToLeftEdge(frame: frame, target: point, element: element): boolean {
+function isCloseToLeftEdge(frame: frame, target: target, element: element): boolean {
   return target.x - element.width / 2 <= frame.padding;
 }
 

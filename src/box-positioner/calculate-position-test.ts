@@ -2,7 +2,7 @@ import calculatePoint, { calculatePosition } from './calculate-position';
 
 declare const QUnit;
 QUnit.test('test positions calculator', function(assert) {
-  const tests: [string, [frame, element, point], point, position][] = [
+  const tests: [string, [frame, element, target], point, position][] = [
     ["on centre",                                  args( 50,  50),    expected( 50,  45),  expectedPosition( 50,  45, ['right'])],
     // Edge caes
     ["on right edge",                              args(100,  50),    expected( 90,  45),  expectedPosition(100,  45, ['left'])],
@@ -77,11 +77,11 @@ QUnit.test('test positions calculator', function(assert) {
   });
 });
 
-function args(x: number, y: number, padding: number = 0): [frame, element, point] {
+function args(x: number, y: number, padding: number = 0, size: number = 0): [frame, element, target] {
   return [
     { width: 100, height: 100, padding: padding },
     { width: 10, height: 10 },
-    { x: x, y: y }
+    { x: x, y: y, size: size }
   ]
 }
 

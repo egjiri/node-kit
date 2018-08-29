@@ -9,6 +9,12 @@ type element = {
   height: number;
 };
 
+type target = {
+  x: number,
+  y: number,
+  size: number
+}
+
 type point = {
   x: number;
   y: number;
