@@ -1,24 +1,7 @@
 import Direction from './direction';
-import { rectangle, point, position } from './types';
+import { calculationOptions, rectangle, point, position } from './types';
 
-export type calculationOptions = {
-  frame: rectangle,
-  element: rectangle,
-  target: point,
-  frameOffset: number,
-  targetPadding: number
-}
-
-export default function calculatePoint(options: calculationOptions): point {
-  const { point: { x, y }, direction } = calculatePosition(options);
-  const { width, height } = options.element;
-  return {
-    x: direction.pointsLeft ? x - width : x,
-    y: direction.pointsUp ? y - height : y
-  };
-}
-
-export function calculatePosition(options: calculationOptions): position {
+export default function calculatePosition(options: calculationOptions): position {
   const { element, targetPadding, frameOffset } = options;
 
   // reduce the frame size and move the target based on the offset

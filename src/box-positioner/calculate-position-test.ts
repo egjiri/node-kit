@@ -1,6 +1,7 @@
 import Direction from './direction';
-import calculatePoint, { calculationOptions, calculatePosition } from './calculate-position';
-import { point, position } from './types';
+import calculatePoint from './calculate-point';
+import calculatePosition from './calculate-position';
+import { calculationOptions, point, position } from './types';
 
 declare const QUnit;
 QUnit.test('test positions calculator', function(assert) {

@@ -1,8 +1,11 @@
 import Direction from './direction';
 
-export type position = {
-  point: point;
-  direction: Direction;
+export type calculationOptions = {
+  frame: rectangle;
+  element: rectangle;
+  target: point;
+  frameOffset: number;
+  targetPadding: number;
 };
 
 export type point = {
@@ -13,4 +16,9 @@ export type point = {
 export type rectangle = {
   width: number;
   height: number;
+};
+
+export type position = {
+  point: point;
+  direction: Direction;
 };
