@@ -29,14 +29,9 @@ export function calculatePosition(options: calculationOptions): position {
   const direction = approximateDirection(frame, element, target);
   let point = approximatePoint(frame, element, target);
 
-  // revert the frameOffset from the approximate point
+  // revert the frameOffset and apply targetOffset to the approximate point
   point = offsetPoint(point, frameOffset);
-
-  // offset the point to account for target padding
-  const offset = options.targetPadding - frameOffset;
-  if (offset > 0) {
-    point = offsetPointWithDirection(point, options.targetPadding - frameOffset, direction);
-  }
+  point = offsetPointPadding(point, direction, options.targetPadding, frameOffset);
 
   return {
     point: point,
@@ -61,7 +56,7 @@ function approximateDirection(frame: rect, element: rect, target: point): Direct
   }
   if (isCloseToRightEdge(frame, element, target, direction.isHorizontal)) {
     direction.add('left');
-  } else if (isCloseToLeftEdge(frame, target, element) || direction.isNone) {
+  } else if (isCloseToLeftEdge(frame, target, element)) {
     direction.add('right');
   }
   return direction;
@@ -118,14 +113,25 @@ function offsetFrame(frame: rect, offset: number): rect {
   };
 }
 
+function offsetPointPadding(point: point, direction: Direction, targetPadding: number, frameOffset: number): point {
+  if (direction.hasDirection) {
+    return offsetPointWithDirection(point, targetPadding - frameOffset, direction);
+  } else {
+    return { x: point.x + targetPadding, y: point.y }
+  }
+}
+
 function offsetPoint(point: point, offset: number): point {
   return {
     x: point.x + offset,
     y: point.y + offset
-  }
+  };
 }
 
 function offsetPointWithDirection(point: point, offset: number, direction: Direction): point {
+  if (offset < 0) {
+    return point;
+  }
   point = Object.assign({}, point);
   if (direction.pointsRight) {
     point.x += offset;
