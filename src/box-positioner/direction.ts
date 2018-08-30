@@ -19,4 +19,5 @@ export default class Direction {
   get isHorizontal() { return this.pointsUp || this.pointsDown }
   get isVertical() { return this.pointsLeft || this.pointsRight }
   get hasDirection() { return this.directions.length > 0 }
+  get isBlank() { return !this.hasDirection }
 }

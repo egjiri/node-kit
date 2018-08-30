@@ -10,7 +10,7 @@ export type point = {
   y: number;
 };
 
-export type rect = {
+export type rectangle = {
   width: number;
   height: number;
 };

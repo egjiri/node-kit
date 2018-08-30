@@ -1,9 +1,9 @@
 import Direction from './direction';
-import { rect, point, position } from './types';
+import { rectangle, point, position } from './types';
 
 export type calculationOptions = {
-  frame: rect,
-  element: rect,
+  frame: rectangle,
+  element: rectangle,
   target: point,
   frameOffset: number,
   targetPadding: number
@@ -19,50 +19,90 @@ export default function calculatePoint(options: calculationOptions): point {
 }
 
 export function calculatePosition(options: calculationOptions): position {
-  const { element, frameOffset } = options;
+  const { element, targetPadding, frameOffset } = options;
 
-  // decrease the frame and move the target based on the offset
-  const frame = offsetFrame(options.frame, -frameOffset * 2);
+  // reduce the frame size and move the target based on the offset
+  const frame = offsetRectange(options.frame, -frameOffset * 2);
   const target = offsetPoint(options.target, -frameOffset);
 
   // find an approximate point & direction
-  const direction = approximateDirection(frame, element, target);
-  let point = approximatePoint(frame, element, target);
+  const direction = approximateDirection(frame, element, target, targetPadding);
+  const point = approximatePoint(frame, element, target, targetPadding, frameOffset, direction);
 
-  // revert the frameOffset and apply targetOffset to the approximate point
-  point = offsetPoint(point, frameOffset);
-  point = offsetPointPadding(point, direction, options.targetPadding, frameOffset);
-
-  return {
-    point: point,
-    direction: direction
-  }
+  return { point: point, direction: direction }
 }
 
-function approximatePoint(frame: rect, element: rect, target: point): point {
-  if (isCloseToTopEdge(frame, element, target) || isCloseToBottomEdge(frame, element, target)) {
+function offsetRectange(frame: rectangle, offset: number): rectangle {
+  return {
+    width: frame.width + offset,
+    height: frame.height + offset
+  };
+}
+
+function offsetPoint(point: point, offset: number): point {
+  return {
+    x: point.x + offset,
+    y: point.y + offset
+  };
+}
+
+function approximateDirection(frame: rectangle, element: rectangle, target: point, targetPadding: number): Direction {
+  const direction = new Direction();
+  if (isCloseToTopEdge(element, target)) {
+    direction.add('down');
+  } else if (isCloseToBottomEdge(frame, element, target)) {
+    direction.add('up');
+  }
+  if (isCloseToRightEdge(frame, element, target, targetPadding, direction.isHorizontal)) {
+    direction.add('left');
+  } else if (isCloseToLeftEdge(element, target)) {
+    direction.add('right');
+  }
+  return direction;
+}
+
+function isCloseToTopEdge(element: rectangle, target: point) {
+  return target.y - element.height / 2 < 0;
+}
+
+function isCloseToBottomEdge(frame: rectangle, element: rectangle, target: point) {
+  return target.y + element.height / 2 > frame.height;
+}
+
+function isCloseToRightEdge(frame: rectangle, element: rectangle, target: point, targetPadding: number, isHorizontal: boolean) {
+  const width = isHorizontal ? element.width / 2 : element.width + targetPadding;
+  return target.x + width > frame.width;
+}
+
+function isCloseToLeftEdge(element: rectangle, target: point) {
+  return target.x - element.width / 2 < 0;
+}
+
+function approximatePoint(frame: rectangle, element: rectangle, target: point, targetPadding: number, frameOffset: number, direction: Direction): point {
+  let point = centerPoint(frame, element, target, direction);
+  point = offsetPoint(point, frameOffset); // revert the frameOffset from the approximate point
+  point = offsetPointPadding(point, direction, targetPadding, frameOffset); // apply padding to point
+
+  // TODO: Fix the following hacky scenario
+  // adjust for scenario where element falls over the right edge of the frame due to offset and padding
+  if (direction.pointsLeft && point.x + element.width === frame.width + frameOffset) {
+    point.x -= targetPadding;
+  } else if (direction.pointsLeft && point.x + targetPadding + element.width < frame.width + frameOffset) {
+    point.x -= frameOffset;
+  }
+
+  return point;
+}
+
+function centerPoint(frame: rectangle, element: rectangle, target: point, direction: Direction): point {
+  if (direction.isHorizontal) {
     return horizontalCentre(frame, element, target);
   } else {
     return verticalCentre(frame, element, target);
   }
 }
 
-function approximateDirection(frame: rect, element: rect, target: point): Direction {
-  const direction = new Direction();
-  if (isCloseToTopEdge(frame, element, target)) {
-    direction.add('down');
-  } else if (isCloseToBottomEdge(frame, element, target)) {
-    direction.add('up');
-  }
-  if (isCloseToRightEdge(frame, element, target, direction.isHorizontal)) {
-    direction.add('left');
-  } else if (isCloseToLeftEdge(frame, target, element)) {
-    direction.add('right');
-  }
-  return direction;
-}
-
-function horizontalCentre(frame: rect, element: rect, target: point): point {
+function horizontalCentre(frame: rectangle, element: rectangle, target: point): point {
   const maxX = frame.width;
   const maxY = frame.height;
   const halfWith = element.width / 2;
@@ -74,7 +114,7 @@ function horizontalCentre(frame: rect, element: rect, target: point): point {
   };
 }
 
-function verticalCentre(frame: rect, element: rect, target: point): point {
+function verticalCentre(frame: rectangle, element: rectangle, target: point): point {
   const maxX = frame.width;
   const maxY = frame.height - element.height;
   const x = target.x;
@@ -85,47 +125,16 @@ function verticalCentre(frame: rect, element: rect, target: point): point {
   };
 }
 
-function isCloseToTopEdge(frame: rect, element: rect, target: point) {
-  return target.y - element.height / 2 < 0;
-}
-
-function isCloseToLeftEdge(frame: rect, target: point, element: rect) {
-  return target.x - element.width / 2 < 0;
-}
-
-function isCloseToBottomEdge(frame: rect, element: rect, target: point) {
-  return target.y + element.height / 2 > frame.height;
-}
-
-function isCloseToRightEdge(frame: rect, element: rect, target: point, isHorizontal: boolean) {
-  const width = isHorizontal ? element.width / 2 : element.width;
-  return target.x + width > frame.width;
-}
-
 function limit(value: number, max: number) {
   return Math.max(0, Math.min(max, value));
 }
 
-function offsetFrame(frame: rect, offset: number): rect {
-  return {
-    width: frame.width + offset,
-    height: frame.height + offset
-  };
-}
-
 function offsetPointPadding(point: point, direction: Direction, targetPadding: number, frameOffset: number): point {
+  let offset = targetPadding;
   if (direction.hasDirection) {
-    return offsetPointWithDirection(point, targetPadding - frameOffset, direction);
-  } else {
-    return { x: point.x + targetPadding, y: point.y }
+    offset -= frameOffset;
   }
-}
-
-function offsetPoint(point: point, offset: number): point {
-  return {
-    x: point.x + offset,
-    y: point.y + offset
-  };
+  return offsetPointWithDirection(point, offset, direction);
 }
 
 function offsetPointWithDirection(point: point, offset: number, direction: Direction): point {
@@ -133,11 +142,12 @@ function offsetPointWithDirection(point: point, offset: number, direction: Direc
     return point;
   }
   point = Object.assign({}, point);
-  if (direction.pointsRight) {
+  if (direction.isBlank || direction.pointsRight) {
     point.x += offset;
   } else if (direction.pointsLeft) {
     point.x -= offset;
-  } else if (direction.pointsDown) {
+  }
+  if (direction.pointsDown) {
     point.y += offset;
   } else if (direction.pointsUp) {
     point.y -= offset;
