@@ -22,3 +22,9 @@ export type position = {
   point: point;
   direction: Direction;
 };
+
+export type nibPosition = {
+  top: number,
+  left: number,
+  transform: 'rotate(0deg)' | 'rotate(90deg)' | 'rotate(180deg)' | 'rotate(270deg)'
+}
