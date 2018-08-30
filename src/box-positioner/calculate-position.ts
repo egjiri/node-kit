@@ -32,6 +32,12 @@ export function calculatePosition(options: calculationOptions): position {
   // revert the frameOffset from the approximate point
   point = offsetPoint(point, frameOffset);
 
+  // offset the point to account for target padding
+  const offset = options.targetPadding - frameOffset;
+  if (offset > 0) {
+    point = offsetPointWithDirection(point, options.targetPadding - frameOffset, direction);
+  }
+
   return {
     point: point,
     direction: direction
@@ -117,4 +123,18 @@ function offsetPoint(point: point, offset: number): point {
     x: point.x + offset,
     y: point.y + offset
   }
+}
+
+function offsetPointWithDirection(point: point, offset: number, direction: Direction): point {
+  point = Object.assign({}, point);
+  if (direction.pointsRight) {
+    point.x += offset;
+  } else if (direction.pointsLeft) {
+    point.x -= offset;
+  } else if (direction.pointsDown) {
+    point.y += offset;
+  } else if (direction.pointsUp) {
+    point.y -= offset;
+  }
+  return point;
 }

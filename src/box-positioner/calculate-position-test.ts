@@ -70,6 +70,20 @@ QUnit.test('test positions calculator', function(assert) {
     ['far enough from top right edge offset',          args( 85,  10, 5),     point( 85,   5),  position( 85,   5, 'right')],
     ['far enough from bottom right edge offset',       args( 85,  90, 5),     point( 85,  85),  position( 85,  85, 'right')],
     ['far enough from bottom left edge offset',        args(  5,  90, 5),     point(  5,  85),  position(  5,  85, 'right')],
+    // Target with padding cases
+    ['on centre with target padding',                  args( 50,  50, 0, 5),  point( 55,  45),  position( 55,  45, 'right')],
+    ['on right edge with target padding',              args(100,  50, 0, 5),  point( 85,  45),  position( 95,  45, 'left')],
+    ['on left edge with target padding',               args(  0,  50, 0, 5),  point(  5,  45),  position(  5,  45, 'right')],
+    ['on top edge with target padding',                args( 50,   0, 0, 5),  point( 45,   5),  position( 45,   5, 'down')],
+    ['on bottom edge with target padding',             args( 50, 100, 0, 5),  point( 45,  85),  position( 45,  95, 'up')],
+    ['on right edge with offset and small padding',    args(100,  50, 5, 2),  point( 85,  45),  position( 95,  45, 'left')],
+    ['on left edge with offset and small padding',     args(  0,  50, 5, 2),  point(  5,  45),  position(  5,  45, 'right')],
+    ['on top edge with offset and small padding',      args( 50,   0, 5, 2),  point( 45,   5),  position( 45,   5, 'down')],
+    ['on bottom edge with offset and small padding',   args( 50, 100, 5, 2),  point( 45,  85),  position( 45,  95, 'up')],
+    ['on right edge with offset and large padding',    args(100,  50, 2, 5),  point( 85,  45),  position( 95,  45, 'left')],
+    ['on left edge with offset and large padding',     args(  0,  50, 2, 5),  point(  5,  45),  position(  5,  45, 'right')],
+    ['on top edge with offset and large padding',      args( 50,   0, 2, 5),  point( 45,   5),  position( 45,   5, 'down')],
+    ['on bottom edge with offset and large padding',   args( 50, 100, 2, 5),  point( 45,  85),  position( 45,  95, 'up')],
   ];
   tests.forEach(t => {
     const [name, calculationOptions, point, position] = t;
