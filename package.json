@@ -10,7 +10,7 @@
     "build": "tsc",
     "clean": "rm -rf dist",
     "watch": "tsc -w",
-    "start": "npm run watch",
+    "start": "yarn watch",
     "test": "tsc && qunit dist",
     "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
   },

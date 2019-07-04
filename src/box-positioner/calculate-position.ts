@@ -114,6 +114,8 @@ function limit(value: number, max: number) {
 
 function offsetPointPadding(point: point, direction: Direction, targetPadding: number, frameOffset: number): point {
   let offset = targetPadding;
+  // !: There is a bug where the spacing between the target and the element is inconsisten when
+  // !: it is in the center (no direction) or the edges (has direction). Issue likely here!
   if (direction.hasDirection) {
     offset -= frameOffset;
   }
