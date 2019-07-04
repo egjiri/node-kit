@@ -1,8 +1,8 @@
+import { test } from 'qunit';
 import humanize from './humanize';
 import { format } from '../numbers/numbers';
 
-declare const QUnit;
-QUnit.test('test humanize function', function(assert) {
+test('test humanize function', function(assert) {
   const tests: [string, [string?, format?], string][] = [
     ['underscore', ['family_friendly'], 'Family Friendly'],
     ['dashes', ['family-friendly'], 'Family Friendly'],

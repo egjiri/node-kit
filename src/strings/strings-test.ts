@@ -1,7 +1,7 @@
+import { test } from 'qunit';
 import { capitalize, reverse, humanize, addSeparator, toNumber } from './strings';
 
-declare const QUnit;
-QUnit.test('test capitalize function', function(assert) {
+test('test capitalize function', function(assert) {
   const tests: [string, [string], string][] = [
     ['single word capitalizes the first character', ['word'], 'Word'],
     ['multiple words only capitalize the first', ['two words'], 'Two words'],
@@ -14,7 +14,7 @@ QUnit.test('test capitalize function', function(assert) {
   });
 });
 
-QUnit.test('test reverse function', function(assert) {
+test('test reverse function', function(assert) {
   const tests: [string, [string], string][] = [
     ['normal use case', ['word'], 'drow']
   ];
@@ -25,7 +25,7 @@ QUnit.test('test reverse function', function(assert) {
   });
 });
 
-QUnit.test('test humanize function', function(assert) {
+test('test humanize function', function(assert) {
   const tests: [string, [string], string][] = [
     ['underscore use case', ['example_string'], 'Example String'],
     ['dashes use case', ['example-string'], 'Example String'],
@@ -38,7 +38,7 @@ QUnit.test('test humanize function', function(assert) {
   });
 });
 
-QUnit.test('test addSeparator function', function(assert) {
+test('test addSeparator function', function(assert) {
   const tests: [string, [string, string?], string][] = [
     ['normal use case', ['1234567890'], '1,234,567,890'],
     ['diffent separtor use case', ['1234567890', '-'], '1-234-567-890']
@@ -50,7 +50,7 @@ QUnit.test('test addSeparator function', function(assert) {
   });
 });
 
-QUnit.test('test toNumber function', function(assert) {
+test('test toNumber function', function(assert) {
   const tests: [string, [string], number][] = [
     ['normal use case', ['123'], 123],
     ['number with decimals', ['123.45'], 123.45],

@@ -1,7 +1,7 @@
+import { test } from 'qunit';
 import { format, formatNumber, toString } from './numbers';
 
-declare const QUnit;
-QUnit.test('test formatNumber function', function(assert) {
+test('test formatNumber function', function(assert) {
   const tests: [string, [number, format], string][] = [
     ['percentage use case', [12, 'percentage'], '12%'],
     ['currency use case', [12, 'currency'], '$12'],
@@ -14,7 +14,7 @@ QUnit.test('test formatNumber function', function(assert) {
   });
 });
 
-QUnit.test('test toString function', function(assert) {
+test('test toString function', function(assert) {
   const tests: [string, [number, number?], string][] = [
     ['simple number', [12], '12'],
     ['large number', [12345], '12,345'],

@@ -1,10 +1,10 @@
+import { test } from 'qunit';
 import Direction from './direction';
 import calculatePoint from './calculate-point';
 import calculatePosition from './calculate-position';
 import { calculationOptions, point, position } from './types';
 
-declare const QUnit;
-QUnit.test('test positions calculator', function(assert) {
+test('test positions calculator', function(assert) {
   const tests: [string, calculationOptions, point, position][] = [
     ['on centre',                                      args( 50,  50),        point( 50,  45),  position( 50,  45)],
     // Edge caes

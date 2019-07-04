@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const qunit_1 = require("qunit");
 const humanize_1 = require("./humanize");
-QUnit.test('test humanize function', function (assert) {
+qunit_1.test('test humanize function', function (assert) {
     const tests = [
         ['underscore', ['family_friendly'], 'Family Friendly'],
         ['dashes', ['family-friendly'], 'Family Friendly'],

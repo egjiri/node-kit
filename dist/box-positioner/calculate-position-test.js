@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const qunit_1 = require("qunit");
 const direction_1 = require("./direction");
 const calculate_point_1 = require("./calculate-point");
 const calculate_position_1 = require("./calculate-position");
-QUnit.test('test positions calculator', function (assert) {
+qunit_1.test('test positions calculator', function (assert) {
     const tests = [
         ['on centre', args(50, 50), point(50, 45), position(50, 45)],
         // Edge caes

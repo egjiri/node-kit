@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const qunit_1 = require("qunit");
 const numbers_1 = require("./numbers");
-QUnit.test('test formatNumber function', function (assert) {
+qunit_1.test('test formatNumber function', function (assert) {
     const tests = [
         ['percentage use case', [12, 'percentage'], '12%'],
         ['currency use case', [12, 'currency'], '$12'],
@@ -13,7 +14,7 @@ QUnit.test('test formatNumber function', function (assert) {
         assert.equal(numbers_1.formatNumber(num, format), want, name);
     });
 });
-QUnit.test('test toString function', function (assert) {
+qunit_1.test('test toString function', function (assert) {
     const tests = [
         ['simple number', [12], '12'],
         ['large number', [12345], '12,345'],
