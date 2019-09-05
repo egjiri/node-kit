@@ -11,7 +11,8 @@ test('test humanize function', function(assert) {
     ['invalid value/format combination', ['text', 'percentage'], 'N/A'],
     ['percentage format with no value', [null, 'percentage'], 'N/A'],
     ['number with currency format', ['123.45', 'currency'], '$123.45'],
-    ['large number with currency format', ['12345.6', 'currency'], '$12,345.6']
+    ['large number with currency format', ['12345.6', 'currency'], '$12,345.6'],
+    ['zero number with currency format', ['0', 'currency'], '$0']
   ];
   tests.forEach(t => {
     const [name, args, want] = t;

@@ -5,10 +5,10 @@ export default function humanize(value?: string, format?: format): string {
   value = value || '';
   if (format) {
     const number = toNumber(value);
-    if (number) {
-      return formatNumber(number, format);
-    } else {
+    if (isNaN(number)) {
       return 'N/A';
+    } else {
+      return formatNumber(number, format);
     }
   } else {
     return humanizeString(value);

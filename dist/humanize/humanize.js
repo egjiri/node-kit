@@ -6,11 +6,11 @@ function humanize(value, format) {
     value = value || '';
     if (format) {
         const number = strings_1.toNumber(value);
-        if (number) {
-            return numbers_1.formatNumber(number, format);
+        if (isNaN(number)) {
+            return 'N/A';
         }
         else {
-            return 'N/A';
+            return numbers_1.formatNumber(number, format);
         }
     }
     else {
