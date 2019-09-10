@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const strings_1 = require("../strings/strings");
+const underscore = require('underscore.string/underscored');
+const camelize = require('underscore.string/camelize');
+const dasherize = require('underscore.string/dasherize');
 function underscoreKeys(object) {
     return transformKeys(object, 'underscore');
 }
@@ -35,13 +37,13 @@ function transformKeys(object, transform) {
 }
 function transformKey(key, transform) {
     if (transform === 'underscore') {
-        return strings_1.underscore(key);
+        return underscore(key);
     }
     else if (transform === 'camelize') {
-        return strings_1.camelize(key);
+        return camelize(key);
     }
     else if (transform === 'dasherize') {
-        return strings_1.dasherize(key);
+        return dasherize(key);
     }
     else {
         return key;
