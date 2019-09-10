@@ -10,6 +10,18 @@ export function humanize(str: string): string {
   return str.split(/[_-\s]/).map(capitalize).join(' ')
 }
 
+export function underscore(str): string {
+  return str.underscore();
+}
+
+export function camelize(str): string {
+  return str.camelize();
+}
+
+export function dasherize(str): string {
+  return str.dasherize();
+}
+
 export function addSeparator(str: string, separator = ','): string {
   return reverse(reverse(str).match(/.{1,3}/g).join(separator));
 }

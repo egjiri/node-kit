@@ -12,6 +12,18 @@ function humanize(str) {
     return str.split(/[_-\s]/).map(capitalize).join(' ');
 }
 exports.humanize = humanize;
+function underscore(str) {
+    return str.underscore();
+}
+exports.underscore = underscore;
+function camelize(str) {
+    return str.camelize();
+}
+exports.camelize = camelize;
+function dasherize(str) {
+    return str.dasherize();
+}
+exports.dasherize = dasherize;
 function addSeparator(str, separator = ',') {
     return reverse(reverse(str).match(/.{1,3}/g).join(separator));
 }
