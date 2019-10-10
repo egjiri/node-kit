@@ -52,6 +52,8 @@ qunit_1.test('test toNumber function', function (assert) {
         ['normal use case', ['123'], 123],
         ['number with decimals', ['123.45'], 123.45],
         ['invalid characters gets stripped out', ['a1b2c3.d4e5'], 123.45],
+        ['negative number', ['-123'], -123],
+        ['negative charactred not at the start', ['-12-3'], -123],
     ];
     tests.forEach(t => {
         const [name, args, want] = t;

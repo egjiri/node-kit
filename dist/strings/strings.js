@@ -17,7 +17,11 @@ function addSeparator(str, separator = ',') {
 }
 exports.addSeparator = addSeparator;
 function toNumber(str) {
+    const negativeNumber = str.startsWith('-');
     str = str.replace(/[^0-9.]/g, '');
+    if (negativeNumber) {
+        str = '-' + str;
+    }
     return parseFloat(str);
 }
 exports.toNumber = toNumber;
