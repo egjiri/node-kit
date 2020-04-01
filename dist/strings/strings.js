@@ -25,3 +25,15 @@ function toNumber(str) {
     return parseFloat(str);
 }
 exports.toNumber = toNumber;
+function dasherize(str) {
+    return str
+        .replace(/([A-Z])/g, '-$1')
+        .replace(/[\s_]|-+/g, '-')
+        .replace(/^-/, '')
+        .toLowerCase();
+}
+exports.dasherize = dasherize;
+function pluralize(str) {
+    return str.replace(/s$/, '') + 's';
+}
+exports.pluralize = pluralize;

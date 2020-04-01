@@ -7,7 +7,7 @@ export function reverse(str: string): string {
 }
 
 export function humanize(str: string): string {
-  return str.split(/[_-\s]/).map(capitalize).join(' ')
+  return str.split(/[_-\s]/).map(capitalize).join(' ');
 }
 
 export function addSeparator(str: string, separator = ','): string {
@@ -21,4 +21,16 @@ export function toNumber(str: string): number {
     str = '-' + str;
   }
   return parseFloat(str);
+}
+
+export function dasherize(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '-$1')
+    .replace(/[\s_]|-+/g, '-')
+    .replace(/^-/, '')
+    .toLowerCase();
+}
+
+export function pluralize(str: string): string {
+  return str.replace(/s$/, '') + 's';
 }
