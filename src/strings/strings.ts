@@ -26,7 +26,7 @@ export function toNumber(str: string): number {
 export function dasherize(str: string): string {
   return str
     .replace(/([A-Z])/g, '-$1')
-    .replace(/[\s_]|-+/g, '-')
+    .replace(/[\s_-]+/g, '-')
     .replace(/^-/, '')
     .toLowerCase();
 }

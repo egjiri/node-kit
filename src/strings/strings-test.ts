@@ -70,6 +70,7 @@ test('test dasherize function', function(assert) {
     ['normal use case', ['NormalCase'], 'normal-case'],
     ['spaces use case', ['spaces case'], 'spaces-case'],
     ['underscore use case', ['underscore_case'], 'underscore-case'],
+    ['capitals and spaces use case', ['Capitals and Spaces'], 'capitals-and-spaces'],
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
