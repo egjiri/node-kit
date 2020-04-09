@@ -2,11 +2,6 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "ES2018",
-    "noImplicitAny": false,
-    "sourceMap": false,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "outDir": "dist",
     "declaration": true
   },
@@ -15,7 +10,6 @@
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "**/*-test.ts"
+    "dist"
   ]
 }
