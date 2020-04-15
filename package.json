@@ -1,10 +1,10 @@
 {
   "name": "egjiri-node-kit",
   "version": "0.4.2",
-  "private": false,
+  "author": "Endri Gjiri",
   "description": "TypeScript/Javascript Utilities",
   "license": "MIT",
-  "author": "Endri Gjiri",
+  "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
   "scripts": {
     "build": "tsc",

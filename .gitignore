@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
 
+# built tests
 /dist/**/*-test.js
 /dist/**/*-test.d.ts
