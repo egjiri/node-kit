@@ -19,7 +19,7 @@ test('test toString function', function(assert) {
     ['simple number', [12], '12'],
     ['large number', [12345], '12,345'],
     ['large number with decimals', [12345.6], '12,345.6'],
-    ['number with not defaul number of decimals', [12345.6, 2], '12,345.60'],
+    ['number with set number of decimals', [12345.6, 2], '12,345.60'],
     ['number with no decimals', [12345.6, 0], '12,345'],
   ];
   tests.forEach(t => {
