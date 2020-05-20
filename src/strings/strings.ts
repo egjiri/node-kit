@@ -31,6 +31,10 @@ export function dasherize(str: string): string {
     .toLowerCase();
 }
 
+export function camelize(str: string): string {
+  return str.split(/[\s-_]/).map((word, index) => index === 0 ?  word : capitalize(word)).join('');
+}
+
 export function pluralize(str: string): string {
   return str.replace(/s$/, '') + 's';
 }

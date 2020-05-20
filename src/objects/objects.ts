@@ -1,6 +1,5 @@
-const underscore = require('underscore.string/underscored');
-const camelize = require('underscore.string/camelize');
-const dasherize = require('underscore.string/dasherize');
+import * as underscore from 'underscore.string/underscored';
+import { camelize, dasherize } from '../strings/strings';
 
 export function underscoreKeys(object: object): object {
   return transformKeys(object, 'underscore');

@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import { capitalize, reverse, humanize, addSeparator, toNumber, dasherize, pluralize } from './strings';
+import { capitalize, reverse, humanize, addSeparator, toNumber, dasherize, camelize, pluralize } from './strings';
 
 test('test capitalize function', function(assert) {
   const tests: [string, [string], string][] = [
@@ -79,6 +79,18 @@ test('test dasherize function', function(assert) {
   });
 });
 
+test('test camelize function', function(assert) {
+  const tests: [string, [string], string][] = [
+    ['spaces use case', ['spaces case'], 'spacesCase'],
+    ['dashes use case', ['dashes-case'], 'dashesCase'],
+    ['underscore use case', ['underscore_case'], 'underscoreCase'],
+  ];
+  tests.forEach(t => {
+    const [name, args, want] = t;
+    const [str] = args;
+    assert.equal(camelize(str), want, name);
+  });
+});
 
 test('test pluralize function', function(assert) {
   const tests: [string, [string], string][] = [
