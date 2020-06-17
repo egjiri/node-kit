@@ -53,3 +53,18 @@ export function camelize(str: string): string {
 export function pluralize(str: string): string {
   return str.replace(/s$/, '') + 's';
 }
+
+export function regexMatchInGroups(str: string, regexStr: string): object {
+  const groups = {};
+  const regex = new RegExp(regexStr.replace(/\?<(.+?)>/g, ''));
+  if (regex.test(str)) {
+    const match = str.match(regex);
+    regexStr.match(/\?<(.+?)>/g).forEach(group => {
+      const name = group.replace(/^\?</, '').replace(/>$/, '');
+      const stringPrefix = regexStr.substr(0, regexStr.indexOf(group));
+      const index = stringPrefix.replace(/\(\?:/g, '').replace(/[^(]/g, '').length;
+      groups[name] = match[index];
+    });
+  }
+  return groups;
+}

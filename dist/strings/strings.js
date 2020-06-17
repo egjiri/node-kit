@@ -56,3 +56,18 @@ function pluralize(str) {
     return str.replace(/s$/, '') + 's';
 }
 exports.pluralize = pluralize;
+function regexMatchInGroups(str, regexStr) {
+    const groups = {};
+    const regex = new RegExp(regexStr.replace(/\?<(.+?)>/g, ''));
+    if (regex.test(str)) {
+        const match = str.match(regex);
+        regexStr.match(/\?<(.+?)>/g).forEach(group => {
+            const name = group.replace(/^\?</, '').replace(/>$/, '');
+            const stringPrefix = regexStr.substr(0, regexStr.indexOf(group));
+            const index = stringPrefix.replace(/\(\?:/g, '').replace(/[^(]/g, '').length;
+            groups[name] = match[index];
+        });
+    }
+    return groups;
+}
+exports.regexMatchInGroups = regexMatchInGroups;

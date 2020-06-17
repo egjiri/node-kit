@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import { capitalize, capitalizeWords, capitalizeSentences, reverse, humanize, addSeparator, toNumber, dasherize, deDasherize, camelize, pluralize } from './strings';
+import { capitalize, capitalizeWords, capitalizeSentences, reverse, humanize, addSeparator, toNumber, dasherize, deDasherize, camelize, pluralize, regexMatchInGroups } from './strings';
 
 test('test capitalize function', function(assert) {
   const tests: [string, [string], string][] = [
@@ -135,5 +135,13 @@ test('test pluralize function', function(assert) {
     const [name, args, want] = t;
     const [str] = args;
     assert.equal(pluralize(str), want, name);
+
+test('test regexMatchInGroups function', function(assert) {
+  const tests: [string, [string, string], object][] = [
+    ['normal use case', ['toronto-on-area', '(?<city>[A-Za-z\\-]+)-(?<provinceCode>on|ab|bc)-area'], { city: 'toronto', provinceCode: 'on' }],
+  ];
+  tests.forEach(t => {
+    const [name, args, want] = t;
+    assert.deepEqual(regexMatchInGroups(...args), want, name);
   });
 });

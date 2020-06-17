@@ -9,3 +9,4 @@ export declare function dasherize(str: string): string;
 export declare function deDasherize(str: string): string;
 export declare function camelize(str: string): string;
 export declare function pluralize(str: string): string;
+export declare function regexMatchInGroups(str: string, regexStr: string): object;
