@@ -2,6 +2,13 @@ export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function capitalizeWords(str: string): string {
+  return str.split(' ').map(word => {
+    const exceptionWords = ['in', 'on', 'is', 'to', 'for', 'width', 'and', 'on', 'by', 'a', 'at'];
+    return exceptionWords.includes(word) ? word.toLowerCase() : capitalize(word);
+  }).join(' ');
+}
+
 export function reverse(str: string): string {
   return str.split('').reverse().join('');
 }
@@ -32,7 +39,7 @@ export function dasherize(str: string): string {
 }
 
 export function deDasherize(str: string): string {
-  return str.replace('-', ' ');
+  return str.replace(/-/g, ' ');
 }
 
 export function camelize(str: string): string {

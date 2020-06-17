@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import { capitalize, reverse, humanize, addSeparator, toNumber, dasherize, deDasherize, camelize, pluralize } from './strings';
+import { capitalize, capitalizeWords, reverse, humanize, addSeparator, toNumber, dasherize, deDasherize, camelize, pluralize } from './strings';
 
 test('test capitalize function', function(assert) {
   const tests: [string, [string], string][] = [
@@ -11,6 +11,19 @@ test('test capitalize function', function(assert) {
     const [name, args, want] = t;
     const [str] = args;
     assert.equal(capitalize(str), want, name);
+  });
+});
+
+test('test capitalizeWords function', function(assert) {
+  const tests: [string, [string], string][] = [
+    ['multiple words capitalize each word', ['two words'], 'Two Words'],
+    ['ignore exception words when capitalizing', ['it is not a great idea to go outside these days'], 'It is Not a Great Idea to Go Outside These Days'],
+    ['capitals present in the words are retained', ['WIRED magazine'], 'WIRED Magazine'],
+  ];
+  tests.forEach(t => {
+    const [name, args, want] = t;
+    const [str] = args;
+    assert.equal(capitalizeWords(str), want, name);
   });
 });
 

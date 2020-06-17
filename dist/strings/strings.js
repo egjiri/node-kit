@@ -4,6 +4,13 @@ function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 exports.capitalize = capitalize;
+function capitalizeWords(str) {
+    return str.split(' ').map(word => {
+        const exceptionWords = ['in', 'on', 'is', 'to', 'for', 'width', 'and', 'on', 'by', 'a', 'at'];
+        return exceptionWords.includes(word) ? word.toLowerCase() : capitalize(word);
+    }).join(' ');
+}
+exports.capitalizeWords = capitalizeWords;
 function reverse(str) {
     return str.split('').reverse().join('');
 }
@@ -34,7 +41,7 @@ function dasherize(str) {
 }
 exports.dasherize = dasherize;
 function deDasherize(str) {
-    return str.replace('-', ' ');
+    return str.replace(/-/g, ' ');
 }
 exports.deDasherize = deDasherize;
 function camelize(str) {
