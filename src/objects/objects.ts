@@ -17,6 +17,14 @@ export function isObject(value: any): boolean {
   return typeof value === 'object' && !Array.isArray(value) && value !== null && value !== undefined;
 }
 
+export function removeKeysWithBlankValues(object: object): object {
+  object = { ...object };
+  const nullValues = [null, undefined];
+  Object.keys(object).forEach(key => nullValues.includes(object[key]) && delete object[key]);
+  return object;
+}
+
+
 function transformKeys(object, transform) {
   object = Object.assign({}, object);
   for (let key in object) {
