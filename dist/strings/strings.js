@@ -11,6 +11,10 @@ function capitalizeWords(str) {
     }).join(' ');
 }
 exports.capitalizeWords = capitalizeWords;
+function capitalizeSentences(str) {
+    return str.split('. ').map(word => capitalize(word)).join('. ');
+}
+exports.capitalizeSentences = capitalizeSentences;
 function reverse(str) {
     return str.split('').reverse().join('');
 }

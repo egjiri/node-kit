@@ -1,5 +1,6 @@
 export declare function capitalize(str: string): string;
 export declare function capitalizeWords(str: string): string;
+export declare function capitalizeSentences(str: string): string;
 export declare function reverse(str: string): string;
 export declare function humanize(str: string): string;
 export declare function addSeparator(str: string, separator?: string): string;

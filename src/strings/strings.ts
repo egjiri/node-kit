@@ -9,6 +9,10 @@ export function capitalizeWords(str: string): string {
   }).join(' ');
 }
 
+export function capitalizeSentences(str: string): string {
+  return str.split('. ').map(word => capitalize(word)).join('. ');
+}
+
 export function reverse(str: string): string {
   return str.split('').reverse().join('');
 }

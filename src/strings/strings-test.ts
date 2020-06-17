@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import { capitalize, capitalizeWords, reverse, humanize, addSeparator, toNumber, dasherize, deDasherize, camelize, pluralize } from './strings';
+import { capitalize, capitalizeWords, capitalizeSentences, reverse, humanize, addSeparator, toNumber, dasherize, deDasherize, camelize, pluralize } from './strings';
 
 test('test capitalize function', function(assert) {
   const tests: [string, [string], string][] = [
@@ -24,6 +24,17 @@ test('test capitalizeWords function', function(assert) {
     const [name, args, want] = t;
     const [str] = args;
     assert.equal(capitalizeWords(str), want, name);
+  });
+});
+
+test('test capitalizeSentences function', function(assert) {
+  const tests: [string, [string], string][] = [
+    ['normal use case', ['this is the first sentence. this is the second one'], 'This is the first sentence. This is the second one'],
+  ];
+  tests.forEach(t => {
+    const [name, args, want] = t;
+    const [str] = args;
+    assert.equal(capitalizeSentences(str), want, name);
   });
 });
 
