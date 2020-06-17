@@ -9,8 +9,7 @@ test('test capitalize function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(capitalize(str), want, name);
+    assert.equal(capitalize(...args), want, name);
   });
 });
 
@@ -22,8 +21,7 @@ test('test capitalizeWords function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(capitalizeWords(str), want, name);
+    assert.equal(capitalizeWords(...args), want, name);
   });
 });
 
@@ -33,8 +31,7 @@ test('test capitalizeSentences function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(capitalizeSentences(str), want, name);
+    assert.equal(capitalizeSentences(...args), want, name);
   });
 });
 
@@ -44,8 +41,7 @@ test('test reverse function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(reverse(str), want, name);
+    assert.equal(reverse(...args), want, name);
   });
 });
 
@@ -57,8 +53,7 @@ test('test humanize function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(humanize(str), want, name);
+    assert.equal(humanize(...args), want, name);
   });
 });
 
@@ -84,8 +79,7 @@ test('test toNumber function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(toNumber(str), want, name);
+    assert.equal(toNumber(...args), want, name);
   });
 });
 
@@ -98,8 +92,7 @@ test('test dasherize function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(dasherize(str), want, name);
+    assert.equal(dasherize(...args), want, name);
   });
 });
 
@@ -109,8 +102,7 @@ test('test deDasherize function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(deDasherize(str), want, name);
+    assert.equal(deDasherize(...args), want, name);
   });
 });
 
@@ -122,8 +114,7 @@ test('test camelize function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(camelize(str), want, name);
+    assert.equal(camelize(...args), want, name);
   });
 });
 
@@ -133,8 +124,9 @@ test('test pluralize function', function(assert) {
   ];
   tests.forEach(t => {
     const [name, args, want] = t;
-    const [str] = args;
-    assert.equal(pluralize(str), want, name);
+    assert.equal(pluralize(...args), want, name);
+  });
+});
 
 test('test regexMatchInGroups function', function(assert) {
   const tests: [string, [string, string], object][] = [
