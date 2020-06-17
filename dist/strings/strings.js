@@ -33,6 +33,10 @@ function dasherize(str) {
         .toLowerCase();
 }
 exports.dasherize = dasherize;
+function deDasherize(str) {
+    return str.replace('-', ' ');
+}
+exports.deDasherize = deDasherize;
 function camelize(str) {
     return str.split(/[\s-_]/).map((word, index) => index === 0 ? word : capitalize(word)).join('');
 }
