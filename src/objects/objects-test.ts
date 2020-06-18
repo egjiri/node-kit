@@ -8,6 +8,11 @@ test('test underscoreKeys function', function(assert) {
       [{ 'first key': 1, 'second-key': 2, 'thirdKey': 3, 'fourth_key': 4 }],
       { first_key: 1, second_key: 2, third_key: 3, fourth_key: 4 }
     ],
+    [
+      'nested use case',
+      [{ 'first key': 1, 'second-key': { 'thirdKey': 3, 'fourth_key': 4 } }],
+      { first_key: 1, second_key: { third_key: 3, fourth_key: 4 } }
+    ],
   ];
   tests.forEach(t => {
     const [name, args, want] = t;

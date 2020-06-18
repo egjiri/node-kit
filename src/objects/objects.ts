@@ -24,9 +24,8 @@ export function removeKeysWithBlankValues(object: object): object {
   return object;
 }
 
-
-function transformKeys(object, transform) {
-  object = Object.assign({}, object);
+function transformKeys(object: object, transform: transform): object {
+  object = { ... object };
   for (let key in object) {
     // only manipulate property not from the prototype
     if (object.hasOwnProperty(key)) {
