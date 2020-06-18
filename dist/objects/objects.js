@@ -25,6 +25,14 @@ function removeKeysWithBlankValues(object) {
     return object;
 }
 exports.removeKeysWithBlankValues = removeKeysWithBlankValues;
+function swapKeysAndValues(object) {
+    const newObject = {};
+    Object.keys(object).forEach(key => {
+        newObject[object[key]] = key;
+    });
+    return newObject;
+}
+exports.swapKeysAndValues = swapKeysAndValues;
 function transformKeys(object, transform) {
     object = { ...object };
     for (let key in object) {

@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeysWithBlankValues } from './objects';
+import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeysWithBlankValues, swapKeysAndValues } from './objects';
 
 test('test underscoreKeys function', function(assert) {
   const tests: [string, [object], object][] = [
@@ -77,5 +77,16 @@ test('test removeKeysWithBlankValues function', function(assert) {
     const [name, args, want] = t;
     const [object] = args;
     assert.deepEqual(removeKeysWithBlankValues(object), want, name);
+  });
+});
+
+test('test swapKeysAndValues function', function(assert) {
+  const tests: [string, [any], object][] = [
+    ['normal use case', [{ a: 'b', c: 'd' }], { b: 'a', d: 'c' }],
+  ];
+  tests.forEach(t => {
+    const [name, args, want] = t;
+    const [object] = args;
+    assert.deepEqual(swapKeysAndValues(object), want, name);
   });
 });

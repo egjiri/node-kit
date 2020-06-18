@@ -3,3 +3,4 @@ export declare function camelizeKeys(object: object): object;
 export declare function dasherizeKeys(object: object): object;
 export declare function isObject(value: any): boolean;
 export declare function removeKeysWithBlankValues(object: object): object;
+export declare function swapKeysAndValues(object: object): object;
