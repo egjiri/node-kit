@@ -7,8 +7,7 @@ test('test formatNumber function', function(assert) {
     ['currency use case', [12, 'currency'], '$12'],
     ['large number use case', [1234.56, 'currency'], '$1,234.56'],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [num, format] = args;
     assert.equal(formatNumber(num, format), want, name);
   });
@@ -22,8 +21,7 @@ test('test toString function', function(assert) {
     ['number with set number of decimals', [12345.6, 2], '12,345.60'],
     ['number with no decimals', [12345.6, 0], '12,345'],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [num, numberOfDecimals] = args;
     assert.equal(toString(num, numberOfDecimals), want, name);
   });

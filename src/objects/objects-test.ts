@@ -14,8 +14,7 @@ test('test underscoreKeys function', function(assert) {
       { first_key: 1, second_key: { third_key: 3, fourth_key: 4 } }
     ],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [object] = args;
     assert.deepEqual(underscoreKeys(object), want, name);
   });
@@ -29,8 +28,7 @@ test('test camelizeKeys function', function(assert) {
       { firstKey: 1, secondKey: 2, thirdKey: 3, fourthKey: 4 }
     ],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [object] = args;
     assert.deepEqual(camelizeKeys(object), want, name);
   });
@@ -44,8 +42,7 @@ test('test dasherizeKeys function', function(assert) {
       { 'first-key': 1, 'second-key': 2, 'third-key': 3, 'fourth-key': 4 }
     ],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [object] = args;
     assert.deepEqual(dasherizeKeys(object), want, name);
   });
@@ -60,8 +57,7 @@ test('test isObject function', function(assert) {
     ['number use case', [1], false],
     ['array use case', [['a', 1]], false],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [object] = args;
     assert.equal(isObject(object), want, name);
   });
@@ -73,8 +69,7 @@ test('test removeKeysWithBlankValues function', function(assert) {
     ['null use case', [{ a: 1, b: null }], { a: 1 }],
     ['undefined use case', [{ a: 1, b: undefined }], { a: 1 }],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [object] = args;
     assert.deepEqual(removeKeysWithBlankValues(object), want, name);
   });
@@ -84,8 +79,7 @@ test('test swapKeysAndValues function', function(assert) {
   const tests: [string, [any], object][] = [
     ['normal use case', [{ a: 'b', c: 'd' }], { b: 'a', d: 'c' }],
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [object] = args;
     assert.deepEqual(swapKeysAndValues(object), want, name);
   });

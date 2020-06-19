@@ -14,8 +14,7 @@ test('test humanize function', function(assert) {
     ['large number with currency format', ['12345.6', 'currency'], '$12,345.6'],
     ['zero number with currency format', ['0', 'currency'], '$0']
   ];
-  tests.forEach(t => {
-    const [name, args, want] = t;
+  tests.forEach(([name, args, want]) => {
     const [value, format] = args;
     assert.equal(humanize(value, format), want, name);
   });
