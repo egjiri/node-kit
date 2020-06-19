@@ -1,5 +1,7 @@
 import { test } from 'qunit';
 import {
+  trim,
+  underscore,
   capitalize,
   capitalizeWords,
   capitalizeSentences,
@@ -13,6 +15,27 @@ import {
   pluralize,
   regexMatchInGroups
 } from './strings';
+
+test('test trim function', function(assert) {
+  const tests: [string, [string], string][] = [
+    ['normal use case', ['  spaces  '], 'spaces'],
+  ];
+  tests.forEach(([name, args, want]) => {
+    assert.equal(trim(...args), want, name);
+  });
+});
+
+test('test underscore function', function(assert) {
+  const tests: [string, [string], string][] = [
+    ['spaces use case', ['with spaces'], 'with_spaces'],
+    ['dashes use case', ['with-dashes'], 'with_dashes'],
+    ['camelcased use case', ['camelCased'], 'camel_cased'],
+    ['extra spaces', ['  more  spaces  '], 'more_spaces'],
+  ];
+  tests.forEach(([name, args, want]) => {
+    assert.equal(underscore(...args), want, name);
+  });
+});
 
 test('test capitalize function', function(assert) {
   const tests: [string, [string], string][] = [

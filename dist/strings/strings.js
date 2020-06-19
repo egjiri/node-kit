@@ -1,5 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+function trim(str) {
+    return str.replace(/^\s+|\s+$/g, '');
+}
+exports.trim = trim;
+function underscore(str) {
+    return trim(str)
+        .replace(/([a-z\d])([A-Z]+)/g, '$1_$2')
+        .replace(/[-\s]+/g, '_')
+        .toLowerCase();
+}
+exports.underscore = underscore;
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }

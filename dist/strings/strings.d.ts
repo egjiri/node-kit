@@ -1,3 +1,5 @@
+export declare function trim(str: string): string;
+export declare function underscore(str: string): string;
 export declare function capitalize(str: string): string;
 export declare function capitalizeWords(str: string): string;
 export declare function capitalizeSentences(str: string): string;

@@ -1,3 +1,14 @@
+export function trim(str: string) {
+  return str.replace(/^\s+|\s+$/g, '');
+}
+
+export function underscore(str: string) {
+  return trim(str)
+    .replace(/([a-z\d])([A-Z]+)/g, '$1_$2')
+    .replace(/[-\s]+/g, '_')
+    .toLowerCase();
+}
+
 export function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
