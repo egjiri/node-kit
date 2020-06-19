@@ -1,5 +1,4 @@
-import * as underscore from 'underscore.string/underscored';
-import { camelize, dasherize } from '../strings/strings';
+import { underscore, camelize, dasherize } from '../strings/strings';
 
 type objectWithStringKeys = { [key: string]: any };
 type objectWithStringKeysAndValues = { [key: string]: string };

@@ -14,9 +14,6 @@
     "test": "tsc && qunit dist",
     "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
   },
-  "dependencies": {
-    "underscore.string": "^3.3.5"
-  },
   "devDependencies": {
     "@types/node": "^12.0.12",
     "nodemon": "^1.18.3",
