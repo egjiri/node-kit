@@ -24,7 +24,8 @@ function humanize(str) {
 }
 exports.humanize = humanize;
 function addSeparator(str, separator = ',') {
-    return reverse(reverse(str).match(/.{1,3}/g).join(separator));
+    const matches = reverse(str).match(/.{1,3}/g);
+    return matches ? reverse(matches.join(separator)) : '';
 }
 exports.addSeparator = addSeparator;
 function toNumber(str) {
@@ -60,12 +61,13 @@ function regexMatchInGroups(str, regexStr) {
     const groups = {};
     const regex = new RegExp(regexStr.replace(/\?<(.+?)>/g, ''));
     if (regex.test(str)) {
-        const match = str.match(regex);
-        regexStr.match(/\?<(.+?)>/g).forEach(group => {
+        const matches = str.match(regex) || [];
+        const groupMatches = regexStr.match(/\?<(.+?)>/g) || [];
+        groupMatches.forEach(group => {
             const name = group.replace(/^\?</, '').replace(/>$/, '');
             const stringPrefix = regexStr.substr(0, regexStr.indexOf(group));
             const index = stringPrefix.replace(/\(\?:/g, '').replace(/[^(]/g, '').length;
-            groups[name] = match[index];
+            groups[name] = matches[index];
         });
     }
     return groups;

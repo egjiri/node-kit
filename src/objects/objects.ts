@@ -1,15 +1,18 @@
 import * as underscore from 'underscore.string/underscored';
 import { camelize, dasherize } from '../strings/strings';
 
-export function underscoreKeys(object: object): object {
+type objectWithStringKeys = { [key: string]: any };
+type objectWithStringKeysAndValues = { [key: string]: string };
+
+export function underscoreKeys(object: objectWithStringKeys) {
   return transformKeys(object, 'underscore');
 }
 
-export function camelizeKeys(object: object): object {
+export function camelizeKeys(object: objectWithStringKeys) {
   return transformKeys(object, 'camelize');
 }
 
-export function dasherizeKeys(object: object): object {
+export function dasherizeKeys(object: objectWithStringKeys) {
   return transformKeys(object, 'dasherize');
 }
 
@@ -17,22 +20,22 @@ export function isObject(value: any): boolean {
   return typeof value === 'object' && !Array.isArray(value) && value !== null && value !== undefined;
 }
 
-export function removeKeysWithBlankValues(object: object): object {
+export function removeKeysWithBlankValues(object: objectWithStringKeys) {
   object = { ...object };
   const nullValues = [null, undefined];
   Object.keys(object).forEach(key => nullValues.includes(object[key]) && delete object[key]);
   return object;
 }
 
-export function swapKeysAndValues(object: object): object {
-  const newObject = {};
+export function swapKeysAndValues(object: objectWithStringKeysAndValues) {
+  const newObject: objectWithStringKeysAndValues = {};
   Object.keys(object).forEach(key => {
     newObject[object[key]] = key;
   });
   return newObject;
 }
 
-function transformKeys(object: object, transform: transform): object {
+function transformKeys(object: objectWithStringKeys, transform: transform) {
   object = { ... object };
   for (let key in object) {
     // only manipulate property not from the prototype
