@@ -1,12 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const direction_1 = require("./direction");
+const direction_1 = __importDefault(require("./direction"));
 function calculatePosition(options) {
     const { element, targetPadding, frameOffset } = options;
-    // reduce the frame size and move the target based on the offset
     const frame = offsetRectange(options.frame, -frameOffset * 2);
     const target = offsetPoint(options.target, -frameOffset);
-    // find an approximate point & direction
     const direction = approximateDirection(frame, element, target, targetPadding);
     const point = approximatePoint(frame, element, target, targetPadding, frameOffset, direction);
     return { point: point, direction: direction };
@@ -55,10 +56,8 @@ function isCloseToLeftEdge(element, target) {
 }
 function approximatePoint(frame, element, target, targetPadding, frameOffset, direction) {
     let point = centerPoint(frame, element, target, direction);
-    point = offsetPoint(point, frameOffset); // revert the frameOffset from the approximate point
-    point = offsetPointPadding(point, direction, targetPadding, frameOffset); // apply padding to point
-    // TODO: Fix the following hacky scenario
-    // adjust for scenario where element falls over the right edge of the frame due to offset and padding
+    point = offsetPoint(point, frameOffset);
+    point = offsetPointPadding(point, direction, targetPadding, frameOffset);
     if (direction.pointsLeft && point.x + element.width === frame.width + frameOffset) {
         point.x -= targetPadding;
     }
@@ -101,8 +100,6 @@ function limit(value, max) {
 }
 function offsetPointPadding(point, direction, targetPadding, frameOffset) {
     let offset = targetPadding;
-    // !: There is a bug where the spacing between the target and the element is inconsisten when
-    // !: it is in the center (no direction) or the edges (has direction). Issue likely here!
     if (direction.hasDirection) {
         offset -= frameOffset;
     }

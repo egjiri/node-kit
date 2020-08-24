@@ -19,8 +19,12 @@ function isObject(value) {
 exports.isObject = isObject;
 function removeKeysWithBlankValues(object) {
     object = { ...object };
-    const nullValues = [null, undefined];
-    Object.keys(object).forEach(key => nullValues.includes(object[key]) && delete object[key]);
+    Object.keys(object).forEach(key => {
+        const value = object[key];
+        if (value === null || value === undefined) {
+            delete object[key];
+        }
+    });
     return object;
 }
 exports.removeKeysWithBlankValues = removeKeysWithBlankValues;
@@ -35,7 +39,6 @@ exports.swapKeysAndValues = swapKeysAndValues;
 function transformKeys(object, transform) {
     object = { ...object };
     for (let key in object) {
-        // only manipulate property not from the prototype
         if (object.hasOwnProperty(key)) {
             let value = object[key];
             if (isObject(value)) {

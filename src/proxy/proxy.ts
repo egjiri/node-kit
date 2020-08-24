@@ -1,4 +1,4 @@
-export default function proxy(target, properties: object) {
+export default function proxy(target, properties: Record<string, unknown>) {
   return new Proxy(target, {
     get: (obj, prop) => {
       // The default behavior to return the value

@@ -9,7 +9,7 @@ test('test humanize function', function(assert) {
     ['spaces', ['family friendly'], 'Family Friendly'],
     ['number with percentage format', ['50', 'percentage'], '50%'],
     ['invalid value/format combination', ['text', 'percentage'], 'N/A'],
-    ['percentage format with no value', [null, 'percentage'], 'N/A'],
+    ['percentage format with no value', [undefined, 'percentage'], 'N/A'],
     ['number with currency format', ['123.45', 'currency'], '$123.45'],
     ['large number with currency format', ['12345.6', 'currency'], '$12,345.6'],
     ['zero number with currency format', ['0', 'currency'], '$0']

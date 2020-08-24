@@ -1,1 +1,1 @@
-export default function proxy(target: any, properties: object): any;
+export default function proxy(target: any, properties: Record<string, unknown>): any;

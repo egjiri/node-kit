@@ -9,6 +9,9 @@ function formatNumber(num, format) {
     else if (format === 'currency') {
         return '$' + value;
     }
+    else {
+        return value;
+    }
 }
 exports.formatNumber = formatNumber;
 function toString(num, numberOfDecimals) {

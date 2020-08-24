@@ -2,7 +2,7 @@ import { test } from 'qunit';
 import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeysWithBlankValues, swapKeysAndValues } from './objects';
 
 test('test underscoreKeys function', function(assert) {
-  const tests: [string, [object], object][] = [
+  const tests: [string, [Record<string, unknown>], Record<string, unknown>][] = [
     [
       'normal use case',
       [{ 'first key': 1, 'second-key': 2, 'thirdKey': 3, 'fourth_key': 4 }],
@@ -21,7 +21,7 @@ test('test underscoreKeys function', function(assert) {
 });
 
 test('test camelizeKeys function', function(assert) {
-  const tests: [string, [object], object][] = [
+  const tests: [string, [Record<string, unknown>], Record<string, unknown>][] = [
     [
       'normal use case',
       [{ 'first key': 1, 'second-key': 2, 'thirdKey': 3, 'fourth_key': 4 }],
@@ -35,7 +35,7 @@ test('test camelizeKeys function', function(assert) {
 });
 
 test('test dasherizeKeys function', function(assert) {
-  const tests: [string, [object], object][] = [
+  const tests: [string, [Record<string, unknown>], Record<string, unknown>][] = [
     [
       'normal use case',
       [{ 'first key': 1, 'second-key': 2, 'thirdKey': 3, 'fourth_key': 4 }],
@@ -64,7 +64,7 @@ test('test isObject function', function(assert) {
 });
 
 test('test removeKeysWithBlankValues function', function(assert) {
-  const tests: [string, [any], object][] = [
+  const tests: [string, [Record<string, unknown>], Record<string, unknown>][] = [
     ['normal use case', [{ a: 1, b: 2 }], { a: 1, b: 2 }],
     ['null use case', [{ a: 1, b: null }], { a: 1 }],
     ['undefined use case', [{ a: 1, b: undefined }], { a: 1 }],
@@ -76,7 +76,7 @@ test('test removeKeysWithBlankValues function', function(assert) {
 });
 
 test('test swapKeysAndValues function', function(assert) {
-  const tests: [string, [any], object][] = [
+  const tests: [string, [Record<string, string>], Record<string, string>][] = [
     ['normal use case', [{ a: 'b', c: 'd' }], { b: 'a', d: 'c' }],
   ];
   tests.forEach(([name, args, want]) => {
