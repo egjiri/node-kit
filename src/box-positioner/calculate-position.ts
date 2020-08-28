@@ -5,7 +5,7 @@ export default function calculatePosition(options: calculationOptions): position
   const { element, targetPadding, frameOffset } = options;
 
   // reduce the frame size and move the target based on the offset
-  const frame = offsetRectange(options.frame, -frameOffset * 2);
+  const frame = offsetRectangle(options.frame, -frameOffset * 2);
   const target = offsetPoint(options.target, -frameOffset);
 
   // find an approximate point & direction
@@ -15,7 +15,7 @@ export default function calculatePosition(options: calculationOptions): position
   return { point: point, direction: direction }
 }
 
-function offsetRectange(frame: rectangle, offset: number): rectangle {
+function offsetRectangle(frame: rectangle, offset: number): rectangle {
   return {
     width: frame.width + offset,
     height: frame.height + offset
@@ -114,7 +114,7 @@ function limit(value: number, max: number) {
 
 function offsetPointPadding(point: point, direction: Direction, targetPadding: number, frameOffset: number): point {
   let offset = targetPadding;
-  // !: There is a bug where the spacing between the target and the element is inconsisten when
+  // !: There is a bug where the spacing between the target and the element is inconsistent when
   // !: it is in the center (no direction) or the edges (has direction). Issue likely here!
   if (direction.hasDirection) {
     offset -= frameOffset;

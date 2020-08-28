@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.swapKeysAndValues = exports.removeKeysWithBlankValues = exports.isObject = exports.dasherizeKeys = exports.camelizeKeys = exports.underscoreKeys = void 0;
 const strings_1 = require("../strings/strings");
 function underscoreKeys(object) {
     return transformKeys(object, 'underscore');
@@ -58,10 +59,7 @@ function transformKey(key, transform) {
     else if (transform === 'camelize') {
         return strings_1.camelize(key);
     }
-    else if (transform === 'dasherize') {
-        return strings_1.dasherize(key);
-    }
     else {
-        return key;
+        return strings_1.dasherize(key);
     }
 }

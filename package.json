@@ -7,17 +7,17 @@
   "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
   "scripts": {
-    "build": "tsc",
     "clean": "rm -rf dist",
-    "watch": "tsc -w",
-    "start": "yarn watch",
-    "test": "tsc && qunit dist",
-    "test:live": "nodemon -w ./dist --exec 'clear && qunit dist'"
+    "build": "yarn clean && tsc",
+    "test": "nodemon -w src -e .ts -x 'clear && jest'",
+    "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.lines.pct')%\" && open coverage/index.html"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.10",
     "@types/node": "^12.0.12",
+    "jest": "^26.4.2",
     "nodemon": "^1.18.3",
-    "qunit": "^2.6.1",
+    "ts-jest": "^26.3.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.0.1"
   }

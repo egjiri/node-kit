@@ -1,5 +1,7 @@
 import { underscore, camelize, dasherize } from '../strings/strings';
 
+type transform = 'underscore' | 'camelize' | 'dasherize';
+
 export function underscoreKeys(object: Record<string, unknown>) {
   return transformKeys(object, 'underscore');
 }
@@ -52,16 +54,12 @@ function transformKeys(object: Record<string, unknown>, transform: transform) {
   return object;
 }
 
-type transform = 'underscore' | 'camelize' | 'dasherize';
-
 function transformKey(key: string, transform: transform): string {
   if (transform === 'underscore') {
     return underscore(key);
   } else if (transform === 'camelize') {
     return camelize(key);
-  } else if (transform === 'dasherize') {
-    return dasherize(key);
   } else {
-    return key;
+    return dasherize(key);
   }
 }

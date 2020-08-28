@@ -1,6 +1,8 @@
-# dependencies
-/node_modules
+# External packages
+node_modules
 
-# built tests
-/dist/**/*-test.js
-/dist/**/*-test.d.ts
+# Generated files
+dist/**/*.test.js
+dist/**/*.test.d.ts
+coverage
+yarn-error.log

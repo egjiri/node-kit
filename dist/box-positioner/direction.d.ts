@@ -1,15 +1,14 @@
-declare type direction = 'right' | 'left' | 'down' | 'up';
+export declare type direction = 'right' | 'left' | 'down' | 'up';
 export default class Direction {
     private directions;
     constructor(...directions: direction[]);
     add(direction: direction): void;
-    readonly pointsRight: boolean;
-    readonly pointsLeft: boolean;
-    readonly pointsDown: boolean;
-    readonly pointsUp: boolean;
-    readonly isHorizontal: boolean;
-    readonly isVertical: boolean;
-    readonly hasDirection: boolean;
-    readonly isBlank: boolean;
+    get pointsRight(): boolean;
+    get pointsLeft(): boolean;
+    get pointsDown(): boolean;
+    get pointsUp(): boolean;
+    get isHorizontal(): boolean;
+    get isVertical(): boolean;
+    get hasDirection(): boolean;
+    get isBlank(): boolean;
 }
-export {};

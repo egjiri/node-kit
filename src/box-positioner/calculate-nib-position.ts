@@ -36,7 +36,7 @@ function calculateLeft(direction: Direction, targetX: number, pointX: number, el
 }
 
 function buildNibPosition(direction: Direction, top: number, left: number | null): nibPosition {
-  let transform
+  let transform: 'rotate(0deg)' | 'rotate(90deg)' | 'rotate(180deg)' | 'rotate(270deg)';
   if (direction.pointsDown) {
     transform = 'rotate(0deg)';
   } else if (direction.pointsLeft) {

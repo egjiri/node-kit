@@ -1,13 +1,12 @@
-import { test } from 'qunit';
-import Direction from './direction';
+import Direction, { direction } from './direction';
 import calculatePoint from './calculate-point';
 import calculatePosition from './calculate-position';
 import { calculationOptions, point, position } from './types';
 
-test('test positions calculator', function(assert) {
-  const tests: [string, calculationOptions, point, position][] = [
+describe('test positions calculator', () => {
+  const cases: [string, calculationOptions, point, position][] = [
     ['on centre',                                      args( 50,  50),        point( 50,  45),  position( 50,  45)],
-    // Edge caes
+    // Edge cases
     ['on right edge',                                  args(100,  50),        point( 90,  45),  position(100,  45, 'left')],
     ['on left edge',                                   args(  0,  50),        point(  0,  45),  position(  0,  45, 'right')],
     ['on top edge',                                    args( 50,   0),        point( 45,   0),  position( 45,   0, 'down')],
@@ -96,10 +95,9 @@ test('test positions calculator', function(assert) {
     ['close to right edge offset with large padding',  args( 85,  50, 2, 5),  point( 70,  45),  position( 80,  45, 'left')],
     ['far enough from right edge offset with padding', args( 80,  50, 5, 5),  point( 85,  45),  position( 85,  45)],
   ];
-  tests.forEach(t => {
-    const [name, calculationOptions, point, position] = t;
-    assert.deepEqual(calculatePoint(calculationOptions), point, name);
-    assert.deepEqual(calculatePosition(calculationOptions), position, name);
+  test.each(cases)("%s", (_, calculationOptions, point, position) => {
+    expect(calculatePoint(calculationOptions)).toEqual(point);
+    expect(calculatePosition(calculationOptions)).toEqual(position);
   });
 });
 
@@ -113,11 +111,11 @@ function args(x: number, y: number, frameOffset: number = 0, targetPadding: numb
   };
 }
 
-function point(x, y): point {
+function point(x: number, y: number): point {
   return { x: x, y: y };
 }
 
-function position(x, y, ...directions): position {
+function position(x: number, y: number, ...directions: direction[]): position {
   return {
     point: { x: x, y: y },
     direction: new Direction(...directions)

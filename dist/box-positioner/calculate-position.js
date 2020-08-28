@@ -6,14 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const direction_1 = __importDefault(require("./direction"));
 function calculatePosition(options) {
     const { element, targetPadding, frameOffset } = options;
-    const frame = offsetRectange(options.frame, -frameOffset * 2);
+    const frame = offsetRectangle(options.frame, -frameOffset * 2);
     const target = offsetPoint(options.target, -frameOffset);
     const direction = approximateDirection(frame, element, target, targetPadding);
     const point = approximatePoint(frame, element, target, targetPadding, frameOffset, direction);
     return { point: point, direction: direction };
 }
 exports.default = calculatePosition;
-function offsetRectange(frame, offset) {
+function offsetRectangle(frame, offset) {
     return {
         width: frame.width + offset,
         height: frame.height + offset

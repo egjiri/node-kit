@@ -1,4 +1,4 @@
-type direction = 'right' | 'left' | 'down' | 'up';
+export type direction = 'right' | 'left' | 'down' | 'up';
 
 export default class Direction {
   private directions: direction[]

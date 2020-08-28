@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.toString = exports.formatNumber = void 0;
 const strings_1 = require("../strings/strings");
 function formatNumber(num, format) {
     const value = toString(num);

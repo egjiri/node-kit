@@ -2,7 +2,7 @@ import { addSeparator } from '../strings/strings';
 
 export type format = 'percentage' | 'currency'
 
-export function formatNumber(num: number, format: format) {
+export function formatNumber(num: number, format?: format) {
   const value = toString(num);
   if (format === 'percentage') {
     return value + '%';

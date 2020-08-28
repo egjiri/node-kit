@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.regexMatchInGroups = exports.pluralize = exports.camelize = exports.deDasherize = exports.dasherize = exports.toNumber = exports.addSeparator = exports.humanize = exports.reverse = exports.capitalizeSentences = exports.capitalizeWords = exports.capitalize = exports.underscore = exports.trim = void 0;
 function trim(str) {
     return str.replace(/^\s+|\s+$/g, '');
 }
