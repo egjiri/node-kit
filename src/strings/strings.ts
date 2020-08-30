@@ -72,7 +72,7 @@ export function regexMatchInGroups(str: string, regexStr: string): matchGroup {
   const groups: matchGroup = {};
   const regex = new RegExp(regexStr.replace(/\?<(.+?)>/g, ''));
   if (regex.test(str)) {
-    const matches = str.match(regex) || [];
+    const matches = str.match(regex) as RegExpMatchArray;
     const groupMatches = regexStr.match(/\?<(.+?)>/g) || [];
     groupMatches.forEach(group => {
       const name = group.replace(/^\?</, '').replace(/>$/, '');
