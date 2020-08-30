@@ -1,7 +1,7 @@
 import { toNumber, humanize as humanizeString } from '../strings/strings';
-import { format, formatNumber } from '../numbers/numbers';
+import { Format, formatNumber } from '../numbers/numbers';
 
-export default function humanize(value?: string, format?: format): string {
+export default function humanize(value?: string, format?: Format): string {
   value = value || '';
   if (format) {
     const number = toNumber(value);

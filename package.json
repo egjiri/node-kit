@@ -7,6 +7,7 @@
   "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
   "scripts": {
+    "lint": "eslint .",
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
     "test": "nodemon -w src -e .ts -x 'clear && jest'",
@@ -15,6 +16,9 @@
   "devDependencies": {
     "@types/jest": "^26.0.10",
     "@types/node": "^12.0.12",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
+    "eslint": "^7.7.0",
     "jest": "^26.4.2",
     "nodemon": "^1.18.3",
     "ts-jest": "^26.3.0",

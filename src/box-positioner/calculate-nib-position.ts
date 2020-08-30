@@ -30,7 +30,7 @@ function calculateLeft(direction: Direction, targetX: number, pointX: number, el
   }
   const left = leftOffset + elementHalfWidth;
   if (left < 0 || left + nibWidth > elementWidth) {
-    return null
+    return null;
   }
   return left;
 }
@@ -53,6 +53,6 @@ function buildNibPosition(direction: Direction, top: number, left: number | null
   return {
     top: top,
     left: left,
-    transform: transform
-  }
+    transform: transform,
+  };
 }

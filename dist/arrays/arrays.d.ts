@@ -1,2 +1,2 @@
-export declare function nextItem(array: any[], currentItem: any): any;
-export declare function previousItem(array: any[], currentItem: any): any;
+export declare function nextItem<T>(array: T[], currentItem: T): T;
+export declare function previousItem<T>(array: T[], currentItem: T): T;

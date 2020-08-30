@@ -6,6 +6,6 @@ export default function calculatePoint(options: calculationOptions): point {
   const { width, height } = options.element;
   return {
     x: direction.pointsLeft ? x - width : x,
-    y: direction.pointsUp ? y - height : y
+    y: direction.pointsUp ? y - height : y,
   };
 }

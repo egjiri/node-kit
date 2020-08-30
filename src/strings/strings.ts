@@ -59,14 +59,14 @@ export function deDasherize(str: string) {
 }
 
 export function camelize(str: string) {
-  return str.split(/[\s-_]/).map((word, index) => index === 0 ?  word : capitalize(word)).join('');
+  return str.split(/[\s-_]/).map((word, index) => index === 0 ? word : capitalize(word)).join('');
 }
 
 export function pluralize(str: string) {
   return str.replace(/s$/, '') + 's';
 }
 
-type matchGroup = { [key: string]: string };
+export type matchGroup = { [key: string]: string };
 
 export function regexMatchInGroups(str: string, regexStr: string): matchGroup {
   const groups: matchGroup = {};

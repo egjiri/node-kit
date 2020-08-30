@@ -7,10 +7,10 @@ describe('direction', () => {
       ['left use case', ['left'], true],
       ['down use case', ['down'], false],
       ['up use case', ['up'], false],
-    ]
-    test.each(cases)("%s", (_, args, expected) => {
+    ];
+    test.each(cases)('%s', (_, args, expected) => {
       const actual = new Direction(...args).isVertical;
       expect(actual).toEqual(expected);
     });
-  })
+  });
 });

@@ -16,13 +16,13 @@ exports.default = calculatePosition;
 function offsetRectangle(frame, offset) {
     return {
         width: frame.width + offset,
-        height: frame.height + offset
+        height: frame.height + offset,
     };
 }
 function offsetPoint(point, offset) {
     return {
         x: point.x + offset,
-        y: point.y + offset
+        y: point.y + offset,
     };
 }
 function approximateDirection(frame, element, target, targetPadding) {
@@ -82,7 +82,7 @@ function horizontalCentre(frame, element, target) {
     const y = target.y;
     return {
         x: limit(x, maxX),
-        y: limit(y, maxY)
+        y: limit(y, maxY),
     };
 }
 function verticalCentre(frame, element, target) {
@@ -92,7 +92,7 @@ function verticalCentre(frame, element, target) {
     const y = target.y - element.height / 2;
     return {
         x: limit(x, maxX),
-        y: limit(y, maxY)
+        y: limit(y, maxY),
     };
 }
 function limit(value, max) {

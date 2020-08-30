@@ -60,6 +60,6 @@ function buildNibPosition(direction, top, left) {
     return {
         top: top,
         left: left,
-        transform: transform
+        transform: transform,
     };
 }

@@ -9,7 +9,7 @@ function calculatePoint(options) {
     const { width, height } = options.element;
     return {
         x: direction.pointsLeft ? x - width : x,
-        y: direction.pointsUp ? y - height : y
+        y: direction.pointsUp ? y - height : y,
     };
 }
 exports.default = calculatePoint;

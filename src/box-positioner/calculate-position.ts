@@ -12,20 +12,20 @@ export default function calculatePosition(options: calculationOptions): position
   const direction = approximateDirection(frame, element, target, targetPadding);
   const point = approximatePoint(frame, element, target, targetPadding, frameOffset, direction);
 
-  return { point: point, direction: direction }
+  return { point: point, direction: direction };
 }
 
 function offsetRectangle(frame: rectangle, offset: number): rectangle {
   return {
     width: frame.width + offset,
-    height: frame.height + offset
+    height: frame.height + offset,
   };
 }
 
 function offsetPoint(point: point, offset: number): point {
   return {
     x: point.x + offset,
-    y: point.y + offset
+    y: point.y + offset,
   };
 }
 
@@ -93,7 +93,7 @@ function horizontalCentre(frame: rectangle, element: rectangle, target: point): 
   const y = target.y;
   return {
     x: limit(x, maxX),
-    y: limit(y, maxY)
+    y: limit(y, maxY),
   };
 }
 
@@ -104,7 +104,7 @@ function verticalCentre(frame: rectangle, element: rectangle, target: point): po
   const y = target.y - element.height / 2;
   return {
     x: limit(x, maxX),
-    y: limit(y, maxY)
+    y: limit(y, maxY),
   };
 }
 

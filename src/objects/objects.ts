@@ -14,7 +14,7 @@ export function dasherizeKeys(object: Record<string, unknown>) {
   return transformKeys(object, 'dasherize');
 }
 
-export function isObject(value: any): boolean {
+export function isObject(value: unknown): boolean {
   return typeof value === 'object' && !Array.isArray(value) && value !== null && value !== undefined;
 }
 
@@ -23,7 +23,7 @@ export function removeKeysWithBlankValues(object: Record<string, unknown>) {
   Object.keys(object).forEach(key => {
     const value = object[key];
     if (value === null || value === undefined) {
-      delete object[key]
+      delete object[key];
     }
   });
   return object;

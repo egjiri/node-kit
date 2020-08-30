@@ -11,8 +11,7 @@ export declare function dasherize(str: string): string;
 export declare function deDasherize(str: string): string;
 export declare function camelize(str: string): string;
 export declare function pluralize(str: string): string;
-declare type matchGroup = {
+export declare type matchGroup = {
     [key: string]: string;
 };
 export declare function regexMatchInGroups(str: string, regexStr: string): matchGroup;
-export {};

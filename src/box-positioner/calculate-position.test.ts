@@ -5,6 +5,7 @@ import { calculationOptions, point, position } from './types';
 
 describe('test positions calculator', () => {
   const cases: [string, calculationOptions, point, position][] = [
+    /* eslint-disable no-multi-spaces */
     ['on centre',                                      args( 50,  50),        point( 50,  45),  position( 50,  45)],
     // Edge cases
     ['on right edge',                                  args(100,  50),        point( 90,  45),  position(100,  45, 'left')],
@@ -94,20 +95,21 @@ describe('test positions calculator', () => {
     ['close to right edge offset with small padding',  args( 85,  50, 5, 2),  point( 73,  45),  position( 83,  45, 'left')],
     ['close to right edge offset with large padding',  args( 85,  50, 2, 5),  point( 70,  45),  position( 80,  45, 'left')],
     ['far enough from right edge offset with padding', args( 80,  50, 5, 5),  point( 85,  45),  position( 85,  45)],
+    /* eslint-enable no-multi-spaces */
   ];
-  test.each(cases)("%s", (_, calculationOptions, point, position) => {
+  test.each(cases)('%s', (_, calculationOptions, point, position) => {
     expect(calculatePoint(calculationOptions)).toEqual(point);
     expect(calculatePosition(calculationOptions)).toEqual(position);
   });
 });
 
-function args(x: number, y: number, frameOffset: number = 0, targetPadding: number = 0): calculationOptions {
+function args(x: number, y: number, frameOffset = 0, targetPadding = 0): calculationOptions {
   return {
     frame: { width: 100, height: 100 },
     element: { width: 10, height: 10 },
     target: { x: x, y: y },
     frameOffset: frameOffset,
-    targetPadding: targetPadding
+    targetPadding: targetPadding,
   };
 }
 
@@ -118,6 +120,6 @@ function point(x: number, y: number): point {
 function position(x: number, y: number, ...directions: direction[]): position {
   return {
     point: { x: x, y: y },
-    direction: new Direction(...directions)
-  }
+    direction: new Direction(...directions),
+  };
 }
