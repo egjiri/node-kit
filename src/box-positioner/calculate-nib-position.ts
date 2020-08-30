@@ -2,6 +2,8 @@ import calculatePosition from './calculate-position';
 import { calculationOptions, nibPosition } from './types';
 import Direction from './direction';
 
+export type NibTransform = 'rotate(0deg)' | 'rotate(90deg)' | 'rotate(180deg)' | 'rotate(270deg)'
+
 export default function calculateNibPosition(options: calculationOptions, nibWidth: number, nibHeight: number): nibPosition {
   const position = calculatePosition(options);
   const nibHalfHeight = nibHeight / 2;
@@ -17,7 +19,7 @@ export default function calculateNibPosition(options: calculationOptions, nibWid
   } else if (direction.pointsUp) {
     return buildNibPosition(direction, elementHeight, left);
   } else {
-    return buildNibPosition(direction, elementHalfHeight, -nibWidth + 2);
+    return buildNibPosition(direction, elementHalfHeight, - nibWidth + 2);
   }
 }
 
@@ -36,7 +38,7 @@ function calculateLeft(direction: Direction, targetX: number, pointX: number, el
 }
 
 function buildNibPosition(direction: Direction, top: number, left: number | null): nibPosition {
-  let transform: 'rotate(0deg)' | 'rotate(90deg)' | 'rotate(180deg)' | 'rotate(270deg)';
+  let transform: NibTransform;
   if (direction.pointsDown) {
     transform = 'rotate(0deg)';
   } else if (direction.pointsLeft) {
