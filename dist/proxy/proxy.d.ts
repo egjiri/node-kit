@@ -1,1 +1,1 @@
-export default function proxy(target: any, properties: Record<string, unknown>): any;
+export default function proxy<T extends Record<string, unknown> | Record<string, unknown>[]>(target: T, properties: Record<string, unknown>): T;
