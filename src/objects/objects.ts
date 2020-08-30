@@ -19,14 +19,14 @@ export function isObject(value: unknown): boolean {
 }
 
 export function removeKeysWithBlankValues(object: Record<string, unknown>) {
-  object = { ...object };
+  const newObject: Record<string, unknown> = {};
   Object.keys(object).forEach(key => {
     const value = object[key];
-    if (value === null || value === undefined) {
-      delete object[key];
+    if (value !== null && value !== undefined) {
+      newObject[key] = value;
     }
   });
-  return object;
+  return newObject;
 }
 
 export function swapKeysAndValues(object: Record<string, string>) {
@@ -38,20 +38,16 @@ export function swapKeysAndValues(object: Record<string, string>) {
 }
 
 function transformKeys(object: Record<string, unknown>, transform: transform) {
-  object = { ... object };
-  for (let key in object) {
-    // only manipulate property not from the prototype
-    if (object.hasOwnProperty(key)) {
-      let value = object[key];
-      if (isObject(value)) {
-        value = transformKeys(value as Record<string, unknown>, transform);
-      }
-      delete object[key];
-      key = transformKey(key, transform);
-      object[key] = value;
+  const newObject: Record<string, unknown> = {};
+  Object.keys(object).forEach(key => {
+    let value = object[key];
+    if (isObject(value)) {
+      value = transformKeys(value as Record<string, unknown>, transform);
     }
-  }
-  return object;
+    key = transformKey(key, transform);
+    newObject[key] = value;
+  });
+  return newObject;
 }
 
 function transformKey(key: string, transform: transform): string {

@@ -19,14 +19,14 @@ function isObject(value) {
 }
 exports.isObject = isObject;
 function removeKeysWithBlankValues(object) {
-    object = { ...object };
+    const newObject = {};
     Object.keys(object).forEach(key => {
         const value = object[key];
-        if (value === null || value === undefined) {
-            delete object[key];
+        if (value !== null && value !== undefined) {
+            newObject[key] = value;
         }
     });
-    return object;
+    return newObject;
 }
 exports.removeKeysWithBlankValues = removeKeysWithBlankValues;
 function swapKeysAndValues(object) {
@@ -38,19 +38,16 @@ function swapKeysAndValues(object) {
 }
 exports.swapKeysAndValues = swapKeysAndValues;
 function transformKeys(object, transform) {
-    object = { ...object };
-    for (let key in object) {
-        if (object.hasOwnProperty(key)) {
-            let value = object[key];
-            if (isObject(value)) {
-                value = transformKeys(value, transform);
-            }
-            delete object[key];
-            key = transformKey(key, transform);
-            object[key] = value;
+    const newObject = {};
+    Object.keys(object).forEach(key => {
+        let value = object[key];
+        if (isObject(value)) {
+            value = transformKeys(value, transform);
         }
-    }
-    return object;
+        key = transformKey(key, transform);
+        newObject[key] = value;
+    });
+    return newObject;
 }
 function transformKey(key, transform) {
     if (transform === 'underscore') {
