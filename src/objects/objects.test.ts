@@ -1,4 +1,4 @@
-import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeysWithBlankValues, swapKeysAndValues } from './objects';
+import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeys, removeKeysWithBlankValues, swapKeysAndValues } from './objects';
 
 describe('test underscoreKeys function', () => {
   const cases: [string, [Record<string, unknown>], Record<string, unknown>][] = [
@@ -58,6 +58,16 @@ describe('test isObject function', () => {
   ];
   test.each(cases)('%s', (_, args, expected) => {
     const actual = isObject(...args);
+    expect(actual).toEqual(expected);
+  });
+});
+
+describe('test removeKeys function', () => {
+  const cases: [string, [Record<string, unknown>, ...string[]], Record<string, unknown>][] = [
+    ['normal use case', [{ a: 1, b: 2, c: 3 }, 'a', 'c'], { b: 2 }],
+  ];
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = removeKeys(...args);
     expect(actual).toEqual(expected);
   });
 });

@@ -18,6 +18,16 @@ export function isObject(value: unknown): boolean {
   return typeof value === 'object' && !Array.isArray(value) && value !== null && value !== undefined;
 }
 
+export function removeKeys(object: Record<string, unknown>, ...keys: string[]) {
+  const newObject: Record<string, unknown> = {};
+  Object.keys(object).forEach(key => {
+    if (!keys.includes(key)) {
+      newObject[key] = object[key];
+    }
+  });
+  return newObject;
+}
+
 export function removeKeysWithBlankValues(object: Record<string, unknown>) {
   const newObject: Record<string, unknown> = {};
   Object.keys(object).forEach(key => {
