@@ -1,6 +1,6 @@
 {
   "search.exclude": {
     "yarn.lock": true,
-    "/dist": true
+    "/build": true
   }
 }

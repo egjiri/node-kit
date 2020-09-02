@@ -9,7 +9,7 @@ module.exports = {
   ],
   ignorePatterns: [
     'coverage',
-    'dist',
+    'build',
     'node_modules',
   ],
   rules: {

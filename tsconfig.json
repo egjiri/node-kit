@@ -6,7 +6,7 @@
       "ES2019", // Overwrite the default which include DOM since this is not a browser environment
     ],
     "module": "CommonJS",
-    "outDir": "dist",
+    "outDir": "build",
     "removeComments": true,
     "rootDir": "src",
     "target": "ES2019", // Supported target for Node 12

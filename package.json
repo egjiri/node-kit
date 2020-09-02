@@ -8,7 +8,7 @@
   "repository": "git@github.com:egjiri/node-kit.git",
   "scripts": {
     "lint": "eslint .",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf build",
     "build": "yarn clean && tsc",
     "test": "nodemon -w src -e .ts -x 'clear && jest'",
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.lines.pct')%\" && open coverage/index.html"
