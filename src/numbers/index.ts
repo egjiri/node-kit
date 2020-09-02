@@ -1,4 +1,4 @@
-import { addSeparator } from '../strings/strings';
+import { addSeparator } from '../strings';
 
 export type Format = 'percentage' | 'currency'
 

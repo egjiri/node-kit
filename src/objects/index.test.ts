@@ -1,4 +1,4 @@
-import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeys, removeKeysWithBlankValues, swapKeysAndValues } from './objects';
+import { underscoreKeys, camelizeKeys, dasherizeKeys, isObject, removeKeys, removeKeysWithBlankValues, swapKeysAndValues } from '.';
 
 describe('test underscoreKeys function', () => {
   const cases: [string, [Record<string, unknown>], Record<string, unknown>][] = [

@@ -1,4 +1,4 @@
-import { nextItem, previousItem } from './arrays';
+import { nextItem, previousItem } from '.';
 
 describe('test nextItem function', () => {
   const cases: [string, [unknown[], unknown], string][] = [

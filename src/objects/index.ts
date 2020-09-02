@@ -1,4 +1,4 @@
-import { underscore, camelize, dasherize } from '../strings/strings';
+import { underscore, camelize, dasherize } from '../strings';
 
 type transform = 'underscore' | 'camelize' | 'dasherize';
 

@@ -14,7 +14,7 @@ import {
   pluralize,
   regexMatchInGroups,
   matchGroup,
-} from './strings';
+} from '.';
 
 describe('test trim function', () => {
   const cases: [string, [string], string][] = [

@@ -1,4 +1,4 @@
-import proxy from './proxy';
+import proxy from '.';
 
 describe('proxy function', () => {
   test('object data use case', () => {

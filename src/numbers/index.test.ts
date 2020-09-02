@@ -1,4 +1,4 @@
-import { Format, formatNumber, toString } from './numbers';
+import { Format, formatNumber, toString } from '.';
 
 describe('test formatNumber function', () => {
   const cases: [string, [number, Format?], string][] = [
