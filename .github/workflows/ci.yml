@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CI
 on: [push]
 jobs:
   build:
@@ -25,4 +25,10 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
       - name: Run tests
-        run: yarn jest
+        run: yarn jest --coverage
+      - name: Update Code Coverage Badge
+        run: curl -I "https://badges.zoostage.com/egjiri/node-kit/${GITHUB_REF##*/}.svg?token=$BADGE_API_KEY&coverage=$(cat coverage/coverage-summary.json | jq .total.statements.pct)"
+        if: ${{ matrix.node-version == '12.x'}}
+        env:
+          GITHUB_REF: ${{ secrets.GITHUB_REF }}
+          BADGE_API_KEY: ${{ secrets.BADGE_API_KEY}}

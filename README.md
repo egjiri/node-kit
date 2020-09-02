@@ -1,6 +1,7 @@
 # Node Kit
-A collection of useful Node packages that can be used across projects.
+A collection of useful Node utility functions that can be used across projects.
 
-## Development Setup
-1. Build the JS files from TS live for development. `yarn watch`
-2. Run the test suite live. `yarn test:live`
+|Branch|Tests|Coverage
+|---|---|---
+|master|![Build Status](https://github.com/egjiri/node-kit/workflows/CI/badge.svg?branch=master)|![Coverage](https://badges.zoostage.com/egjiri/node-kit/master.svg)
+|development|![Build Status](https://github.com/egjiri/node-kit/workflows/CI/badge.svg?branch=development)|![Coverage](https://badges.zoostage.com/egjiri/node-kit/development.svg)
