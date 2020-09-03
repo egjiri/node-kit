@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "clean": "rm -rf build",
-    "build": "yarn clean && tsc && ts-node scripts/prepare-package",
+    "build": "yarn clean && tsc && ts-node scripts/prepare-package && cp README.md build",
     "test": "nodemon -w src -e .ts -x 'clear && jest'",
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\" && open coverage/index.html"
   },
