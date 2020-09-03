@@ -4,6 +4,7 @@ on:
     types: [created]
 jobs:
   publish-package:
+    name: Publish Package to NPM Registry
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
