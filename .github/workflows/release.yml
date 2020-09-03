@@ -4,8 +4,8 @@ on:
     tags:
       - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
-  build:
-    name: Create Release
+  release:
+    name: Create a Release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,3 +18,22 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
+  publish:
+    name: Publish Package to NPM Registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js & setup the .npmrc file to publish to npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Build package
+        run: yarn build
+      - name: Publish package to NPM registry
+        run: yarn publish build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
