@@ -3,6 +3,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      coverage: ${{ steps.coverage.outputs.coverage }}
     strategy:
       matrix:
         node-version: [10.x, 12.x]
@@ -26,9 +28,15 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Run tests
         run: yarn jest --coverage
-      - name: Update Code Coverage Badge
-        run: curl -I "https://badges.zoostage.com/egjiri/node-kit/${GITHUB_REF##*/}.svg?token=$BADGE_API_KEY&coverage=$(cat coverage/coverage-summary.json | jq .total.statements.pct)"
-        if: ${{ matrix.node-version == '12.x'}}
+      - name: Read code coverage value
+        id: coverage
+        run: echo "::set-output name=coverage::$(cat coverage/coverage-summary.json | jq .total.statements.pct)"
+  coverage-badge:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Update code coverage badge
+        run: curl -I "https://badges.zoostage.com/egjiri/node-kit/${GITHUB_REF##*/}.svg?token=$BADGE_API_KEY&coverage=${{ needs.build.outputs.coverage }}"
         env:
           GITHUB_REF: ${{ secrets.GITHUB_REF }}
           BADGE_API_KEY: ${{ secrets.BADGE_API_KEY}}
