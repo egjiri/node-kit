@@ -1,5 +1,5 @@
 {
-  "name": "egjiri-node-kit",
+  "name": "@egjiri/node-kit",
   "version": "1.0.0",
   "author": "Endri Gjiri",
   "description": "TypeScript/Javascript Utilities",
