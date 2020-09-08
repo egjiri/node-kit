@@ -54,4 +54,4 @@ removeKeysWithBlankValues({
 This project is released through GitHub Actions workflows that:
 1. Run the test suite and linters
 1. Build the TypeScript codebase into a build folder with JavaScript and TypeScript type definition files.
-1. Publish the build folder it to the NPM Registry.
+1. Publish the build folder to the NPM Registry.
