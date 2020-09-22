@@ -12,6 +12,7 @@ import {
   deDasherize,
   camelize,
   pluralize,
+  pluralizeWithCount,
   regexMatchInGroups,
   matchGroup,
 } from '.';
@@ -167,6 +168,18 @@ describe('test pluralize function', () => {
   ];
   test.each(cases)('%s', (_, args, expected) => {
     const actual = pluralize(...args);
+    expect(actual).toEqual(expected);
+  });
+});
+
+describe('test pluralizeWithCount function', () => {
+  const cases: [string, [number, string, string?], string][] = [
+    ['normal use case', [1, 'test'], '1 test'],
+    ['plural use case', [2, 'test'], '2 tests'],
+    ['irregular plural use case', [2, 'tooth', 'teeth'], '2 teeth'],
+  ];
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = pluralizeWithCount(...args);
     expect(actual).toEqual(expected);
   });
 });

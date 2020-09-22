@@ -75,6 +75,10 @@ export function pluralize(str: string, count?: number) {
   }
 }
 
+export function pluralizeWithCount(count: number, singular: string, plural = pluralize(singular, count)) {
+  return `${count} ${plural}`;
+}
+
 export type matchGroup = { [key: string]: string };
 
 export function regexMatchInGroups(str: string, regexStr: string): matchGroup {
