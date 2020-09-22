@@ -157,8 +157,13 @@ describe('test camelize function', () => {
 });
 
 describe('test pluralize function', () => {
-  const cases: [string, [string], string][] = [
+  const cases: [string, [string, number?], string][] = [
     ['normal use case', ['test'], 'tests'],
+    ['singular count use case', ['test', 1], 'test'],
+    ['plural count use case', ['test', 2], 'tests'],
+    ['words ending in y use case', ['berry'], 'berries'],
+    ['words ending in s use case', ['address'], 'addresses'],
+    ['words ending in ch use case', ['search'], 'searches'],
   ];
   test.each(cases)('%s', (_, args, expected) => {
     const actual = pluralize(...args);

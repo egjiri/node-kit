@@ -62,8 +62,17 @@ export function camelize(str: string) {
   return str.split(/[\s-_]/).map((word, index) => index === 0 ? word : capitalize(word)).join('');
 }
 
-export function pluralize(str: string) {
-  return str.replace(/s$/, '') + 's';
+export function pluralize(str: string, count?: number) {
+  if (count === 1) {
+    return str;
+  }
+  if (str.match(/[^aeiou]y$/)) {
+    return str.replace(/y$/, 'ies');
+  } else if (str.match(/[sxo]$|[sc]h$/)) {
+    return str + 'es';
+  } else {
+    return str + 's';
+  }
 }
 
 export type matchGroup = { [key: string]: string };
