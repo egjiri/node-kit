@@ -68,7 +68,7 @@ export function pluralize(str: string, count?: number) {
   }
   if (str.match(/[^aeiou]y$/)) {
     return str.replace(/y$/, 'ies');
-  } else if (str.match(/[sxo]$|[sc]h$/)) {
+  } else if (str.match(/[sx]$|[sc]h$/)) {
     return str + 'es';
   } else {
     return str + 's';
