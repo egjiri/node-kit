@@ -1,5 +1,5 @@
 import humanize from '.';
-import { Format } from '../numbers';
+import { Format } from '../numbers/format-number';
 
 describe('test humanize function', () => {
   const cases: [string, [string?, Format?], string][] = [

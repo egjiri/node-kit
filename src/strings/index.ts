@@ -1,98 +1,12 @@
-export function trim(str: string) {
-  return str.replace(/^\s+|\s+$/g, '');
-}
-
-export function underscore(str: string) {
-  return trim(str)
-    .replace(/([a-z\d])([A-Z]+)/g, '$1_$2')
-    .replace(/[-\s]+/g, '_')
-    .toLowerCase();
-}
-
-export function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-export function capitalizeWords(str: string) {
-  return str.split(' ').map(word => {
-    const exceptionWords = ['in', 'on', 'is', 'to', 'for', 'width', 'and', 'on', 'by', 'a', 'at'];
-    return exceptionWords.includes(word) ? word.toLowerCase() : capitalize(word);
-  }).join(' ');
-}
-
-export function capitalizeSentences(str: string) {
-  return str.split('. ').map(word => capitalize(word)).join('. ');
-}
-
-export function reverse(str: string) {
-  return str.split('').reverse().join('');
-}
-
-export function humanize(str: string) {
-  return str.split(/[_-\s]/).map(capitalize).join(' ');
-}
-
-export function addSeparator(str: string, separator = ',') {
-  const matches = reverse(str).match(/.{1,3}/g);
-  return matches ? reverse(matches.join(separator)) : '';
-}
-
-export function toNumber(str: string): number {
-  const negativeNumber = str.startsWith('-');
-  str = str.replace(/[^0-9.]/g, '');
-  if (negativeNumber) {
-    str = '-' + str;
-  }
-  return parseFloat(str);
-}
-
-export function dasherize(str: string) {
-  return str
-    .replace(/([A-Z])/g, '-$1')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-/, '')
-    .toLowerCase();
-}
-
-export function deDasherize(str: string) {
-  return str.replace(/-/g, ' ');
-}
-
-export function camelize(str: string) {
-  return str.split(/[\s-_]/).map((word, index) => index === 0 ? word : capitalize(word)).join('');
-}
-
-export function pluralize(str: string, count?: number) {
-  if (count === 1) {
-    return str;
-  }
-  if (str.match(/[^aeiou]y$/)) {
-    return str.replace(/y$/, 'ies');
-  } else if (str.match(/[sx]$|[sc]h$/)) {
-    return str + 'es';
-  } else {
-    return str + 's';
-  }
-}
-
-export function pluralizeWithCount(count: number, singular: string, plural = pluralize(singular, count)) {
-  return `${count} ${plural}`;
-}
-
-export type matchGroup = { [key: string]: string };
-
-export function regexMatchInGroups(str: string, regexStr: string): matchGroup {
-  const groups: matchGroup = {};
-  const regex = new RegExp(regexStr.replace(/\?<(.+?)>/g, ''));
-  if (regex.test(str)) {
-    const matches = str.match(regex) as RegExpMatchArray;
-    const groupMatches = regexStr.match(/\?<(.+?)>/g) || [];
-    groupMatches.forEach(group => {
-      const name = group.replace(/^\?</, '').replace(/>$/, '');
-      const stringPrefix = regexStr.substr(0, regexStr.indexOf(group));
-      const index = stringPrefix.replace(/\(\?:/g, '').replace(/[^(]/g, '').length;
-      groups[name] = matches[index];
-    });
-  }
-  return groups;
-}
+export { addSeparator } from './add-separator';
+export { camelize } from './camelize';
+export { capitalize, capitalizeWords, capitalizeSentences } from './capitalize';
+export { dasherize } from './dasherize';
+export { deDasherize } from './de-dasherize';
+export { humanize } from './humanize';
+export { pluralize, pluralizeWithCount } from './pluralize';
+export { regexMatchInGroups, matchGroup } from './regex-match-in-groups';
+export { reverse } from './reverse';
+export { toNumber } from './to-number';
+export { trim } from './trim';
+export { underscore } from './underscore';
