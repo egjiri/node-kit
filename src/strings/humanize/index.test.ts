@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { humanize } from '.';
 
 describe('test humanize function', () => {
-  const cases: [string, [string], string][] = [
+  const cases: Cases<typeof humanize> = [
     ['underscore use case', ['example_string'], 'Example String'],
     ['dashes use case', ['example-string'], 'Example String'],
     ['spaces use case', ['example string'], 'Example String'],

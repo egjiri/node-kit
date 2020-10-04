@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { toNumber } from '.';
 
 describe('test toNumber function', () => {
-  const cases: [string, [string], number][] = [
+  const cases: Cases<typeof toNumber> = [
     ['normal use case', ['123'], 123],
     ['number with decimals', ['123.45'], 123.45],
     ['invalid characters gets stripped out', ['a1b2c3.d4e5'], 123.45],

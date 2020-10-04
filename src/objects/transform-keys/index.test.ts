@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { underscoreKeys, camelizeKeys, dasherizeKeys } from '.';
 
 describe('test underscoreKeys function', () => {
-  const cases: [string, [Record<string, unknown>], Record<string, unknown>][] = [
+  const cases: Cases<typeof underscoreKeys> = [
     [
       'normal use case',
       [{ 'first key': 1, 'second-key': 2, thirdKey: 3, fourth_key: 4 }],
@@ -20,7 +21,7 @@ describe('test underscoreKeys function', () => {
 });
 
 describe('test camelizeKeys function', () => {
-  const cases: [string, [Record<string, unknown>], Record<string, unknown>][] = [
+  const cases: Cases<typeof camelizeKeys> = [
     [
       'normal use case',
       [{ 'first key': 1, 'second-key': 2, thirdKey: 3, fourth_key: 4 }],
@@ -34,7 +35,7 @@ describe('test camelizeKeys function', () => {
 });
 
 describe('test dasherizeKeys function', () => {
-  const cases: [string, [Record<string, unknown>], Record<string, unknown>][] = [
+  const cases: Cases<typeof dasherizeKeys> = [
     [
       'normal use case',
       [{ 'first key': 1, 'second-key': 2, thirdKey: 3, fourth_key: 4 }],

@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { firstObject, lastObject, nextObject, previousObject } from '.';
 
 describe('test firstObject function', () => {
-  const cases: [string, [unknown[]], unknown | null][] = [
+  const cases: Cases<typeof firstObject> = [
     ['normal use case', [['first', 'second', 'third']], 'first'],
     ['empty array use case', [[]], null],
   ];
@@ -12,7 +13,7 @@ describe('test firstObject function', () => {
 });
 
 describe('test lastObject function', () => {
-  const cases: [string, [unknown[]], unknown | null][] = [
+  const cases: Cases<typeof lastObject> = [
     ['normal use case', [['first', 'second', 'third']], 'third'],
     ['empty array use case', [[]], null],
   ];
@@ -23,7 +24,7 @@ describe('test lastObject function', () => {
 });
 
 describe('test nextObject function', () => {
-  const cases: [string, [unknown[], unknown, boolean?], string | null][] = [
+  const cases: Cases<typeof nextObject> = [
     ['normal use case', [['first', 'second', 'third'], 'second'], 'third'],
     ['item at the end of list', [['first', 'second', 'third'], 'third'], null],
     ['item at the end of list with repeat', [['first', 'second', 'third'], 'third', true], 'first'],
@@ -35,7 +36,7 @@ describe('test nextObject function', () => {
 });
 
 describe('test previousObject function', () => {
-  const cases: [string, [unknown[], unknown, boolean?], string | null][] = [
+  const cases: Cases<typeof previousObject> = [
     ['normal use case', [['first', 'second', 'third'], 'second'], 'first'],
     ['item at the beginning of list', [['first', 'second', 'third'], 'first'], null],
     ['item at the beginning of list with repeat', [['first', 'second', 'third'], 'first', true], 'third'],

@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { dasherize } from '.';
 
 describe('test dasherize function', () => {
-  const cases: [string, [string], string][] = [
+  const cases: Cases<typeof dasherize> = [
     ['normal use case', ['NormalCase'], 'normal-case'],
     ['spaces use case', ['spaces case'], 'spaces-case'],
     ['underscore use case', ['underscore_case'], 'underscore-case'],

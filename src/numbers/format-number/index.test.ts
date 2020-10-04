@@ -1,7 +1,8 @@
-import { Format, formatNumber } from '.';
+import { Cases } from 'testing/helpers';
+import { formatNumber } from '.';
 
 describe('test formatNumber function', () => {
-  const cases: [string, [number, Format?], string][] = [
+  const cases: Cases<typeof formatNumber> = [
     ['percentage use case', [12, 'percentage'], '12%'],
     ['currency use case', [12, 'currency'], '$12'],
     ['large number use case', [1234.56, 'currency'], '$1,234.56'],

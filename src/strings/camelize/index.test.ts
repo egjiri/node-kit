@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { camelize } from '.';
 
 describe('test camelize function', () => {
-  const cases: [string, [string], string][] = [
+  const cases: Cases<typeof camelize> = [
     ['spaces use case', ['spaces case'], 'spacesCase'],
     ['dashes use case', ['dashes-case'], 'dashesCase'],
     ['underscore use case', ['underscore_case'], 'underscoreCase'],

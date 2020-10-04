@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { isEmpty } from '.';
 
 describe('test isEmpty function', () => {
-  const cases: [string, [unknown[]], boolean][] = [
+  const cases: Cases<typeof isEmpty> = [
     ['normal use case', [['first', 'second', 'third']], false],
     ['empty array use case', [[]], true],
   ];

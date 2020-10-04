@@ -1,8 +1,8 @@
+import { Cases } from 'testing/helpers';
 import humanize from '.';
-import { Format } from '../numbers/format-number';
 
 describe('test humanize function', () => {
-  const cases: [string, [string?, Format?], string][] = [
+  const cases: Cases<typeof humanize> = [
     ['underscore', ['family_friendly'], 'Family Friendly'],
     ['dashes', ['family-friendly'], 'Family Friendly'],
     ['spaces', ['family friendly'], 'Family Friendly'],

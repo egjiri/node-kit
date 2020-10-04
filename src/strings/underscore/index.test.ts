@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { underscore } from '.';
 
 describe('test underscore function', () => {
-  const cases: [string, [string], string][] = [
+  const cases: Cases<typeof underscore> = [
     ['spaces use case', ['with spaces'], 'with_spaces'],
     ['dashes use case', ['with-dashes'], 'with_dashes'],
     ['camelcased use case', ['camelCased'], 'camel_cased'],

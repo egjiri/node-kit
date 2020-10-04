@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { toString } from '.';
 
 describe('test toString function', () => {
-  const cases: [string, [number, number?], string][] = [
+  const cases: Cases<typeof toString> = [
     ['simple number', [12], '12'],
     ['large number', [12345], '12,345'],
     ['large number with decimals', [12345.6], '12,345.6'],

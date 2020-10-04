@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { isObject } from '.';
 
 describe('test isObject function', () => {
-  const cases: [string, [unknown], boolean][] = [
+  const cases: Cases<typeof isObject> = [
     ['object use case', [{ a: 1 }], true],
     ['null use case', [null], false],
     ['undefined use case', [undefined], false],

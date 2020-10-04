@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { swapKeysAndValues } from '.';
 
 describe('test swapKeysAndValues function', () => {
-  const cases: [string, [Record<string, string>], Record<string, string>][] = [
+  const cases: Cases<typeof swapKeysAndValues> = [
     ['normal use case', [{ a: 'b', c: 'd' }], { b: 'a', d: 'c' }],
   ];
   test.each(cases)('%s', (_, args, expected) => {

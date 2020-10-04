@@ -1,7 +1,8 @@
+import { Cases } from 'testing/helpers';
 import { removeKeys, removeKeysWithBlankValues } from '.';
 
 describe('test removeKeys function', () => {
-  const cases: [string, [Record<string, unknown>, ...string[]], Record<string, unknown>][] = [
+  const cases: Cases<typeof removeKeys> = [
     ['normal use case', [{ a: 1, b: 2, c: 3 }, 'a', 'c'], { b: 2 }],
   ];
   test.each(cases)('%s', (_, args, expected) => {
@@ -11,7 +12,7 @@ describe('test removeKeys function', () => {
 });
 
 describe('test removeKeysWithBlankValues function', () => {
-  const cases: [string, [Record<string, unknown>], Record<string, unknown>][] = [
+  const cases: Cases<typeof removeKeysWithBlankValues> = [
     ['normal use case', [{ a: 1, b: 2 }], { a: 1, b: 2 }],
     ['null use case', [{ a: 1, b: null }], { a: 1 }],
     ['undefined use case', [{ a: 1, b: undefined }], { a: 1 }],
