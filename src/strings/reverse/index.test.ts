@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { reverse } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test reverse function', () => {
   const cases: Cases<typeof reverse> = [

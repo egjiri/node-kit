@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { regexMatchInGroups } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test regexMatchInGroups function', () => {
   const cases: Cases<typeof regexMatchInGroups> = [

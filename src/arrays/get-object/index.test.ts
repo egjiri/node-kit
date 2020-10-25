@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { firstObject, lastObject, nextObject, previousObject } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test firstObject function', () => {
   const cases: Cases<typeof firstObject> = [

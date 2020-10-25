@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { removeKeys, removeKeysWithBlankValues } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test removeKeys function', () => {
   const cases: Cases<typeof removeKeys> = [

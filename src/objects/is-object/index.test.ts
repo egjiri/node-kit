@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { isObject } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test isObject function', () => {
   const cases: Cases<typeof isObject> = [

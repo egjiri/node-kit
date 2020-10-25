@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { dasherize } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test dasherize function', () => {
   const cases: Cases<typeof dasherize> = [

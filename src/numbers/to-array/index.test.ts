@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { toArray } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test toArray function', () => {
   const cases: Cases<typeof toArray> = [

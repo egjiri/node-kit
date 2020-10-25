@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { underscore } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test underscore function', () => {
   const cases: Cases<typeof underscore> = [

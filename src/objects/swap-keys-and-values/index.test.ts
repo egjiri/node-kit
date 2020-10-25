@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { swapKeysAndValues } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test swapKeysAndValues function', () => {
   const cases: Cases<typeof swapKeysAndValues> = [

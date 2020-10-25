@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { capitalize, capitalizeWords, capitalizeSentences } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test capitalize function', () => {
   const cases: Cases<typeof capitalize> = [

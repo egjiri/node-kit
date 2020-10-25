@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { addSeparator } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test addSeparator function', () => {
   const cases: Cases<typeof addSeparator> = [

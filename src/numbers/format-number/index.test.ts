@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { formatNumber } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test formatNumber function', () => {
   const cases: Cases<typeof formatNumber> = [

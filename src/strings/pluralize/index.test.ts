@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { pluralize, pluralizeWithCount } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test pluralize function', () => {
   const cases: Cases<typeof pluralize> = [

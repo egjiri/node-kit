@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { underscoreKeys, camelizeKeys, dasherizeKeys } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test underscoreKeys function', () => {
   const cases: Cases<typeof underscoreKeys> = [

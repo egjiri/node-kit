@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { camelize } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test camelize function', () => {
   const cases: Cases<typeof camelize> = [

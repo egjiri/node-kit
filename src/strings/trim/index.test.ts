@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { trim } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test trim function', () => {
   const cases: Cases<typeof trim> = [

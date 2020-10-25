@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { toNumber } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test toNumber function', () => {
   const cases: Cases<typeof toNumber> = [

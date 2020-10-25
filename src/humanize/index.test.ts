@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import humanize from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test humanize function', () => {
   const cases: Cases<typeof humanize> = [

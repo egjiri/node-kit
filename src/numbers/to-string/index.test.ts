@@ -1,5 +1,6 @@
-import { Cases } from 'testing/helpers';
 import { toString } from '.';
+
+import type { Cases } from 'testing/helpers';
 
 describe('test toString function', () => {
   const cases: Cases<typeof toString> = [
