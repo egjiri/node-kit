@@ -1,6 +1,6 @@
 import { toString } from '../to-string';
 
-export type Format = 'percentage' | 'currency'
+export type Format = 'percentage' | 'currency';
 
 export function formatNumber(num: number, format?: Format) {
   const value = toString(num);

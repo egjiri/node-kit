@@ -14,7 +14,6 @@ module.exports = {
   ],
   rules: {
     'no-multi-spaces': 'error',
-    semi: 'error',
     'comma-dangle': ['error', 'always-multiline'],
     indent: ['error', 2],
     quotes: ['error', 'single', { avoidEscape: true }],
@@ -24,7 +23,9 @@ module.exports = {
     'quote-props': ['error', 'as-needed'],
     'keyword-spacing': 'error',
     'comma-spacing': ['error', { before: false, after: true }],
+    '@typescript-eslint/semi': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/member-delimiter-style': ['error'],
   },
   globals: {
     module: true,
