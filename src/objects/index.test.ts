@@ -1,15 +1,19 @@
 import {
-  camelizeKeys, dasherizeKeys, underscoreKeys,
   isObject,
   removeKeys, removeKeysWithBlankValues,
   swapKeysAndValues,
+  toArray,
+  toString,
+  camelizeKeys, dasherizeKeys, underscoreKeys,
 } from '.';
 
 test('expors', () => {
   [
-    camelizeKeys, dasherizeKeys, underscoreKeys,
     isObject,
     removeKeys, removeKeysWithBlankValues,
     swapKeysAndValues,
+    toArray,
+    toString,
+    camelizeKeys, dasherizeKeys, underscoreKeys,
   ].map(item => expect(item).toBeDefined());
 });
