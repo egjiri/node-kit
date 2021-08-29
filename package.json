@@ -10,18 +10,17 @@
     "lint": "eslint .",
     "clean": "rm -rf build",
     "build": "yarn clean && tsc && find build -name '*.test.*' -delete && ts-node scripts/prepare-package && cp README.md build",
-    "test": "nodemon -w src -e .ts -x 'clear && jest'",
+    "test": "jest --watchAll'",
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\" && open coverage/index.html"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.10",
+    "@types/jest": "^27.0.1",
     "@types/node": "^12.0.12",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
     "eslint": "^7.7.0",
-    "jest": "^26.4.2",
-    "nodemon": "^2.0.0",
-    "ts-jest": "^26.3.0",
+    "jest": "^27.1.0",
+    "ts-jest": "^27.0.5",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.0"
   }
