@@ -19,9 +19,9 @@ Install through npm:
 npm install @egjiri/node-kit
 ```
 
-Install through yarn:
+Install through pnpm:
 ```
-yarn add @egjiri/node-kit
+pnpm add @egjiri/node-kit
 ```
 
 ## Usage Examples
@@ -45,8 +45,8 @@ removeKeysWithBlankValues({
 ```
 
 ## Development
-1. Install dependencies: `yarn`
-1. Run tests `yarn test` (tests automatically re-run when TypeScript src files change)
+1. Install dependencies: `pnpm`
+1. Run tests `pnpm run test` (tests automatically re-run when TypeScript src files change)
 1. Start Coding!
 
 ## Release

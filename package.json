@@ -7,10 +7,10 @@
   "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
   "scripts": {
-    "all": "yarn lint && yarn build && yarn coverage",
+    "all": "pnpm run lint && pnpm run build && pnpm run coverage",
     "lint": "eslint .",
     "clean": "rm -rf build",
-    "build": "yarn clean && tsc && find build -name '*.test.*' -delete && ts-node scripts/prepare-package && cp README.md build",
+    "build": "pnpm run clean && tsc && find build -name '*.test.*' -delete && ts-node scripts/prepare-package && cp README.md build",
     "test": "jest --watchAll",
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\" && open coverage/index.html"
   },

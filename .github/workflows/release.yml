@@ -30,10 +30,10 @@ jobs:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: pnpm install
       - name: Build package
-        run: yarn build
+        run: pnpm run build
       - name: Publish package to NPM registry
-        run: yarn publish build
+        run: pnpm run publish build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -26,11 +26,11 @@ jobs:
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: pnpm install
       - name: Run linter
-        run: yarn lint
+        run: pnpm run lint
       - name: Run tests
-        run: yarn jest --coverage
+        run: pnpm run jest --coverage
       - name: Read code coverage value
         id: coverage
         run: echo "::set-output name=coverage::$(cat coverage/coverage-summary.json | jq .total.statements.pct)"
