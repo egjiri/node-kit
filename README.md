@@ -49,3 +49,32 @@ removeKeysWithBlankValues({
 1. Run tests in watch mode `pnpm run test` (tests automatically re-run when TypeScript src files change)
 1. Run code coverage report and open it in the browser `pnpm run coverage`
 1. Start Coding!
+
+## Release
+
+This project uses **automated publishing** through GitHub Actions. Publishing happens automatically when you create and push a version tag.
+
+### How to Release:
+
+1. **Update the version** in `package.json`:
+   ```bash
+   # For a patch release (1.7.0 → 1.7.1)
+   npm version patch -m "Upgrade version to %s"
+
+   # For a minor release (1.7.0 → 1.8.0)
+   npm version minor -m "Upgrade version to %s"
+
+   # For a major release (1.7.0 → 2.0.0)
+   npm version major -m "Upgrade version to %s"
+   ```
+
+2. **Push the tag** to trigger the release workflow:
+   ```bash
+   git push origin main --tags
+   ```
+
+### What happens automatically:
+- 🏷️ **GitHub Release** is created with the tag name
+- 🏗️ **Package is built** (TypeScript → CommonJS & ESM with type definitions)
+- 📦 **Published to NPM** with public access
+- ✅ **No manual intervention** required

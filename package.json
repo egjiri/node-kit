@@ -7,6 +7,27 @@
   "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
   "type": "module",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "types": "./esm/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./esm/types/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/index.d.ts",
+        "default": "./cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "esm/",
+    "cjs/",
+    "README.md",
+    "logo.svg"
+  ],
   "engines": {
     "node": "22.17.1",
     "pnpm": "10.13.1"
