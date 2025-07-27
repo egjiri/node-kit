@@ -9,10 +9,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Use Node.js 20.x & setup the .npmrc file to publish to npm
+      - name: Use Node.js 22.17.1 & setup the .npmrc file to publish to npm
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: 22.17.1
           registry-url: "https://registry.npmjs.org"
       - name: Install pnpm
         uses: pnpm/action-setup@v4
