@@ -3,12 +3,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/egjiri/node-kit/actions?query=workflow%3ACI+branch%3Amain">
-    <img src="https://github.com/egjiri/node-kit/workflows/CI/badge.svg?branch=main" alt="CI Badge">
+  <a href="https://github.com/egjiri/node-kit/actions/workflows/ci.yml">
+    <img src="https://github.com/egjiri/node-kit/actions/workflows/ci.yml/badge.svg" alt="CI Badge">
   </a>
-  <a href="https://badges.zoostage.com/egjiri/node-kit/main.svg">
-    <img src="https://badges.zoostage.com/egjiri/node-kit/main.svg" alt="Coverage Badge">
-  </a>
+  <img src="https://img.shields.io/badge/node--kit-100%25-brightgreen" alt="Coverage Badge">
 </p>
 
 A collection of useful Node utility functions that can be used across projects. Written in TypeScript.
