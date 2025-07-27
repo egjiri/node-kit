@@ -17,7 +17,7 @@
     "all": "pnpm run lint && pnpm run build && pnpm run coverage",
     "lint": "eslint .",
     "clean": "rm -rf dist",
-    "build": "pnpm run clean && pnpm run build:esm && pnpm run build:cjs && find dist -name '*.test.*' -delete",
+    "build": "pnpm run clean && pnpm run build:esm && pnpm run build:cjs && find dist -name '*.test.*' -delete && tsx scripts/prepare-release-package.ts",
     "build:esm": "tsc -p tsconfig.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "test": "jest --watchAll",
@@ -33,6 +33,7 @@
     "jest": "^30.0.5",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
     "typescript": "5.5.4"
   }
 }

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/node-kit-logo.svg" alt="Node Kit Logo">
+  <img src="logo.svg" alt="Node Kit Logo">
 </p>
 
 <p align="center">
@@ -45,6 +45,7 @@ removeKeysWithBlankValues({
 ```
 
 ## Development
-1. Install dependencies: `pnpm`
-1. Run tests `pnpm run test` (tests automatically re-run when TypeScript src files change)
+1. Install dependencies: `pnpm install`
+1. Run tests in watch mode `pnpm run test` (tests automatically re-run when TypeScript src files change)
+1. Run code coverage report and open it in the browser `pnpm run coverage`
 1. Start Coding!
