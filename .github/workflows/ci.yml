@@ -19,9 +19,9 @@ jobs:
         with:
           version: 10
       - name: Cache Node.js modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: ~/.pnpm-store
+          path: ~/.local/share/pnpm/store
           key: ${{ runner.OS }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.OS }}-pnpm-
@@ -32,4 +32,9 @@ jobs:
       - name: Run linter
         run: pnpm run lint
       - name: Run tests
-        run: "pnpm jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\""
+        id: coverage
+        run: |
+          pnpm jest --coverage
+          COVERAGE=$(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')
+          echo "Coverage: ${COVERAGE}%"
+          echo "coverage=${COVERAGE}" >> $GITHUB_OUTPUT
