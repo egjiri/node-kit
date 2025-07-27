@@ -1,25 +1,11 @@
+// ESM Module Configuration for TypeScript
+// This is the main configuration file used for building ES modules (ESM) output.
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    // Project Options
-    "declaration": true,
-    "lib": [
-      "ES2019", // Overwrite the default which include DOM since this is not a browser environment
-    ],
-    "module": "CommonJS",
-    "outDir": "build",
-    "removeComments": true,
-    "rootDir": "src",
-    "target": "ES2019", // Supported target for Node 12
-    // Strict Checks
-    "strict": true, // Always set to true and disable the individual checks while transitioning to strict mode
-    // Module Resolution
-    "baseUrl": "src",
-    "esModuleInterop": true,
-    // Advanced
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-  },
-  "include": [
-    "src/**/*"
-  ]
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/esm/types"
+  }
 }

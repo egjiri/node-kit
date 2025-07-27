@@ -9,8 +9,10 @@
   "scripts": {
     "all": "pnpm run lint && pnpm run build && pnpm run coverage",
     "lint": "eslint .",
-    "clean": "rm -rf build",
-    "build": "pnpm run clean && tsc && find build -name '*.test.*' -delete && ts-node scripts/prepare-package && cp README.md build",
+    "clean": "rm -rf dist",
+    "build": "pnpm run clean && pnpm run build:esm && pnpm run build:cjs && find dist -name '*.test.*' -delete",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
     "test": "jest --watchAll",
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\" && open coverage/index.html"
   },

@@ -2,5 +2,5 @@
 node_modules
 
 # Generated files
-build
+dist
 coverage

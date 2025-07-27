@@ -9,18 +9,20 @@
   <img src="https://img.shields.io/badge/node--kit-100%25-brightgreen" alt="Coverage Badge">
 </p>
 
-A collection of useful Node utility functions that can be used across projects. Written in TypeScript.
+A collection of useful Node.js utility functions that can be used across projects. Written in TypeScript.
+- **🚀 Node.js Only (not for DOM/browsers)**
+- **📦 Zero Dependencies** - No runtime dependencies
 
 ## Installation
-Install through npm:
-```
-npm install @egjiri/node-kit
-```
 
-Install through pnpm:
-```
-pnpm add @egjiri/node-kit
-```
+Install the package using your favorite package manager:
+
+| Package Manager | Command |
+|-----------------|---------|
+| npm | `npm install @egjiri/node-kit` |
+| pnpm | `pnpm add @egjiri/node-kit` |
+| yarn | `yarn add @egjiri/node-kit` |
+| bun | `bun add @egjiri/node-kit` |
 
 ## Usage Examples
 ```js
@@ -46,10 +48,3 @@ removeKeysWithBlankValues({
 1. Install dependencies: `pnpm`
 1. Run tests `pnpm run test` (tests automatically re-run when TypeScript src files change)
 1. Start Coding!
-
-## Release
-
-This project is released through GitHub Actions workflows that:
-1. Run the test suite and linters
-1. Build the TypeScript codebase into a build folder with JavaScript and TypeScript type definition files.
-1. Publish the build folder to the NPM Registry.

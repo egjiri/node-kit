@@ -1,0 +1,25 @@
+// Base Configuration for TypeScript
+// This configuration is used as a base for both ESM and CJS module configurations in TypeScript projects.
+{
+  "compilerOptions": {
+    "lib": [
+      "ES2022", // Overwrite the default lib which include DOM since this is not a browser environment
+    ],
+    "target": "ES2022", // Supported target for Node 20 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "removeComments": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "baseUrl": "src",
+  },
+  "include": [
+    "src/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+  ]
+}

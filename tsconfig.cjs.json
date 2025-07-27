@@ -1,0 +1,11 @@
+// CommonJS Module Configuration for TypeScript
+// This configuration is used for building CommonJS (CJS) modules output.
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist/cjs",
+    "declarationDir": "./dist/cjs/types"
+  }
+}
