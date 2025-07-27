@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/egjiri/node-kit/actions?query=workflow%3ACI+branch%3Amaster">
-    <img src="https://github.com/egjiri/node-kit/workflows/CI/badge.svg?branch=master" alt="CI Badge">
+  <a href="https://github.com/egjiri/node-kit/actions?query=workflow%3ACI+branch%3Amain">
+    <img src="https://github.com/egjiri/node-kit/workflows/CI/badge.svg?branch=main" alt="CI Badge">
   </a>
-  <a href="https://badges.zoostage.com/egjiri/node-kit/master.svg">
-    <img src="https://badges.zoostage.com/egjiri/node-kit/master.svg" alt="Coverage Badge">
+  <a href="https://badges.zoostage.com/egjiri/node-kit/main.svg">
+    <img src="https://badges.zoostage.com/egjiri/node-kit/main.svg" alt="Coverage Badge">
   </a>
 </p>
 
