@@ -15,7 +15,7 @@ A collection of useful Node.js utility functions that can be used across project
 
 ## Installation
 
-Install the package using your favorite package manager:
+The library is available as an [npm package](https://www.npmjs.com/package/@egjiri/node-kit). To install the package using your favorite package manager run:
 
 | Package Manager | Command |
 |-----------------|---------|
