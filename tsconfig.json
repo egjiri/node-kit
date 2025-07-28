@@ -4,8 +4,9 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "outDir": "./dist/esm",
-    "declarationDir": "./dist/esm/types"
+    "declarationDir": "./dist/esm/types",
+    "allowImportingTsExtensions": false
   }
 }

@@ -3,8 +3,8 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "./dist/cjs",
     "declarationDir": "./dist/cjs/types"
   }
