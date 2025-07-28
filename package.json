@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
+  "type": "module",
   "engines": {
     "node": "22.17.1",
     "pnpm": "10.13.1"
@@ -27,13 +28,13 @@
     "@eslint/js": "^9.32.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.16.5",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "eslint": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
     "jest": "^30.0.5",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript": "5.5.4"
+    "typescript": "5.8.3"
   }
 }
