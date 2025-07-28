@@ -1,7 +1,7 @@
-export type matchGroup = { [key: string]: string };
+export type MatchGroup = { [key: string]: string };
 
-export function regexMatchInGroups(str: string, regexStr: string): matchGroup {
-  const groups: matchGroup = {};
+export function regexMatchInGroups(str: string, regexStr: string): MatchGroup {
+  const groups: MatchGroup = {};
   const regex = new RegExp(regexStr.replace(/\?<(.+?)>/g, ''));
   if (regex.test(str)) {
     const matches = str.match(regex) as RegExpMatchArray;

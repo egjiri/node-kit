@@ -1,4 +1,4 @@
-import betterSwitch from '.';
+import { betterSwitch } from '.';
 
 test('test betterSwitch function', () => {
   const mock1 = jest.fn();

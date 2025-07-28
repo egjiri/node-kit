@@ -1,4 +1,4 @@
-import humanize from '.';
+import { humanize } from '.';
 
 import type { Cases } from 'testing/helpers';
 

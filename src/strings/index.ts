@@ -10,4 +10,4 @@ export { reverse } from './reverse';
 export { toNumber } from './to-number';
 export { trim } from './trim';
 export { underscore } from './underscore';
-export type { matchGroup } from './regex-match-in-groups';
+export type { MatchGroup } from './regex-match-in-groups';
