@@ -59,13 +59,13 @@ This project uses **automated publishing** through GitHub Actions. Publishing ha
 1. **Update the version** in `package.json`:
    ```bash
    # For a patch release (1.7.0 → 1.7.1)
-   npm version patch -m "Upgrade version to %s"
+   pnpm version patch -m "Upgrade version to %s"
 
    # For a minor release (1.7.0 → 1.8.0)
-   npm version minor -m "Upgrade version to %s"
+   pnpm version minor -m "Upgrade version to %s"
 
    # For a major release (1.7.0 → 2.0.0)
-   npm version major -m "Upgrade version to %s"
+   pnpm version major -m "Upgrade version to %s"
    ```
 
 2. **Push the tag** to trigger the release workflow:
