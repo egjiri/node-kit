@@ -7,27 +7,6 @@
   "private": false,
   "repository": "git@github.com:egjiri/node-kit.git",
   "type": "module",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "types": "./esm/types/index.d.ts",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./esm/types/index.d.ts",
-        "default": "./esm/index.js"
-      },
-      "require": {
-        "types": "./cjs/types/index.d.ts",
-        "default": "./cjs/index.js"
-      }
-    }
-  },
-  "files": [
-    "esm/",
-    "cjs/",
-    "README.md",
-    "logo.svg"
-  ],
   "engines": {
     "node": "22.17.1",
     "pnpm": "10.13.1"
@@ -57,5 +36,83 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "5.8.3"
+  },
+  "files": [
+    "esm/",
+    "cjs/",
+    "README.md",
+    "logo.svg"
+  ],
+  "exports": {
+    "./arrays": {
+      "import": {
+        "types": "./esm/types/arrays/index.d.ts",
+        "default": "./esm/arrays/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/arrays/index.d.ts",
+        "default": "./cjs/arrays/index.js"
+      }
+    },
+    "./humanize": {
+      "import": {
+        "types": "./esm/types/humanize/index.d.ts",
+        "default": "./esm/humanize/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/humanize/index.d.ts",
+        "default": "./cjs/humanize/index.js"
+      }
+    },
+    "./numbers": {
+      "import": {
+        "types": "./esm/types/numbers/index.d.ts",
+        "default": "./esm/numbers/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/numbers/index.d.ts",
+        "default": "./cjs/numbers/index.js"
+      }
+    },
+    "./objects": {
+      "import": {
+        "types": "./esm/types/objects/index.d.ts",
+        "default": "./esm/objects/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/objects/index.d.ts",
+        "default": "./cjs/objects/index.js"
+      }
+    },
+    "./strings": {
+      "import": {
+        "types": "./esm/types/strings/index.d.ts",
+        "default": "./esm/strings/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/strings/index.d.ts",
+        "default": "./cjs/strings/index.js"
+      }
+    },
+    "./testing": {
+      "import": {
+        "types": "./esm/types/testing/index.d.ts",
+        "default": "./esm/testing/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/testing/index.d.ts",
+        "default": "./cjs/testing/index.js"
+      }
+    },
+    "./x": {
+      "import": {
+        "types": "./esm/types/x/index.d.ts",
+        "default": "./esm/x/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/x/index.d.ts",
+        "default": "./cjs/x/index.js"
+      }
+    }
   }
 }
