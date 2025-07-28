@@ -7,30 +7,40 @@ jobs:
     outputs:
       coverage: ${{ steps.coverage.outputs.coverage }}
     steps:
+      # Download the repository code to the GitHub Actions runner
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Use Node.js 22.17.1 & setup the .npmrc file to publish to npm
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.17.1
-          registry-url: "https://registry.npmjs.org"
-      - name: Install pnpm
+
+      # Install pnpm package manager which is used by this project
+      # This ensures we use the same package manager as in development
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10
-      - name: Cache Node.js modules
-        uses: actions/cache@v4
+          version: "10.13.1"
+
+      # Install Node.js runtime and configure NPM registry authentication
+      # Cache pnpm dependencies to speed up future workflow runs
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ~/.local/share/pnpm/store
-          key: ${{ runner.OS }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.OS }}-pnpm-
+          node-version: "22.17.1"
+          registry-url: "https://registry.npmjs.org"
+          cache: 'pnpm'
+
+      # Install all project dependencies using pnpm
       - name: Install dependencies
         run: pnpm install
-      - name: Run build
+
+      # Build the package and prepare it for publishing
+      # This runs the build script that builds the ESM/CJS versions and copies files
+      - name: Build package for publishing
         run: pnpm run build
+
+      # Run code linting to check for style and quality issues
       - name: Run linter
         run: pnpm run lint
+
+      # Run tests with coverage reporting and export coverage percentage
       - name: Run tests
         id: coverage
         run: |
