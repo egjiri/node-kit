@@ -1,4 +1,5 @@
 import {
+  filterDuplicates,
   isEmpty,
   firstObject, lastObject, nextObject, previousObject,
   isStringArray,
@@ -6,6 +7,7 @@ import {
 
 test('expors', () => {
   [
+    filterDuplicates,
     isEmpty,
     firstObject, lastObject, nextObject, previousObject,
     isStringArray,
