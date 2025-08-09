@@ -104,6 +104,16 @@
         "default": "./cjs/testing/index.js"
       }
     },
+    "./time": {
+      "import": {
+        "types": "./esm/types/time/index.d.ts",
+        "default": "./esm/time/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/time/index.d.ts",
+        "default": "./cjs/time/index.js"
+      }
+    },
     "./x": {
       "import": {
         "types": "./esm/types/x/index.d.ts",

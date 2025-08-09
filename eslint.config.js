@@ -34,7 +34,7 @@ export default [
       // Custom formatting and style rules
       'no-multi-spaces': 'error',
       'comma-dangle': ['error', 'always-multiline'],
-      indent: ['error', 2],
+      indent: ['error', 2, { SwitchCase: 1 }],
       quotes: ['error', 'single', { avoidEscape: true }],
       'arrow-parens': ['error', 'as-needed'],
       'array-bracket-spacing': ['error', 'never'],
