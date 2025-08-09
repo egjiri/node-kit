@@ -1,1 +1,1 @@
-export type { Cases } from './helpers';
+export type { Cases } from './types';
