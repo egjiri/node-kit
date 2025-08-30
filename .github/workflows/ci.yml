@@ -48,3 +48,8 @@ jobs:
           COVERAGE=$(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')
           echo "Coverage: ${COVERAGE}%"
           echo "coverage=${COVERAGE}" >> $GITHUB_OUTPUT
+
+      # Update coverage badge with the test coverage percentage (main branch only)
+      - name: Update coverage badge
+        if: github.ref == 'refs/heads/main'
+        run: curl -I "https://badge.egjiri.com/node-kit?coverage=${{ steps.coverage.outputs.coverage }}&token=${{ secrets.BADGE_API_KEY }}"

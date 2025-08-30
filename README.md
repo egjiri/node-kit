@@ -6,7 +6,7 @@
   <a href="https://github.com/egjiri/node-kit/actions/workflows/ci.yml">
     <img src="https://github.com/egjiri/node-kit/actions/workflows/ci.yml/badge.svg" alt="CI Badge">
   </a>
-  <img src="https://img.shields.io/badge/node--kit-100%25-brightgreen" alt="Coverage Badge">
+  <img src="https://badge.egjiri.com/node-kit" alt="Coverage Badge">
 </p>
 
 A collection of useful Node.js utility functions that can be used across projects. Written in TypeScript.
@@ -49,6 +49,16 @@ removeKeysWithBlankValues({
 1. Run tests in watch mode `pnpm run test` (tests automatically re-run when TypeScript src files change)
 1. Run code coverage report and open it in the browser `pnpm run coverage`
 1. Start Coding!
+
+### Setting up GitHub Secrets
+
+The CI GitHub Action requires a `BADGE_API_KEY` GitHub secret. To fetch this secret from 1Password and set it on GitHub, run the following command locally once. Re-run this command whenever the secret changes.
+
+```bash
+gh secret set BADGE_API_KEY --repo egjiri/node-kit --body "$(op read 'op://Infrastructure/Badge/BADGE_API_KEY' -n)"
+```
+
+The coverage badge is automatically updated by the CI GitHub Action whenever tests run on the main branch. The badge is generated using the [egjiri/badge](https://github.com/egjiri/badge) project and hosted at [badge.egjiri.com](https://badge.egjiri.com).
 
 ## Release
 
