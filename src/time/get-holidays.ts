@@ -3,7 +3,7 @@ import { getNthWeekdayOfMonth } from './get-nth-weekday-of-month';
 import { DayOfWeek, Month, Week } from './types';
 
 enum Holiday {
-  NewYearsDay = 'New Year\'s Day',
+  NewYearsDay = "New Year's Day",
   FamilyDay = 'Family Day',
   GoodFriday = 'Good Friday',
   EasterMonday = 'Easter Monday',
@@ -19,9 +19,9 @@ enum Holiday {
 }
 
 export type OntarioHolidays = Exclude<Holiday,
-| Holiday.EasterMonday
-| Holiday.NationalDayForTruthAndReconciliation
-| Holiday.RemembranceDay
+  | Holiday.EasterMonday
+  | Holiday.NationalDayForTruthAndReconciliation
+  | Holiday.RemembranceDay
 >;
 
 export function getHolidays(): Holiday[] {
@@ -29,7 +29,8 @@ export function getHolidays(): Holiday[] {
 }
 
 export function getOntarioHolidays(): OntarioHolidays[] {
-  return getHolidays().filter(holiday => ![Holiday.EasterMonday, Holiday.NationalDayForTruthAndReconciliation, Holiday.RemembranceDay].includes(holiday)) as OntarioHolidays[];
+  const notOntarioHolidays = [Holiday.EasterMonday, Holiday.NationalDayForTruthAndReconciliation, Holiday.RemembranceDay];
+  return getHolidays().filter(holiday => !notOntarioHolidays.includes(holiday)) as OntarioHolidays[];
 }
 
 // Reference: https://www.statutoryholidays.com/ontario.php
