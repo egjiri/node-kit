@@ -1,22 +1,17 @@
 import { formatDate, formatStandardDate } from '.';
-import type { Cases } from 'testing';
 
 describe('formatDate', () => {
-  const cases: Cases<typeof formatDate> = [
-    ['format date', [new Date(2025, 0, 15)], 'Wed, Jan 15, 2025'],
-  ];
-  test.each(cases)('%s', (_, args, expected) => {
-    const actual = formatDate(...args);
+  it('formats date correctly', () => {
+    const actual = formatDate(new Date(2025, 0, 15));
+    const expected = 'Wed, Jan 15, 2025';
     expect(actual).toBe(expected);
   });
 });
 
 describe('formatStandardDate', () => {
-  const cases: Cases<typeof formatStandardDate> = [
-    ['format date', [new Date(2025, 0, 15)], '01/15/2025'],
-  ];
-  test.each(cases)('%s', (_, args, expected) => {
-    const actual = formatStandardDate(...args);
+  it('formats date correctly', () => {
+    const actual = formatStandardDate(new Date(2025, 0, 15));
+    const expected = '01/15/2025';
     expect(actual).toBe(expected);
   });
 });

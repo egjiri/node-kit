@@ -20,6 +20,7 @@ export default [
         console: 'readonly',
         // Jest globals for test files
         describe: 'readonly',
+        it: 'readonly',
         test: 'readonly',
         expect: 'readonly',
         jest: 'readonly',
