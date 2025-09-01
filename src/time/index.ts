@@ -1,7 +1,6 @@
 export { addDays } from './add-days';
 export { addYears } from './add-years';
 export { calculateAmountByFrequency } from './calculate-amount-by-frequency';
-export { compareFrequencies } from './compare-frequencies';
 export { formatDate, formatStandardDate } from './format-date';
 export { getHolidays, getOntarioHolidays, getHolidayDates } from './get-holidays';
 export { getIntervalFromFrequency } from './get-interval-from-frequency';
