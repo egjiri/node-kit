@@ -24,6 +24,8 @@ export default [
         test: 'readonly',
         expect: 'readonly',
         jest: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
       },
     },
     plugins: {
