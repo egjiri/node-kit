@@ -26,16 +26,16 @@
     "coverage": "vitest run --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\" && open coverage/index.html"
   },
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
-    "@types/node": "^22.16.5",
-    "@typescript-eslint/eslint-plugin": "^8.38.0",
-    "@typescript-eslint/parser": "^8.38.0",
-    "@vitest/coverage-v8": "^2.1.8",
-    "eslint": "^9.32.0",
+    "@eslint/js": "^9.35.0",
+    "@types/node": "^22.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.42.0",
+    "@typescript-eslint/parser": "^8.42.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.35.0",
     "ts-node": "^10.9.2",
-    "tsx": "^4.20.3",
-    "typescript": "5.8.3",
-    "vitest": "^2.1.8"
+    "tsx": "^4.20.5",
+    "typescript": "5.9.2",
+    "vitest": "^3.2.4"
   },
   "files": [
     "esm/",
