@@ -44,7 +44,7 @@ jobs:
       - name: Run tests
         id: coverage
         run: |
-          pnpm jest --coverage
+          pnpm vitest run --coverage
           COVERAGE=$(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')
           echo "Coverage: ${COVERAGE}%"
           echo "coverage=${COVERAGE}" >> $GITHUB_OUTPUT

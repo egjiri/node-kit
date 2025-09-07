@@ -3,11 +3,14 @@ import type { Cases } from 'testing';
 
 describe('getNumberOfDaysInYear', () => {
   beforeAll(() => {
-    jest.spyOn(Date.prototype, 'getFullYear').mockReturnValue(2025);
+    // Mock Date constructor to return fixed data for new Date() calls
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2025, 8, 6)); // September 6, 2025
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    // Restore real timers
+    vi.useRealTimers();
   });
 
   const cases: Cases<typeof getNumberOfDaysInYear> = [

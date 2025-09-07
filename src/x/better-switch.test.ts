@@ -1,9 +1,9 @@
 import { betterSwitch } from './better-switch';
 
 test('test betterSwitch function', () => {
-  const mock1 = jest.fn();
-  const mock2 = jest.fn();
-  const mock3 = jest.fn();
+  const mock1 = vi.fn();
+  const mock2 = vi.fn();
+  const mock3 = vi.fn();
   const switchCases = { first: mock1, second: mock2, default: mock3 };
   const switchCasesWithoutDefault = { first: mock1, second: mock2 };
 

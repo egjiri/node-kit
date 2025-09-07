@@ -4,6 +4,7 @@
     "/pnpm-lock.yaml": true
   },
   "cSpell.words": [
-    "tsparser"
+    "tsparser",
+    "vitest"
   ]
 }

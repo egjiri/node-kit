@@ -5,13 +5,13 @@ import type { Cases } from 'testing';
 describe('getRecurringDates', () => {
   beforeAll(() => {
     // Mock Date constructor to return fixed data for new Date() calls
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date(2025, 8, 6)); // September 6, 2025
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2025, 8, 6)); // September 6, 2025
   });
 
   afterAll(() => {
     // Restore real timers
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   const cases: Cases<typeof getRecurringDates> = [

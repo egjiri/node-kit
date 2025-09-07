@@ -18,14 +18,16 @@ export default [
       globals: {
         // Node.js globals
         console: 'readonly',
-        // Jest globals for test files
+        // Vitest globals for test files
         describe: 'readonly',
         it: 'readonly',
         test: 'readonly',
         expect: 'readonly',
-        jest: 'readonly',
+        vi: 'readonly',
         beforeAll: 'readonly',
         afterAll: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
       },
     },
     plugins: {

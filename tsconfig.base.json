@@ -6,6 +6,9 @@
       "ES2022", // Overwrite the default lib which include DOM since this is not a browser environment
     ],
     "target": "ES2022", // Supported target for Node 20 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "types": [
+      "vitest/globals"
+    ],
     "removeComments": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
