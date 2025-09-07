@@ -21,7 +21,8 @@
     "build": "pnpm run clean && pnpm run build:esm && pnpm run build:cjs && find dist -name '*.test.*' -delete && tsx scripts/prepare-release-package.ts",
     "build:esm": "tsc -p tsconfig.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "test": "jest --watchAll",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
     "coverage": "jest --coverage && echo \"Coverage: $(cat ./coverage/coverage-summary.json | jq '.total.statements.pct')%\" && open coverage/index.html"
   },
   "devDependencies": {

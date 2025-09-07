@@ -46,8 +46,10 @@ removeKeysWithBlankValues({
 
 ## Development
 1. Install dependencies: `pnpm install`
-1. Run tests in watch mode `pnpm run test` (tests automatically re-run when TypeScript src files change)
+1. Run tests: `pnpm run test`
+1. Run tests in watch mode: `pnpm run test:watch` (tests automatically re-run when TypeScript src files change)
 1. Run code coverage report and open it in the browser `pnpm run coverage`
+1. Run all checks (lint, build, and coverage): `pnpm run all` - This is the comprehensive command to run before committing changes
 1. Start Coding!
 
 ### Setting up GitHub Secrets
