@@ -40,9 +40,7 @@ export function getRecurringDates(frequency: RecurringTransactionSupportedFreque
 
     if (frequency === Frequency.SemiMonthly) {
       return daysOfMonth.map(startDay => getMonthlyDates(startDay, startDate, endDate)).flat();
-    }
-
-    if (frequency === Frequency.Monthly) {
+    } else {
       return getMonthlyDates(daysOfMonth[0], startDate, endDate);
     }
   }
