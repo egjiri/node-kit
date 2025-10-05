@@ -1,4 +1,4 @@
-import { capitalize, capitalizeWords, capitalizeSentences } from './capitalize';
+import { capitalize, capitalizeAllWords, capitalizeWords, capitalizeSentences } from './capitalize';
 
 import type { Cases } from 'testing';
 
@@ -10,6 +10,20 @@ describe('test capitalize function', () => {
   ];
   test.each(cases)('%s', (_, args, expected) => {
     const actual = capitalize(...args);
+    expect(actual).toEqual(expected);
+  });
+});
+
+describe('test capitalizeAllWords function', () => {
+  const cases: Cases<typeof capitalizeAllWords> = [
+    ['single word capitalizes the first character', ['word'], 'Word'],
+    ['multiple words capitalize each word', ['two words'], 'Two Words'],
+    ['multiple spaces are preserved', ['word  with   spaces'], 'Word  With   Spaces'],
+    ['starting with a number does not change the string', ['1password test'], '1password Test'],
+    ['handles leading and trailing spaces', [' hello world '], ' Hello World '],
+  ];
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = capitalizeAllWords(...args);
     expect(actual).toEqual(expected);
   });
 });

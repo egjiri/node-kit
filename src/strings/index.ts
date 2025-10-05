@@ -1,6 +1,6 @@
 export { addSeparator } from './add-separator';
 export { camelize } from './camelize';
-export { capitalize, capitalizeWords, capitalizeSentences } from './capitalize';
+export { capitalize, capitalizeAllWords, capitalizeWords, capitalizeSentences } from './capitalize';
 export { dasherize } from './dasherize';
 export { deDasherize } from './de-dasherize';
 export { humanize } from './humanize';

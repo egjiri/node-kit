@@ -2,6 +2,10 @@ export function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function capitalizeAllWords(str: string) {
+  return str.replace(/(^|\s+)\w/g, letter => letter.toUpperCase());
+}
+
 export function capitalizeWords(str: string) {
   return str.split(' ').map(word => {
     const exceptionWords = ['in', 'on', 'is', 'to', 'for', 'width', 'and', 'on', 'by', 'a', 'at'];
