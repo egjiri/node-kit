@@ -14,7 +14,7 @@ export function isRecurringTransactionSupportedFrequency(frequency: Frequency): 
   return RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES.includes(frequency as RecurringTransactionSupportedFrequency);
 }
 
-export function getRecurringDates(frequency: RecurringTransactionSupportedFrequency, days: DayOfWeek[] | DayOfMonth[] | undefined, startDate: Date, endDate = getLastDayOfYear('next-year')): Date[] {
+export function getRecurringDates(frequency: RecurringTransactionSupportedFrequency, days: DayOfWeek[] | DayOfMonth[] | null | undefined, startDate: Date, endDate = getLastDayOfYear('next-year')): Date[] {
   if (frequency === Frequency.Yearly) {
     return getYearlyDates(startDate, endDate);
   }
