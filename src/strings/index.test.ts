@@ -1,18 +1,20 @@
 import {
   addSeparator,
   camelize,
-  capitalize, capitalizeWords, capitalizeSentences,
+  capitalize,
+  capitalizeSentences,
+  capitalizeWords,
   dasherize,
   deDasherize,
   humanize,
-  pluralize, pluralizeWithCount,
+  pluralize,
+  pluralizeWithCount,
   regexMatchInGroups,
   reverse,
   toNumber,
   trim,
   underscore,
 } from '.';
-
 
 test('expors', () => {
   [

@@ -1,4 +1,4 @@
-import { isDayOfWeek, isDayOfMonth } from './types';
+import { isDayOfMonth, isDayOfWeek } from './types';
 import type { Cases } from 'testing';
 
 describe('isDayOfWeek', () => {

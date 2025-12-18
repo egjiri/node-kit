@@ -1,5 +1,4 @@
 import { removeKeys, removeKeysWithBlankValues } from './remove-keys';
-
 import type { Cases } from 'testing';
 
 describe('test removeKeys function', () => {

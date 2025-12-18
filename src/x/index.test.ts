@@ -2,7 +2,6 @@ import {
   betterSwitch,
 } from '.';
 
-
 test('exports', () => {
   [
     betterSwitch,

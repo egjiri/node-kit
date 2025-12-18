@@ -1,5 +1,4 @@
 import { dasherize } from './dasherize';
-
 import type { Cases } from 'testing';
 
 describe('test dasherize function', () => {

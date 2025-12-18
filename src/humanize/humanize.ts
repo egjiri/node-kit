@@ -1,5 +1,5 @@
-import { toNumber, humanize as humanizeString } from '../strings';
 import { formatNumber } from '../numbers/format-number';
+import { humanize as humanizeString, toNumber } from '../strings';
 import type { Format } from '../numbers/format-number';
 
 export function humanize(value?: string, format?: Format): string {

@@ -1,5 +1,4 @@
 import { addSeparator } from './add-separator';
-
 import type { Cases } from 'testing';
 
 describe('test addSeparator function', () => {

@@ -37,7 +37,7 @@ export function getOntarioHolidays(): OntarioHolidays[] {
 export function getHolidayDates(year: number): Record<Holiday, Date> {
   const easterSunday = getEasterSunday(year);
 
-  /* eslint-disable no-multi-spaces */
+  /* eslint-disable stylistic/no-multi-spaces,stylistic/key-spacing */
   return {
     [Holiday.NewYearsDay]:    new Date(year, Month.January, 1),                                          // New Year's Day (January 1)
     [Holiday.FamilyDay]:      getNthWeekdayOfMonth(Week.Third, DayOfWeek.Monday, Month.February, year),  // Family Day (Third Monday in February)
@@ -53,7 +53,7 @@ export function getHolidayDates(year: number): Record<Holiday, Date> {
     [Holiday.ChristmasDay]:   new Date(year, Month.December, 25),                                        // Christmas Day (December 25)
     [Holiday.BoxingDay]:      new Date(year, Month.December, 26),                                        // Boxing Day (December 26)
   };
-  /* eslint-enable no-multi-spaces */
+  /* eslint-enable stylistic/no-multi-spaces,stylistic/key-spacing */
 }
 
 // Source: https://gist.github.com/johndyer/0dffbdd98c2046f41180c051f378f343

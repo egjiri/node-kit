@@ -1,5 +1,5 @@
 import { getRecurringDates, isRecurringTransactionSupportedFrequency } from './get-recurring-dates';
-import { Frequency, DayOfWeek } from './types';
+import { DayOfWeek, Frequency } from './types';
 import type { Cases } from 'testing';
 
 describe('getRecurringDates', () => {

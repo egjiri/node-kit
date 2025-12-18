@@ -3,7 +3,7 @@ import { Frequency } from './types';
 import type { Cases } from 'testing';
 
 describe('calculateAmountByFrequency', () => {
-  /* eslint-disable no-multi-spaces */
+  /* eslint-disable stylistic/no-multi-spaces */
   const cases: Cases<typeof calculateAmountByFrequency> = [
     // Weekly to other frequencies
     ['weekly to weekly (same)',   [100, Frequency.Weekly, Frequency.Weekly], 100],
@@ -49,7 +49,7 @@ describe('calculateAmountByFrequency', () => {
     ['negative amount',           [-1000, Frequency.Monthly, Frequency.Yearly], -12000],
     ['fractional amount',         [435.5, Frequency.Monthly, Frequency.Weekly], 100.5],
   ];
-  /* eslint-enable no-multi-spaces */
+  /* eslint-enable stylistic/no-multi-spaces */
 
   test.each(cases)('%s', (_, args, expected) => {
     const actual = calculateAmountByFrequency(...args);

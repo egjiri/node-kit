@@ -1,8 +1,11 @@
 import {
   filterDuplicates,
-  firstObject, lastObject, nextObject, previousObject,
+  firstObject,
   isEmpty,
   isStringArray,
+  lastObject,
+  nextObject,
+  previousObject,
 } from '.';
 
 test('expors', () => {

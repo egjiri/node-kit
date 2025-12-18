@@ -1,5 +1,4 @@
 import { deDasherize } from './de-dasherize';
-
 import type { Cases } from 'testing';
 
 describe('test deDasherize function', () => {

@@ -1,5 +1,4 @@
 import { camelize } from './camelize';
-
 import type { Cases } from 'testing';
 
 describe('test camelize function', () => {

@@ -1,5 +1,4 @@
 import { regexMatchInGroups } from './regex-match-in-groups';
-
 import type { Cases } from 'testing';
 
 describe('test regexMatchInGroups function', () => {

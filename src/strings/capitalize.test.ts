@@ -1,5 +1,4 @@
-import { capitalize, capitalizeAllWords, capitalizeWords, capitalizeSentences } from './capitalize';
-
+import { capitalize, capitalizeAllWords, capitalizeSentences, capitalizeWords } from './capitalize';
 import type { Cases } from 'testing';
 
 describe('test capitalize function', () => {

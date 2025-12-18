@@ -1,5 +1,4 @@
 import { pluralize, pluralizeWithCount } from './pluralize';
-
 import type { Cases } from 'testing';
 
 describe('test pluralize function', () => {

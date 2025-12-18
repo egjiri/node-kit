@@ -1,5 +1,4 @@
 import { isEmpty } from './is-empty';
-
 import type { Cases } from 'testing';
 
 describe('test isEmpty function', () => {

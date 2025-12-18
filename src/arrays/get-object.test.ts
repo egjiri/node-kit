@@ -1,5 +1,4 @@
 import { firstObject, lastObject, nextObject, previousObject } from './get-object';
-
 import type { Cases } from 'testing';
 
 describe('test firstObject function', () => {

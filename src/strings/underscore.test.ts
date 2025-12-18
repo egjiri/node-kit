@@ -1,5 +1,4 @@
 import { underscore } from './underscore';
-
 import type { Cases } from 'testing';
 
 describe('test underscore function', () => {

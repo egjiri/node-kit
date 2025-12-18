@@ -1,4 +1,4 @@
-import { getHolidays, getOntarioHolidays, getHolidayDates } from '.';
+import { getHolidayDates, getHolidays, getOntarioHolidays } from '.';
 
 describe('getHolidays', () => {
   it('returns a list of holidays', () => {

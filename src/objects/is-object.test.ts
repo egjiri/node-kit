@@ -1,5 +1,4 @@
 import { isObject } from './is-object';
-
 import type { Cases } from 'testing';
 
 describe('test isObject function', () => {

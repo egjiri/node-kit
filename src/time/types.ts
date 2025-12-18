@@ -39,7 +39,7 @@ export function isDayOfMonth(day: unknown): day is DayOfMonth {
   return typeof day === 'number' && day >= 1 && day <= 31;
 }
 
-/* eslint-disable no-multi-spaces */
+/* eslint-disable stylistic/no-multi-spaces */
 export enum Frequency {
   Weekly = 'weekly',            // every week
   Biweekly = 'biweekly',        // every 2 weeks
@@ -50,7 +50,7 @@ export enum Frequency {
   Triannually = 'triannually',  // three times a yaer
   Yearly = 'yearly',            // every year
 }
-/* eslint-enable no-multi-spaces */
+/* eslint-enable stylistic/no-multi-spaces */
 
 export enum RelativeTime {
   Earlier = 'earlier',

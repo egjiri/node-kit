@@ -1,5 +1,4 @@
 import { toString } from './toString';
-
 import type { Cases } from 'testing';
 
 describe('test toString function', () => {

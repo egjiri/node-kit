@@ -1,5 +1,4 @@
-import { underscoreKeys, camelizeKeys, dasherizeKeys } from './transform-keys';
-
+import { camelizeKeys, dasherizeKeys, underscoreKeys } from './transform-keys';
 import type { Cases } from 'testing';
 
 describe('test underscoreKeys function', () => {

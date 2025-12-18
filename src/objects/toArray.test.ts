@@ -1,5 +1,4 @@
 import { toArray } from './toArray';
-
 import type { Cases } from 'testing';
 
 describe('test toArray function', () => {

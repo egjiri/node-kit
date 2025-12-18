@@ -1,5 +1,4 @@
 import { humanize } from './humanize';
-
 import type { Cases } from 'testing';
 
 describe('test humanize function', () => {

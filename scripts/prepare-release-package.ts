@@ -1,5 +1,5 @@
+import { copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { removeKeys } from '../src/objects';
-import { writeFileSync, readFileSync, copyFileSync } from 'fs';
 
 const packageJSON = JSON.parse(readFileSync('package.json', 'utf8'));
 const newPackageJSON = removeKeys(packageJSON, 'scripts', 'devDependencies', 'engines', 'volta', 'private', 'files');

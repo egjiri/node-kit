@@ -1,5 +1,4 @@
 import { reverse } from './reverse';
-
 import type { Cases } from 'testing';
 
 describe('test reverse function', () => {

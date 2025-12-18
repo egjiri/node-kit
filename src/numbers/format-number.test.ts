@@ -1,5 +1,4 @@
 import { formatNumber } from './format-number';
-
 import type { Cases } from 'testing';
 
 describe('test formatNumber function', () => {

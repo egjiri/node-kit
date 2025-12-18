@@ -1,5 +1,4 @@
 import { trim } from './trim';
-
 import type { Cases } from 'testing';
 
 describe('test trim function', () => {

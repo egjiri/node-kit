@@ -1,5 +1,4 @@
 import { isStringArray } from './is-string-array';
-
 import type { Cases } from 'testing';
 
 describe('test isStringArray function', () => {

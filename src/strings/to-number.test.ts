@@ -1,5 +1,4 @@
 import { toNumber } from './to-number';
-
 import type { Cases } from 'testing';
 
 describe('test toNumber function', () => {

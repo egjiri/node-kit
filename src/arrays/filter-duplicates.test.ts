@@ -1,5 +1,4 @@
 import { filterDuplicates } from './filter-duplicates';
-
 import type { Cases } from 'testing';
 
 describe('test filterDuplicates function', () => {

@@ -2,7 +2,6 @@ import {
   humanize,
 } from '.';
 
-
 test('exports', () => {
   [
     humanize,

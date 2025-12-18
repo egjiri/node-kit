@@ -1,5 +1,4 @@
 import { swapKeysAndValues } from './swap-keys-and-values';
-
 import type { Cases } from 'testing';
 
 describe('test swapKeysAndValues function', () => {
