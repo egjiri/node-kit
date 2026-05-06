@@ -11,7 +11,9 @@ import {
   getIntervalFromFrequency,
   getLastDayOfYear,
   getNextBusinessDay,
-  getNumberOfDaysInYear, getOntarioHolidays,
+  getNumberOfDaysInMonth,
+  getNumberOfDaysInYear,
+  getOntarioHolidays,
   getRecurringDates,
   getYearlyDates,
   isDayOfMonth,
@@ -22,7 +24,8 @@ import {
   Month,
   RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES,
   RelativeTime,
-  timeAgo, Week,
+  timeAgo,
+  Week,
   withinXDays,
 } from '.';
 
@@ -36,6 +39,7 @@ test('expors', () => {
     getIntervalFromFrequency,
     getLastDayOfYear,
     getNextBusinessDay,
+    getNumberOfDaysInMonth,
     getNumberOfDaysInYear,
     getRecurringDates, isRecurringTransactionSupportedFrequency, RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES,
     getYearlyDates,

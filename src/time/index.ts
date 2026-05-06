@@ -6,6 +6,7 @@ export { getHolidayDates, getHolidays, getOntarioHolidays } from './get-holidays
 export { getIntervalFromFrequency } from './get-interval-from-frequency';
 export { getLastDayOfYear } from './get-last-day-of-year';
 export { getNextBusinessDay } from './get-next-business-day';
+export { getNumberOfDaysInMonth } from './get-number-of-days-in-month';
 export { getNumberOfDaysInYear } from './get-number-of-days-in-year';
 export { getRecurringDates, isRecurringTransactionSupportedFrequency, RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES } from './get-recurring-dates';
 export { getYearlyDates } from './get-yearly-dates';
