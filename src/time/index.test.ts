@@ -18,6 +18,7 @@ import {
   getYearlyDates,
   isDayOfMonth,
   isDayOfWeek,
+  isMonth,
   isRecurringTransactionSupportedFrequency,
   isValidDateString,
   isWeekend,
@@ -47,6 +48,6 @@ test('expors', () => {
     isWeekend,
     timeAgo,
     withinXDays,
-    DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek,
+    DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isMonth,
   ].map(item => expect(item).toBeDefined());
 });

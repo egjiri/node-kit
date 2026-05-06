@@ -1,4 +1,4 @@
-import { isDayOfMonth, isDayOfWeek } from './types';
+import { isDayOfMonth, isDayOfWeek, isMonth, Month } from './types';
 import type { Cases } from 'testing';
 
 describe('isDayOfWeek', () => {
@@ -14,6 +14,21 @@ describe('isDayOfWeek', () => {
 
   test.each(cases)('%s', (_, args, expected) => {
     const actual = isDayOfWeek(...args);
+    expect(actual).toBe(expected);
+  });
+});
+
+describe('isMonth', () => {
+  const cases: Cases<typeof isMonth> = [
+    ['returns true for January', [Month.January], true],
+    ['returns true for December', [Month.December], true],
+    ['returns true for month in range', [Month.June], true],
+    ['returns false for number before January', [-1], false],
+    ['returns false for number after December', [12], false],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = isMonth(...args);
     expect(actual).toBe(expected);
   });
 });

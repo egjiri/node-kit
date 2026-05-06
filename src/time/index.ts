@@ -14,5 +14,5 @@ export { isValidDateString } from './is-valid-date-string';
 export { isWeekend } from './is-weekend';
 export { timeAgo } from './time-ago';
 export { withinXDays } from './within-x-days';
-export { DayOfWeek, Frequency, isDayOfMonth, isDayOfWeek, Month, RelativeTime, Week } from './types';
+export { DayOfWeek, Frequency, isDayOfMonth, isDayOfWeek, isMonth, Month, RelativeTime, Week } from './types';
 export type { DayOfMonth } from './types';
