@@ -1,6 +1,7 @@
 export { addDays } from './add-days';
 export { addYears } from './add-years';
 export { calculateAmountByFrequency } from './calculate-amount-by-frequency';
+export { isValidCalendarDate, toCalendarDate } from './calendar-date';
 export { formatDate, formatStandardDate } from './format-date';
 export { getHolidayDates, getHolidays, getOntarioHolidays } from './get-holidays';
 export { getIntervalFromFrequency } from './get-interval-from-frequency';
@@ -15,4 +16,5 @@ export { isWeekend } from './is-weekend';
 export { timeAgo } from './time-ago';
 export { withinXDays } from './within-x-days';
 export { DayOfWeek, Frequency, isDayOfMonth, isDayOfWeek, isMonth, Month, RelativeTime, Week } from './types';
+export type { CalendarDate } from './calendar-date';
 export type { DayOfMonth } from './types';
