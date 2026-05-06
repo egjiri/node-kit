@@ -1,3 +1,5 @@
+import { getNumberOfDaysInMonth } from './get-number-of-days-in-month';
+
 export enum Week {
   First = 0,
   Second,
@@ -38,8 +40,16 @@ export function isMonth(month: number): month is Month {
 }
 
 export type DayOfMonth = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31;
-export function isDayOfMonth(day: unknown): day is DayOfMonth {
-  return typeof day === 'number' && day >= 1 && day <= 31;
+export function isDayOfMonth(day: unknown, month?: number, year?: number): day is DayOfMonth {
+  if (typeof day !== 'number' || day <= 0) {
+    return false;
+  }
+
+  const numberOfDaysInMonth = typeof month === 'number' && typeof year === 'number'
+    ? getNumberOfDaysInMonth(year, month)
+    : 31;
+
+  return day <= numberOfDaysInMonth;
 }
 
 /* eslint-disable stylistic/no-multi-spaces */

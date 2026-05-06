@@ -43,6 +43,16 @@ describe('isDayOfMonth', () => {
     ['returns false for string', ['15'], false],
     ['returns false for null', [null], false],
     ['returns false for undefined', [undefined], false],
+    ['returns true for first day of month', [1, Month.January, 2025], true],
+    ['returns true for last day of a 31-day month', [31, Month.January, 2025], true],
+    ['returns true for last day of a 30-day month', [30, Month.April, 2025], true],
+    ['returns true for February 29 in a leap year', [29, Month.February, 2024], true],
+    ['returns false for day before start of month', [0, Month.January, 2025], false],
+    ['returns false for day after a 30-day month', [31, Month.April, 2025], false],
+    ['returns false for February 29 in a non-leap year', [29, Month.February, 2025], false],
+    ['returns false for February 30 in a leap year', [30, Month.February, 2024], false],
+    ['uses generic DayOfMonth range when month is provided without year', [31, Month.April], true],
+    ['uses generic DayOfMonth range when year is provided without month', [31, undefined, 2025], true],
   ];
 
   test.each(cases)('%s', (_, args, expected) => {
