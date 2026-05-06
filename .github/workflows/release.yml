@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   actions: read
+  id-token: write
 
 jobs:
   release:
@@ -46,14 +47,17 @@ jobs:
         with:
           version: "10.13.1"
 
-      # Install Node.js runtime and configure NPM registry authentication
+      # Install Node.js runtime
       # Cache pnpm dependencies to speed up future workflow runs
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.17.1"
-          registry-url: "https://registry.npmjs.org"
           cache: 'pnpm'
+
+      # npm trusted publishing requires npm CLI 11.5.1 or later
+      - name: Update npm for trusted publishing
+        run: npm install -g npm@11
 
       # Install all project dependencies using pnpm
       - name: Install dependencies
@@ -64,9 +68,6 @@ jobs:
       - name: Build package for publishing
         run: pnpm run build
 
-      # Publish the built package to NPM registry
-      # Uses --access public for scoped packages and --no-git-checks for CI environment
+      # Publish the built package to NPM registry using npm trusted publishing
       - name: Publish package to NPM registry
-        run: pnpm publish dist --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish ./dist --access public --provenance
