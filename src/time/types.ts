@@ -1,5 +1,7 @@
 import { getNumberOfDaysInMonth } from './get-number-of-days-in-month.js';
 
+export type CalendarDate = `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
+
 export enum Week {
   First = 0,
   Second,

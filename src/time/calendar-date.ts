@@ -1,6 +1,5 @@
 import { isDayOfMonth, isMonth } from './types.js';
-
-export type CalendarDate = `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
+import type { CalendarDate } from './types.js';
 
 const CALENDAR_DATE_PATTERN = /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
 
