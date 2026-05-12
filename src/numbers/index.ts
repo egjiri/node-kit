@@ -1,4 +1,4 @@
-export { formatNumber } from './format-number';
-export { toArray } from './to-array';
-export { toString } from './to-string';
-export type { Format } from './format-number';
+export { formatNumber } from './format-number.js';
+export { toArray } from './to-array.js';
+export { toString } from './to-string.js';
+export type { Format } from './format-number.js';

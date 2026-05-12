@@ -1,1 +1,1 @@
-export { humanize } from './humanize';
+export { humanize } from './humanize.js';

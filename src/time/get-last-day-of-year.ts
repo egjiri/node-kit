@@ -1,4 +1,4 @@
-import { Month } from './types';
+import { Month } from './types.js';
 
 export function getLastDayOfYear(year: 'this-year' | 'next-year' = 'this-year'): Date {
   const currentYear = new Date().getFullYear();

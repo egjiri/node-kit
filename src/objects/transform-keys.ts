@@ -1,5 +1,5 @@
-import { camelize, dasherize, underscore } from '../strings';
-import { isObject } from './is-object';
+import { camelize, dasherize, underscore } from '../strings/index.js';
+import { isObject } from './is-object.js';
 
 type transform = 'underscore' | 'camelize' | 'dasherize';
 

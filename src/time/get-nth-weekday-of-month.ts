@@ -1,5 +1,5 @@
-import { addDays } from './add-days';
-import type { DayOfWeek, Month, Week } from './types';
+import { addDays } from './add-days.js';
+import type { DayOfWeek, Month, Week } from './types.js';
 
 export function getNthWeekdayOfMonth(week: Week, dayOfWeek: DayOfWeek, month: Month, year: number): Date {
   const firstDayOfMonth = new Date(year, month, 1);

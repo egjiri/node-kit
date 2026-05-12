@@ -1,5 +1,5 @@
-import { addDays } from './add-days';
-import type { DayOfWeek } from './types';
+import { addDays } from './add-days.js';
+import type { DayOfWeek } from './types.js';
 
 export function getWeeklyDates(dayOfWeek: DayOfWeek, startDate: Date, endDate: Date): Date[] {
   const daysApart = (dayOfWeek - startDate.getDay() + 7) % 7;

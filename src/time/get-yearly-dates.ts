@@ -1,4 +1,4 @@
-import { addYears } from './add-years';
+import { addYears } from './add-years.js';
 
 export function getYearlyDates(startDate: Date, endDate: Date): Date[] {
   let date = new Date(startDate);

@@ -1,6 +1,6 @@
-import { formatNumber } from '../numbers/format-number';
-import { humanize as humanizeString, toNumber } from '../strings';
-import type { Format } from '../numbers/format-number';
+import { formatNumber } from '../numbers/format-number.js';
+import { humanize as humanizeString, toNumber } from '../strings/index.js';
+import type { Format } from '../numbers/format-number.js';
 
 export function humanize(value?: string, format?: Format): string {
   value = value || '';

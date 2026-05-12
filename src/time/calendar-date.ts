@@ -1,4 +1,4 @@
-import { isDayOfMonth, isMonth } from './types';
+import { isDayOfMonth, isMonth } from './types.js';
 
 export type CalendarDate = `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
 

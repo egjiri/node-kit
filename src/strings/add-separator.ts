@@ -1,4 +1,4 @@
-import { reverse } from './reverse';
+import { reverse } from './reverse.js';
 
 export function addSeparator(str: string, separator = ',') {
   const matches = reverse(str).match(/.{1,3}/g);

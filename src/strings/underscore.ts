@@ -1,4 +1,4 @@
-import { trim } from './trim';
+import { trim } from './trim.js';
 
 export function underscore(str: string) {
   return trim(str)

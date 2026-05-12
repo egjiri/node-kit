@@ -1,6 +1,6 @@
-import { addDays } from './add-days';
-import { getNthWeekdayOfMonth } from './get-nth-weekday-of-month';
-import { DayOfWeek, Month, Week } from './types';
+import { addDays } from './add-days.js';
+import { getNthWeekdayOfMonth } from './get-nth-weekday-of-month.js';
+import { DayOfWeek, Month, Week } from './types.js';
 
 enum Holiday {
   NewYearsDay = "New Year's Day",

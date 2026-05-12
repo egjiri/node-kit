@@ -1,4 +1,4 @@
-import { DayOfWeek } from './types';
+import { DayOfWeek } from './types.js';
 
 export function isWeekend(date: Date): boolean {
   const day = date.getDay();

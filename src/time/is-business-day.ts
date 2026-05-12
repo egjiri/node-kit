@@ -1,5 +1,5 @@
-import { isHoliday } from './is-holiday';
-import { isWeekend } from './is-weekend';
+import { isHoliday } from './is-holiday.js';
+import { isWeekend } from './is-weekend.js';
 
 export function isBusinessDay(date: Date, holidays: Date[] = []): boolean {
   return !isWeekend(date) && !isHoliday(date, holidays);

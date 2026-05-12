@@ -1,1 +1,1 @@
-export { betterSwitch } from './better-switch';
+export { betterSwitch } from './better-switch.js';

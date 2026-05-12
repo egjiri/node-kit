@@ -1,4 +1,4 @@
-import { getNumberOfDaysInMonth } from './get-number-of-days-in-month';
+import { getNumberOfDaysInMonth } from './get-number-of-days-in-month.js';
 
 export enum Week {
   First = 0,

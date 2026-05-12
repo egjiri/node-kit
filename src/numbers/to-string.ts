@@ -1,4 +1,4 @@
-import { addSeparator } from '../strings';
+import { addSeparator } from '../strings/index.js';
 
 export function toString(num: number, numberOfDecimals?: number): string {
   const [integral, fractal] = num.toString().split('.');

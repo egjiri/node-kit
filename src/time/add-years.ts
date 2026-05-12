@@ -1,6 +1,6 @@
-import { addDays } from './add-days';
-import { isLeapYear } from './is-leap-year';
-import { Month } from './types';
+import { addDays } from './add-days.js';
+import { isLeapYear } from './is-leap-year.js';
+import { Month } from './types.js';
 
 export function addYears(date: Date, years: number): Date {
   const newDate = new Date(date);

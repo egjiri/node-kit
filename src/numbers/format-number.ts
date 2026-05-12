@@ -1,4 +1,4 @@
-import { toString } from './to-string';
+import { toString } from './to-string.js';
 
 export type Format = 'percentage' | 'currency';
 

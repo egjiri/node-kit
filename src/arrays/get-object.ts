@@ -1,4 +1,4 @@
-import { isEmpty } from './is-empty';
+import { isEmpty } from './is-empty.js';
 
 export function firstObject<T>(array: T[]) {
   return isEmpty(array) ? null : array[0];

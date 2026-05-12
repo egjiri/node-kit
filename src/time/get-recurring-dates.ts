@@ -1,9 +1,9 @@
-import { getLastDayOfYear } from './get-last-day-of-year';
-import { getMonthlyDates } from './get-monthly-dates';
-import { getWeeklyDates } from './get-weekly-dates';
-import { getYearlyDates } from './get-yearly-dates';
-import { Frequency, isDayOfMonth, isDayOfWeek } from './types';
-import type { DayOfMonth, DayOfWeek } from './types';
+import { getLastDayOfYear } from './get-last-day-of-year.js';
+import { getMonthlyDates } from './get-monthly-dates.js';
+import { getWeeklyDates } from './get-weekly-dates.js';
+import { getYearlyDates } from './get-yearly-dates.js';
+import { Frequency, isDayOfMonth, isDayOfWeek } from './types.js';
+import type { DayOfMonth, DayOfWeek } from './types.js';
 
 // TODO: Add support for generating anticipated transactions for the other frequency types (ex. Biweekly, Quarterly, etc.)
 export const RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES = [Frequency.Weekly, Frequency.SemiMonthly, Frequency.Monthly, Frequency.Yearly] as const;

@@ -1,5 +1,5 @@
-import { newDateWithEndOfMonthLimit } from './new-date-with-end-of-month-limit';
-import type { DayOfMonth } from './types';
+import { newDateWithEndOfMonthLimit } from './new-date-with-end-of-month-limit.js';
+import type { DayOfMonth } from './types.js';
 
 export function getMonthlyDates(dayOfMonth: DayOfMonth, startDate: Date, endDate: Date): Date[] {
   const dates: Date[] = [];
