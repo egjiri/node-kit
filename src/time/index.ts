@@ -16,6 +16,7 @@ export { isValidDateString } from './is-valid-date-string.js';
 export { isWeekend } from './is-weekend.js';
 export { timeAgo } from './time-ago.js';
 export { withinXDays } from './within-x-days.js';
-export { DayOfWeek, Frequency, isDayOfMonth, isDayOfWeek, isMonth, Month, RelativeTime, Week } from './types.js';
+export { DayOfWeek, Frequency, isDayOffset, isDayOfMonth, isDayOfWeek, isMonth, Month, RelativeTime, Week } from './types.js';
 export type { CalendarDate } from './types.js';
+export type { DayOffset } from './types.js';
 export type { DayOfMonth } from './types.js';

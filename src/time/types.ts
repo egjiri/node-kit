@@ -1,6 +1,11 @@
 import { getNumberOfDaysInMonth } from './get-number-of-days-in-month.js';
 
 export type CalendarDate = `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
+export type DayOffset = `${number}d`;
+
+export function isDayOffset(value: string): value is DayOffset {
+  return /^[+-]?\d+d$/.test(value);
+}
 
 export enum Week {
   First = 0,

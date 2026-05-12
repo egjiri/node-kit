@@ -1,5 +1,27 @@
-import { isDayOfMonth, isDayOfWeek, isMonth, Month } from './types';
+import { isDayOffset, isDayOfMonth, isDayOfWeek, isMonth, Month } from './types';
 import type { Cases } from 'testing';
+
+describe('isDayOffset', () => {
+  const cases: Cases<typeof isDayOffset> = [
+    ['returns true for zero-day offset', ['0d'], true],
+    ['returns true for positive unsigned offset', ['1d'], true],
+    ['returns true for positive signed offset', ['+1d'], true],
+    ['returns true for negative signed offset', ['-1d'], true],
+    ['returns true for multi-day offset', ['123d'], true],
+    ['returns false for empty string', [''], false],
+    ['returns false for missing number', ['d'], false],
+    ['returns false for missing day suffix', ['1'], false],
+    ['returns false for uppercase suffix', ['1D'], false],
+    ['returns false for decimal offset', ['1.5d'], false],
+    ['returns false for spaced offset', ['1 d'], false],
+    ['returns false for non-numeric offset', ['abc'], false],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = isDayOffset(...args);
+    expect(actual).toBe(expected);
+  });
+});
 
 describe('isDayOfWeek', () => {
   const cases: Cases<typeof isDayOfWeek> = [

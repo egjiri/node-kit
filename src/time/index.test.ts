@@ -17,6 +17,7 @@ import {
   getOntarioHolidays,
   getRecurringDates,
   getYearlyDates,
+  isDayOffset,
   isDayOfMonth,
   isDayOfWeek,
   isMonth,
@@ -54,6 +55,6 @@ test('expors', () => {
     timeAgo,
     toCalendarDate,
     withinXDays,
-    DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isMonth,
+    DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isDayOffset, isMonth,
   ].map(item => expect(item).toBeDefined());
 });
