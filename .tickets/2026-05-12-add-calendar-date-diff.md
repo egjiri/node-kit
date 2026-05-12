@@ -1,6 +1,6 @@
 ---
 title: Add calendar date diff
-status: In Progress
+status: Finished
 ---
 
 ## Description
@@ -45,3 +45,10 @@ status: In Progress
 - Provides a reusable calendar-date difference helper for consumers of `@egjiri/node-kit/time`.
 - Avoids common off-by-one errors caused by local time zones, daylight saving changes, or timestamp-based date math.
 - Keeps the time package API consistent with the existing `CalendarDate` type and export/test conventions.
+
+## Learnings
+- Added public `daysBetweenCalendarDates(from: CalendarDate, to: CalendarDate): number` in `src/time/days-between-calendar-dates.ts`, exported it from `src/time/index.ts`, and included it in the index export test.
+- Moved the reusable `CalendarDate` type to `src/time/types.ts`; `calendar-date.ts` and the new diff helper now import it from shared time types.
+- The diff helper parses `YYYY-MM-DD` components, compares UTC-midnight dates, and uses `setUTCFullYear` to avoid JavaScript's `Date.UTC` year `0–99` remapping.
+- Added Vitest coverage for same/adjacent dates, month and year boundaries, leap-year February 29 behavior, and the `0099`/`0100` `Date.UTC` edge case.
+- Validation run during implementation: `pnpm test` and `pnpm run lint` passed.
