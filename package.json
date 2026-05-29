@@ -54,6 +54,16 @@
         "default": "./cjs/arrays/index.js"
       }
     },
+    "./frontmatter": {
+      "import": {
+        "types": "./esm/types/frontmatter/index.d.ts",
+        "default": "./esm/frontmatter/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/frontmatter/index.d.ts",
+        "default": "./cjs/frontmatter/index.js"
+      }
+    },
     "./humanize": {
       "import": {
         "types": "./esm/types/humanize/index.d.ts",
