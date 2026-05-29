@@ -39,10 +39,10 @@ export function isValidCalendarDate(calendarDate: string): calendarDate is Calen
 }
 
 function getCalendarDatePart(parts: Intl.DateTimeFormatPart[], type: 'year' | 'month' | 'day'): string {
-  const value = parts.find(part => part.type === type)?.value;
-  if (!value) {
+  const part = parts.find(part => part.type === type);
+  if (!part) {
     throw new Error(`Unable to format calendar date: missing ${type}`);
   }
 
-  return value;
+  return part.value;
 }

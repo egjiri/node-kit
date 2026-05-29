@@ -2,6 +2,10 @@ import { isValidCalendarDate, toCalendarDate } from './calendar-date';
 import type { Cases } from 'testing';
 
 describe('toCalendarDate', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   const cases: Cases<typeof toCalendarDate> = [
     ['formats a date as YYYY-MM-DD', [new Date('2025-07-15T12:00:00.000Z')], '2025-07-15'],
     ['formats dates using UTC date components by default', [new Date('2025-01-01T04:59:59.000Z')], '2025-01-01'],
@@ -11,6 +15,27 @@ describe('toCalendarDate', () => {
   test.each(cases)('%s', (_, args, expected) => {
     const actual = toCalendarDate(...args);
     expect(actual).toBe(expected);
+  });
+
+  test('throws when Intl formats an invalid calendar date', () => {
+    vi.spyOn(Intl.DateTimeFormat.prototype, 'formatToParts').mockReturnValue([
+      { type: 'year', value: '2025' },
+      { type: 'month', value: '02' },
+      { type: 'day', value: '30' },
+    ]);
+
+    expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow('Invalid calendar date: 2025-02-30');
+  });
+
+  test('throws when Intl omits a required calendar date part', () => {
+    vi.spyOn(Intl.DateTimeFormat.prototype, 'formatToParts').mockReturnValue([
+      { type: 'year', value: '2025' },
+      { type: 'month', value: '02' },
+    ]);
+
+    expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow(
+      'Unable to format calendar date: missing day',
+    );
   });
 });
 
