@@ -1,5 +1,6 @@
 import { extractFrontmatter } from './extract-frontmatter.js';
 import { findFrontmatterField } from './find-frontmatter-field.js';
+import { getFrontmatterFieldArrayValues } from './get-frontmatter-field-array-values.js';
 
 export function getFrontmatterArrayProperty(content: string, propertyName: string): string[] | undefined {
   const { frontmatterYaml } = extractFrontmatter(content);
@@ -9,36 +10,5 @@ export function getFrontmatterArrayProperty(content: string, propertyName: strin
     return;
   }
 
-  return getArrayValues(fieldLines, propertyName);
-}
-
-function getArrayValues([fieldLine, ...valueLines]: string[], propertyName: string): string[] | undefined {
-  const inlineValue = fieldLine.slice(fieldLine.indexOf(':') + 1).trim();
-  if (inlineValue.startsWith('[') && inlineValue.endsWith(']')) {
-    return parseInlineArray(inlineValue);
-  }
-
-  if (inlineValue) {
-    throw new Error(`Property "${propertyName}" is not an array`);
-  }
-
-  const values = valueLines
-    .map(line => line.trim())
-    .filter(line => line.startsWith('-'))
-    .map(line => line.slice(1).trim())
-    .filter(Boolean);
-
-  return values.length > 0 ? values : undefined;
-}
-
-function parseInlineArray(inlineValue: string): string[] {
-  const inlineContent = inlineValue.slice(1, -1);
-  if (!inlineContent) {
-    return [];
-  }
-
-  return inlineContent
-    .split(',')
-    .map(value => value.trim())
-    .filter(Boolean);
+  return getFrontmatterFieldArrayValues(fieldLines, propertyName);
 }

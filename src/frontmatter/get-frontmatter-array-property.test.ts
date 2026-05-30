@@ -7,6 +7,7 @@ const cases: Cases<typeof getFrontmatterArrayProperty> = [
   ['returns an inline array property', ['---\ntags: [foo, bar]\n---\nBody', 'tags'], ['foo', 'bar']],
   ['returns an empty inline array property', ['---\ntags: []\n---\nBody', 'tags'], []],
   ['returns a block array property', ['---\ntags:\n  - foo\n  - bar\n---\nBody', 'tags'], ['foo', 'bar']],
+  ['returns undefined when the property is empty', ['---\ntags:\n---\nBody', 'tags'], undefined],
   ['saves a block array before parsing the next property', ['---\ntags:\n  - foo\n  - bar\ntitle: Note\n---\nBody', 'tags'], ['foo', 'bar']],
   ['ignores blank lines in frontmatter', ['---\n\ntags:\n\n  - foo\n\n  - bar\n\n---\nBody', 'tags'], ['foo', 'bar']],
   [
