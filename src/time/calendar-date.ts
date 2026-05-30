@@ -1,7 +1,20 @@
 import { isDayOfMonth, isMonth } from './types.js';
-import type { CalendarDate } from './types.js';
+import type { CalendarDate, DayOfMonth, Month } from './types.js';
 
 const CALENDAR_DATE_PATTERN = /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
+
+export function createCalendarDate(year: number, month: Month, day: DayOfMonth): CalendarDate {
+  const yearText = year.toString().padStart(4, '0');
+  const monthText = (month + 1).toString().padStart(2, '0');
+  const dayText = day.toString().padStart(2, '0');
+  const calendarDate = `${yearText}-${monthText}-${dayText}`;
+
+  if (!isValidCalendarDate(calendarDate)) {
+    throw new Error(`Invalid calendar date: year=${year}, month=${month}, day=${day}`);
+  }
+
+  return calendarDate;
+}
 
 export function toCalendarDate(date: Date, timeZone = 'UTC'): CalendarDate {
   const parts = new Intl.DateTimeFormat(undefined, {

@@ -1,5 +1,29 @@
-import { isValidCalendarDate, toCalendarDate } from './calendar-date';
+import { createCalendarDate, isValidCalendarDate, toCalendarDate } from './calendar-date';
+import { Month } from './types';
 import type { Cases } from 'testing';
+
+describe('createCalendarDate', () => {
+  const cases: Cases<typeof createCalendarDate> = [
+    ['returns a calendar date from date parts', [2030, Month.May, 31], '2030-05-31'],
+    ['zero-pads month and day', [2030, Month.January, 1], '2030-01-01'],
+    ['accepts February 29 in a leap year', [2024, Month.February, 29], '2024-02-29'],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = createCalendarDate(...args);
+    expect(actual).toBe(expected);
+  });
+
+  const invalidCases: [string, Parameters<typeof createCalendarDate>][] = [
+    ['throws for February 29 in a non-leap year', [2025, Month.February, 29]],
+    ['throws for day after a 30-day month', [2025, Month.April, 31]],
+  ];
+
+  test.each(invalidCases)('%s', (_, args) => {
+    const actual = () => createCalendarDate(...args);
+    expect(actual).toThrow(`Invalid calendar date: year=${args[0]}, month=${args[1]}, day=${args[2]}`);
+  });
+});
 
 describe('toCalendarDate', () => {
   afterEach(() => {
