@@ -1,4 +1,13 @@
-import { createCalendarDate, isValidCalendarDate, parseCalendarDate, toCalendarDate, today, toUtcMidnight } from './calendar-date';
+import {
+  addDaysToCalendarDate,
+  calendarDateToLocalDate,
+  createCalendarDate,
+  isValidCalendarDate,
+  parseCalendarDate,
+  toCalendarDate,
+  today,
+  toUtcMidnight,
+} from './calendar-date';
 import { Month } from './types';
 import type { Cases } from 'testing';
 
@@ -22,6 +31,34 @@ describe('createCalendarDate', () => {
   test.each(invalidCases)('%s', (_, args) => {
     const actual = () => createCalendarDate(...args);
     expect(actual).toThrow(`Invalid calendar date: year=${args[0]}, month=${args[1]}, day=${args[2]}`);
+  });
+});
+
+describe('addDaysToCalendarDate', () => {
+  const cases: Cases<typeof addDaysToCalendarDate> = [
+    ['adds days to a calendar date', ['2025-01-15', 5], '2025-01-20'],
+    ['subtracts days across a month boundary', ['2025-03-01', -1], '2025-02-28'],
+    ['handles leap days', ['2024-02-28', 1], '2024-02-29'],
+    ['preserves years below 100', ['0099-12-31', 1], '0100-01-01'],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = addDaysToCalendarDate(...args);
+    expect(actual).toBe(expected);
+  });
+});
+
+describe('calendarDateToLocalDate', () => {
+  test('returns a date at local midnight', () => {
+    const actual = calendarDateToLocalDate('2030-05-31');
+
+    expect(actual.getFullYear()).toBe(2030);
+    expect(actual.getMonth()).toBe(Month.May);
+    expect(actual.getDate()).toBe(31);
+    expect(actual.getHours()).toBe(0);
+    expect(actual.getMinutes()).toBe(0);
+    expect(actual.getSeconds()).toBe(0);
+    expect(actual.getMilliseconds()).toBe(0);
   });
 });
 

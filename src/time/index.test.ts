@@ -1,7 +1,9 @@
 import {
   addDays,
+  addDaysToCalendarDate,
   addYears,
   calculateAmountByFrequency,
+  calendarDateToLocalDate,
   createCalendarDate,
   DayOfWeek,
   daysBetweenCalendarDates,
@@ -35,6 +37,7 @@ import {
   timeAgo,
   toCalendarDate,
   today,
+  toUtcMidnight,
   Week,
   withinXDays,
 } from '.';
@@ -42,8 +45,10 @@ import {
 test('expors', () => {
   [
     addDays,
+    addDaysToCalendarDate,
     addYears,
     calculateAmountByFrequency,
+    calendarDateToLocalDate,
     createCalendarDate,
     daysBetweenCalendarDates,
     daysFromToday,
@@ -63,6 +68,7 @@ test('expors', () => {
     timeAgo,
     today,
     toCalendarDate,
+    toUtcMidnight,
     withinXDays,
     DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isDayOffset, isMonth,
   ].map(item => expect(item).toBeDefined());
