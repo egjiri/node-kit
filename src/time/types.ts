@@ -1,6 +1,7 @@
 import { getNumberOfDaysInMonth } from './get-number-of-days-in-month.js';
 
 export type CalendarDate = `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
+export type CalendarDateParts = { year: number; month: Month; day: DayOfMonth };
 export type DayOffset = `${number}d`;
 
 export function isDayOffset(value: string): value is DayOffset {

@@ -1,7 +1,7 @@
 export { addDays } from './add-days.js';
 export { addYears } from './add-years.js';
 export { calculateAmountByFrequency } from './calculate-amount-by-frequency.js';
-export { createCalendarDate, isValidCalendarDate, toCalendarDate, today } from './calendar-date.js';
+export { createCalendarDate, isValidCalendarDate, parseCalendarDate, toCalendarDate, today } from './calendar-date.js';
 export { daysBetweenCalendarDates } from './days-between-calendar-dates.js';
 export { daysFromToday } from './days-from-today.js';
 export { formatCalendarDate, formatDate, formatStandardDate } from './format-date.js';
@@ -18,6 +18,6 @@ export { isWeekend } from './is-weekend.js';
 export { timeAgo } from './time-ago.js';
 export { withinXDays } from './within-x-days.js';
 export { DayOfWeek, Frequency, isDayOffset, isDayOfMonth, isDayOfWeek, isMonth, Month, RelativeTime, Week } from './types.js';
-export type { CalendarDate } from './types.js';
+export type { CalendarDate, CalendarDateParts } from './types.js';
 export type { DayOffset } from './types.js';
 export type { DayOfMonth } from './types.js';

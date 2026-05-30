@@ -1,4 +1,4 @@
-import { createCalendarDate, isValidCalendarDate, toCalendarDate, today } from './calendar-date';
+import { createCalendarDate, isValidCalendarDate, parseCalendarDate, toCalendarDate, today, toUtcMidnight } from './calendar-date';
 import { Month } from './types';
 import type { Cases } from 'testing';
 
@@ -22,6 +22,36 @@ describe('createCalendarDate', () => {
   test.each(invalidCases)('%s', (_, args) => {
     const actual = () => createCalendarDate(...args);
     expect(actual).toThrow(`Invalid calendar date: year=${args[0]}, month=${args[1]}, day=${args[2]}`);
+  });
+});
+
+describe('parseCalendarDate', () => {
+  const cases: Cases<typeof parseCalendarDate> = [
+    ['returns calendar date parts', ['2030-05-31'], { year: 2030, month: Month.May, day: 31 }],
+    ['returns zero-based month values', ['2030-01-01'], { year: 2030, month: Month.January, day: 1 }],
+    ['preserves years below 100', ['0099-12-31'], { year: 99, month: Month.December, day: 31 }],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = parseCalendarDate(...args);
+    expect(actual).toEqual(expected);
+  });
+
+  const invalidCases = [
+    ['throws for malformed calendar date', '2030-5-31'],
+    ['throws for February 29 in a non-leap year', '2025-02-29'],
+  ];
+
+  test.each(invalidCases)('%s', (_, calendarDate) => {
+    const actual = () => parseCalendarDate(calendarDate);
+    expect(actual).toThrow(`Invalid calendar date: ${calendarDate}`);
+  });
+});
+
+describe('toUtcMidnight', () => {
+  test('returns a date at UTC midnight', () => {
+    const actual = toUtcMidnight('2030-05-31');
+    expect(actual.toISOString()).toBe('2030-05-31T00:00:00.000Z');
   });
 });
 

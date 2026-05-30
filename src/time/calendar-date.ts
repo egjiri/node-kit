@@ -1,5 +1,5 @@
 import { isDayOfMonth, isMonth } from './types.js';
-import type { CalendarDate, DayOfMonth, Month } from './types.js';
+import type { CalendarDate, CalendarDateParts, DayOfMonth, Month } from './types.js';
 
 const CALENDAR_DATE_PATTERN = /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
 
@@ -14,6 +14,22 @@ export function createCalendarDate(year: number, month: Month, day: DayOfMonth):
   }
 
   return calendarDate;
+}
+
+export function parseCalendarDate(calendarDate: string): CalendarDateParts {
+  const parts = getValidCalendarDateParts(calendarDate);
+  if (!parts) {
+    throw new Error(`Invalid calendar date: ${calendarDate}`);
+  }
+
+  return parts;
+}
+
+export function toUtcMidnight(calendarDate: CalendarDate): Date {
+  const { year, month, day } = parseCalendarDate(calendarDate);
+  const date = new Date(Date.UTC(year, month, day));
+  date.setUTCFullYear(year);
+  return date;
 }
 
 export function today(timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone): CalendarDate {
@@ -43,16 +59,24 @@ export function toCalendarDate(date: Date, timeZone = 'UTC'): CalendarDate {
 }
 
 export function isValidCalendarDate(calendarDate: string): calendarDate is CalendarDate {
+  return getValidCalendarDateParts(calendarDate) !== null;
+}
+
+function getValidCalendarDateParts(calendarDate: string): CalendarDateParts | null {
   const groups = CALENDAR_DATE_PATTERN.exec(calendarDate)?.groups;
   if (!groups) {
-    return false;
+    return null;
   }
 
   const year = Number(groups.year);
   const month = Number(groups.month) - 1;
   const day = Number(groups.day);
 
-  return isMonth(month) && isDayOfMonth(day, month, year);
+  if (!isMonth(month) || !isDayOfMonth(day, month, year)) {
+    return null;
+  }
+
+  return { year, month, day };
 }
 
 function getCalendarDatePart(parts: Intl.DateTimeFormatPart[], type: 'year' | 'month' | 'day'): string {
