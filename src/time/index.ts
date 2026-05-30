@@ -1,7 +1,7 @@
 export { addDays } from './add-days.js';
 export { addYears } from './add-years.js';
 export { calculateAmountByFrequency } from './calculate-amount-by-frequency.js';
-export { createCalendarDate, isValidCalendarDate, toCalendarDate } from './calendar-date.js';
+export { createCalendarDate, isValidCalendarDate, toCalendarDate, today } from './calendar-date.js';
 export { daysBetweenCalendarDates } from './days-between-calendar-dates.js';
 export { daysFromToday } from './days-from-today.js';
 export { formatDate, formatStandardDate } from './format-date.js';

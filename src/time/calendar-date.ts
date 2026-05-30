@@ -16,6 +16,10 @@ export function createCalendarDate(year: number, month: Month, day: DayOfMonth):
   return calendarDate;
 }
 
+export function today(timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone): CalendarDate {
+  return toCalendarDate(new Date(), timeZone);
+}
+
 export function toCalendarDate(date: Date, timeZone = 'UTC'): CalendarDate {
   const parts = new Intl.DateTimeFormat(undefined, {
     calendar: 'gregory',

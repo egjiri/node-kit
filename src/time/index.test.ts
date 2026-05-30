@@ -32,6 +32,7 @@ import {
   RelativeTime,
   timeAgo,
   toCalendarDate,
+  today,
   Week,
   withinXDays,
 } from '.';
@@ -57,6 +58,7 @@ test('expors', () => {
     isValidDateString,
     isWeekend,
     timeAgo,
+    today,
     toCalendarDate,
     withinXDays,
     DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isDayOffset, isMonth,

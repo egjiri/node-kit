@@ -1,4 +1,4 @@
-import { createCalendarDate, isValidCalendarDate, toCalendarDate } from './calendar-date';
+import { createCalendarDate, isValidCalendarDate, toCalendarDate, today } from './calendar-date';
 import { Month } from './types';
 import type { Cases } from 'testing';
 
@@ -60,6 +60,37 @@ describe('toCalendarDate', () => {
     expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow(
       'Unable to format calendar date: missing day',
     );
+  });
+});
+
+describe('today', () => {
+  const resolvedDateTimeFormatOptions = Intl.DateTimeFormat().resolvedOptions();
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2025-01-01T04:59:59.000Z'));
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+  });
+
+  test('returns today in the runtime time zone by default', () => {
+    vi.spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions').mockReturnValue({
+      ...resolvedDateTimeFormatOptions,
+      timeZone: 'America/Toronto',
+    });
+
+    const actual = today();
+
+    expect(actual).toBe('2024-12-31');
+  });
+
+  test('returns today in the provided time zone', () => {
+    const actual = today('UTC');
+
+    expect(actual).toBe('2025-01-01');
   });
 });
 
