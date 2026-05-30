@@ -1,60 +1,34 @@
 import { extractFrontmatter } from './extract-frontmatter.js';
-
-type FrontmatterValue = string | string[];
-type FrontmatterProperties = Map<string, FrontmatterValue>;
+import { findFrontmatterField } from './find-frontmatter-field.js';
 
 export function getFrontmatterArrayProperty(content: string, propertyName: string): string[] | undefined {
   const { frontmatterYaml } = extractFrontmatter(content);
-  const properties = parseFrontmatterProperties(frontmatterYaml);
 
-  const value = properties.get(propertyName);
-  if (value === undefined || Array.isArray(value)) {
-    return value;
+  const { fieldLines } = findFrontmatterField(frontmatterYaml, propertyName);
+  if (!fieldLines) {
+    return;
   }
 
-  throw new Error(`Property "${propertyName}" is not an array`);
+  return getArrayValues(fieldLines, propertyName);
 }
 
-function parseFrontmatterProperties(frontmatterYaml: string): FrontmatterProperties {
-  const properties: FrontmatterProperties = new Map();
-  const lines = frontmatterYaml.split('\n');
-  let currentProperty: string | null = null;
-  let currentArrayValues: string[] = [];
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed) {
-      continue;
-    }
-
-    if (trimmed.includes(':') && !trimmed.startsWith('-')) {
-      if (currentProperty && currentArrayValues.length > 0) {
-        properties.set(currentProperty, currentArrayValues.slice());
-      }
-      currentArrayValues = [];
-
-      const colonIndex = trimmed.indexOf(':');
-      currentProperty = trimmed.slice(0, colonIndex).trim();
-      const inlineValue = trimmed.slice(colonIndex + 1).trim();
-
-      if (inlineValue) {
-        const valueIsArray = inlineValue.startsWith('[') && inlineValue.endsWith(']');
-        properties.set(currentProperty, valueIsArray ? parseInlineArray(inlineValue) : inlineValue);
-        currentProperty = null;
-      }
-    } else if (currentProperty && trimmed.startsWith('-')) {
-      const value = trimmed.slice(1).trim();
-      if (value) {
-        currentArrayValues.push(value);
-      }
-    }
+function getArrayValues([fieldLine, ...valueLines]: string[], propertyName: string): string[] | undefined {
+  const inlineValue = fieldLine.slice(fieldLine.indexOf(':') + 1).trim();
+  if (inlineValue.startsWith('[') && inlineValue.endsWith(']')) {
+    return parseInlineArray(inlineValue);
   }
 
-  if (currentProperty && currentArrayValues.length > 0) {
-    properties.set(currentProperty, currentArrayValues.slice());
+  if (inlineValue) {
+    throw new Error(`Property "${propertyName}" is not an array`);
   }
 
-  return properties;
+  const values = valueLines
+    .map(line => line.trim())
+    .filter(line => line.startsWith('-'))
+    .map(line => line.slice(1).trim())
+    .filter(Boolean);
+
+  return values.length > 0 ? values : undefined;
 }
 
 function parseInlineArray(inlineValue: string): string[] {
