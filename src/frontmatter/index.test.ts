@@ -1,4 +1,5 @@
 import {
+  addValueToFrontmatterArray,
   contentIsOnlyFrontmatter,
   extractFrontmatter,
   getFrontmatterArrayProperty,
@@ -6,6 +7,7 @@ import {
 
 test('exports', () => {
   [
+    addValueToFrontmatterArray,
     contentIsOnlyFrontmatter,
     extractFrontmatter,
     getFrontmatterArrayProperty,
