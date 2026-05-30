@@ -1,5 +1,15 @@
-export function formatDate(date: Date): string {
+import type { CalendarDate } from './types.js';
+
+export function formatCalendarDate(calendarDate: CalendarDate): string {
+  const [year, month, day] = calendarDate.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  date.setUTCFullYear(year);
+  return formatDate(date, 'UTC');
+}
+
+export function formatDate(date: Date, timeZone?: string): string {
   return date.toLocaleDateString('en-us', {
+    timeZone,
     weekday: 'short',
     year: 'numeric',
     month: 'short',
