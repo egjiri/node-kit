@@ -5,36 +5,36 @@ describe('getYearlyDates', () => {
   const cases: Cases<typeof getYearlyDates> = [
     [
       'returns yearly dates over a 3-year period',
-      [new Date(2023, 5, 15), new Date(2025, 5, 15)],
+      ['2023-06-15', '2025-06-15'],
       [
-        new Date(2023, 5, 15),
-        new Date(2024, 5, 15),
-        new Date(2025, 5, 15),
+        '2023-06-15',
+        '2024-06-15',
+        '2025-06-15',
       ],
     ],
     [
       'returns yearly dates for leap year handling',
-      [new Date(2024, 1, 29), new Date(2026, 1, 28)],
+      ['2024-02-29', '2026-02-28'],
       [
-        new Date(2024, 1, 29),
-        new Date(2025, 1, 28),
-        new Date(2026, 1, 28),
+        '2024-02-29',
+        '2025-02-28',
+        '2026-02-28',
       ],
     ],
     [
       'returns single date when start and end are in same year',
-      [new Date(2025, 3, 10), new Date(2025, 8, 20)],
-      [new Date(2025, 3, 10)],
+      ['2025-04-10', '2025-09-20'],
+      ['2025-04-10'],
     ],
     [
       'returns empty array when end date is before start date',
-      [new Date(2025, 0, 1), new Date(2024, 11, 31)],
+      ['2025-01-01', '2024-12-31'],
       [],
     ],
     [
       'handles exact year boundary dates',
-      [new Date(2023, 11, 31), new Date(2023, 11, 31)],
-      [new Date(2023, 11, 31)],
+      ['2023-12-31', '2023-12-31'],
+      ['2023-12-31'],
     ],
   ];
 

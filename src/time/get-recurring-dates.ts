@@ -3,7 +3,7 @@ import { getMonthlyDates } from './get-monthly-dates.js';
 import { getWeeklyDates } from './get-weekly-dates.js';
 import { getYearlyDates } from './get-yearly-dates.js';
 import { Frequency, isDayOfMonth, isDayOfWeek } from './types.js';
-import type { DayOfMonth, DayOfWeek } from './types.js';
+import type { CalendarDate, DayOfMonth, DayOfWeek } from './types.js';
 
 // TODO: Add support for generating anticipated transactions for the other frequency types (ex. Biweekly, Quarterly, etc.)
 export const RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES = [Frequency.Weekly, Frequency.SemiMonthly, Frequency.Monthly, Frequency.Yearly] as const;
@@ -14,7 +14,7 @@ export function isRecurringTransactionSupportedFrequency(frequency: Frequency): 
   return RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES.includes(frequency as RecurringTransactionSupportedFrequency);
 }
 
-export function getRecurringDates(frequency: RecurringTransactionSupportedFrequency, days: DayOfWeek[] | DayOfMonth[] | null | undefined, startDate: Date, endDate = getLastDayOfYear('next-year')): Date[] {
+export function getRecurringDates(frequency: RecurringTransactionSupportedFrequency, days: DayOfWeek[] | DayOfMonth[] | null | undefined, startDate: CalendarDate, endDate = getLastDayOfYear('next-year')): CalendarDate[] {
   if (frequency === Frequency.Yearly) {
     return getYearlyDates(startDate, endDate);
   }
@@ -32,16 +32,14 @@ export function getRecurringDates(frequency: RecurringTransactionSupportedFreque
   }
 
   if ([Frequency.SemiMonthly, Frequency.Monthly].includes(frequency)) {
-    if (days.find(day => !isDayOfMonth(day))) {
+    if (!days.every(day => isDayOfMonth(day))) {
       throw new Error('Invalid "days"! All elements must be DayOfMonth when frequency is SemiMonthly or Monthly');
     }
 
-    const daysOfMonth = days as DayOfMonth[];
-
     if (frequency === Frequency.SemiMonthly) {
-      return daysOfMonth.map(startDay => getMonthlyDates(startDay, startDate, endDate)).flat();
+      return days.map(startDay => getMonthlyDates(startDay, startDate, endDate)).flat();
     } else {
-      return getMonthlyDates(daysOfMonth[0], startDate, endDate);
+      return getMonthlyDates(days[0], startDate, endDate);
     }
   }
 

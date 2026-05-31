@@ -1,15 +1,15 @@
 import { addDays } from './add-days.js';
-import type { DayOfWeek } from './types.js';
+import { getDayOfWeek } from './get-day-of-week.js';
+import type { CalendarDate, DayOfWeek } from './types.js';
 
-export function getWeeklyDates(dayOfWeek: DayOfWeek, startDate: Date, endDate: Date): Date[] {
-  const daysApart = (dayOfWeek - startDate.getDay() + 7) % 7;
+export function getWeeklyDates(dayOfWeek: DayOfWeek, startDate: CalendarDate, endDate: CalendarDate): CalendarDate[] {
+  const daysApart = (dayOfWeek - getDayOfWeek(startDate) + 7) % 7;
   let date = addDays(startDate, daysApart);
 
-  const dates: Date[] = [];
+  const dates: CalendarDate[] = [];
   while (date <= endDate) {
     dates.push(date);
     date = addDays(date, 7);
-    date.setHours(0, 0, 0, 0);
   }
   return dates;
 }

@@ -1,15 +1,24 @@
-import { newDateWithEndOfMonthLimit } from './new-date-with-end-of-month-limit.js';
-import type { DayOfMonth } from './types.js';
+import { parseCalendarDate } from './calendar-date.js';
+import { createCalendarDateWithEndOfMonthLimit } from './create-calendar-date-with-end-of-month-limit.js';
+import { isMonth, Month } from './types.js';
+import type { CalendarDate, DayOfMonth } from './types.js';
 
-export function getMonthlyDates(dayOfMonth: DayOfMonth, startDate: Date, endDate: Date): Date[] {
-  const dates: Date[] = [];
-  const year = startDate.getFullYear();
-  let month = startDate.getMonth();
-  let date = newDateWithEndOfMonthLimit(year, month, dayOfMonth);
+export function getMonthlyDates(dayOfMonth: DayOfMonth, startDate: CalendarDate, endDate: CalendarDate): CalendarDate[] {
+  const dates: CalendarDate[] = [];
+  let { year, month } = parseCalendarDate(startDate);
+  let date = createCalendarDateWithEndOfMonthLimit(year, month, dayOfMonth);
   while (date <= endDate) {
-    dates.push(date);
-    month += 1;
-    date = newDateWithEndOfMonthLimit(year, month, dayOfMonth);
+    if (date >= startDate) {
+      dates.push(date);
+    }
+
+    month = month + 1;
+    if (!isMonth(month)) {
+      year += 1;
+      month = Month.January;
+    }
+
+    date = createCalendarDateWithEndOfMonthLimit(year, month, dayOfMonth);
   }
-  return dates.filter(date => date >= startDate && date <= endDate);
+  return dates;
 }

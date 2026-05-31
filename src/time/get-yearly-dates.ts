@@ -1,12 +1,11 @@
 import { addYears } from './add-years.js';
+import type { CalendarDate } from './types.js';
 
-export function getYearlyDates(startDate: Date, endDate: Date): Date[] {
-  let date = new Date(startDate);
-
-  const dates: Date[] = [];
-  while (date <= endDate) {
-    dates.push(date);
-    date = addYears(date, 1);
+export function getYearlyDates(startDate: CalendarDate, endDate: CalendarDate): CalendarDate[] {
+  const dates: CalendarDate[] = [];
+  while (startDate <= endDate) {
+    dates.push(startDate);
+    startDate = addYears(startDate, 1);
   }
   return dates;
 }

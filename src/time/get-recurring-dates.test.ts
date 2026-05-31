@@ -17,41 +17,41 @@ describe('getRecurringDates', () => {
   const cases: Cases<typeof getRecurringDates> = [
     [
       'returns weekly dates for Monday',
-      [Frequency.Weekly, [DayOfWeek.Monday], new Date(2025, 0, 1), new Date(2025, 0, 31)],
+      [Frequency.Weekly, [DayOfWeek.Monday], '2025-01-01', '2025-01-31'],
       [
-        new Date(2025, 0, 6), // January 6, 2025 (Monday)
-        new Date(2025, 0, 13), // January 13, 2025 (Monday)
-        new Date(2025, 0, 20), // January 20, 2025 (Monday)
-        new Date(2025, 0, 27), // January 27, 2025 (Monday)
+        '2025-01-06', // January 6, 2025 (Monday)
+        '2025-01-13', // January 13, 2025 (Monday)
+        '2025-01-20', // January 20, 2025 (Monday)
+        '2025-01-27', // January 27, 2025 (Monday)
       ],
     ],
     [
       'returns monthly dates for day 15',
-      [Frequency.Monthly, [15], new Date(2025, 0, 1), new Date(2025, 2, 31)],
+      [Frequency.Monthly, [15], '2025-01-01', '2025-03-31'],
       [
-        new Date(2025, 0, 15),
-        new Date(2025, 1, 15),
-        new Date(2025, 2, 15),
+        '2025-01-15',
+        '2025-02-15',
+        '2025-03-15',
       ],
     ],
     [
       'returns semi-monthly dates for days 1 and 15',
-      [Frequency.SemiMonthly, [1, 15], new Date(2025, 0, 1), new Date(2025, 1, 28)],
+      [Frequency.SemiMonthly, [1, 15], '2025-01-01', '2025-02-28'],
       [
-        new Date(2025, 0, 1),
-        new Date(2025, 1, 1),
-        new Date(2025, 0, 15),
-        new Date(2025, 1, 15),
+        '2025-01-01',
+        '2025-02-01',
+        '2025-01-15',
+        '2025-02-15',
       ],
     ],
     [
       'returns yearly dates (with default end date)',
-      [Frequency.Yearly, undefined, new Date(2023, 5, 15)],
+      [Frequency.Yearly, undefined, '2023-06-15'],
       [
-        new Date(2023, 5, 15),
-        new Date(2024, 5, 15),
-        new Date(2025, 5, 15),
-        new Date(2026, 5, 15),
+        '2023-06-15',
+        '2024-06-15',
+        '2025-06-15',
+        '2026-06-15',
       ],
     ],
   ];
@@ -63,31 +63,31 @@ describe('getRecurringDates', () => {
 
   test('throws error for weekly frequency with invalid day type', () => {
     expect(() => {
-      getRecurringDates(Frequency.Weekly, [15] as unknown as DayOfWeek[], new Date(2025, 0, 1), new Date(2025, 0, 31));
+      getRecurringDates(Frequency.Weekly, [15] as unknown as DayOfWeek[], '2025-01-01', '2025-01-31');
     }).toThrow('Invalid "startDay"! It must be a DayOfWeek when frequency is Weekly');
   });
 
   test('throws error when days array is empty', () => {
     expect(() => {
-      getRecurringDates(Frequency.Weekly, [], new Date(2025, 0, 1), new Date(2025, 0, 31));
+      getRecurringDates(Frequency.Weekly, [], '2025-01-01', '2025-01-31');
     }).toThrow('Invalid "days"! It must be a non-empty array of DayOfWeek[] or DayOfMonth[]');
   });
 
   test('throws error for semi-monthly frequency with invalid day type', () => {
     expect(() => {
-      getRecurringDates(Frequency.SemiMonthly, ['invalid'] as unknown as number[], new Date(2025, 0, 1), new Date(2025, 0, 31));
+      getRecurringDates(Frequency.SemiMonthly, ['invalid'] as unknown as number[], '2025-01-01', '2025-01-31');
     }).toThrow('Invalid "days"! All elements must be DayOfMonth when frequency is SemiMonthly or Monthly');
   });
 
   test('throws error for monthly frequency with invalid day type', () => {
     expect(() => {
-      getRecurringDates(Frequency.Monthly, ['invalid'] as unknown as number[], new Date(2025, 0, 1), new Date(2025, 0, 31));
+      getRecurringDates(Frequency.Monthly, ['invalid'] as unknown as number[], '2025-01-01', '2025-01-31');
     }).toThrow('Invalid "days"! All elements must be DayOfMonth when frequency is SemiMonthly or Monthly');
   });
 
   test('throws error for unsupported frequency', () => {
     expect(() => {
-      getRecurringDates(Frequency.Biweekly as never, [1], new Date(2025, 0, 1), new Date(2025, 0, 31));
+      getRecurringDates(Frequency.Biweekly as never, [1], '2025-01-01', '2025-01-31');
     }).toThrow('Unsupported frequency: biweekly');
   });
 });
