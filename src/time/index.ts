@@ -2,7 +2,6 @@ export { addDays } from './add-days.js';
 export { addYears } from './add-years.js';
 export { calculateAmountByFrequency } from './calculate-amount-by-frequency.js';
 export {
-  addDaysToCalendarDate,
   calendarDateToLocalDate,
   createCalendarDate,
   isValidCalendarDate,

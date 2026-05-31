@@ -28,12 +28,6 @@ export function normalizeToCalendarDate(value: string): CalendarDate {
   return calendarDate;
 }
 
-export function addDaysToCalendarDate(calendarDate: CalendarDate, days: number): CalendarDate {
-  const date = toUtcMidnight(calendarDate);
-  date.setUTCDate(date.getUTCDate() + days);
-  return toCalendarDate(date, 'UTC');
-}
-
 export function calendarDateToLocalDate(calendarDate: CalendarDate): Date {
   const { year, month, day } = parseCalendarDate(calendarDate);
   const date = new Date(year, month, day);

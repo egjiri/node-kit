@@ -1,6 +1,5 @@
 import {
   addDays,
-  addDaysToCalendarDate,
   addYears,
   calculateAmountByFrequency,
   calendarDateToLocalDate,
@@ -45,7 +44,6 @@ import {
 test('expors', () => {
   [
     addDays,
-    addDaysToCalendarDate,
     addYears,
     calculateAmountByFrequency,
     calendarDateToLocalDate,

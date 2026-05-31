@@ -35,7 +35,9 @@ export default [
     },
     rules: {
       ...tseslint.configs.recommended?.rules || {},
+      '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+      'no-redeclare': 'off',
     },
   },
 ];

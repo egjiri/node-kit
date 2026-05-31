@@ -1,5 +1,4 @@
 import {
-  addDaysToCalendarDate,
   calendarDateToLocalDate,
   createCalendarDate,
   isValidCalendarDate,
@@ -56,20 +55,6 @@ describe('normalizeToCalendarDate', () => {
   test.each(invalidCases)('%s', (_, value, expected) => {
     const actual = () => normalizeToCalendarDate(value);
     expect(actual).toThrow(expected);
-  });
-});
-
-describe('addDaysToCalendarDate', () => {
-  const cases: Cases<typeof addDaysToCalendarDate> = [
-    ['adds days to a calendar date', ['2025-01-15', 5], '2025-01-20'],
-    ['subtracts days across a month boundary', ['2025-03-01', -1], '2025-02-28'],
-    ['handles leap days', ['2024-02-28', 1], '2024-02-29'],
-    ['preserves years below 100', ['0099-12-31', 1], '0100-01-01'],
-  ];
-
-  test.each(cases)('%s', (_, args, expected) => {
-    const actual = addDaysToCalendarDate(...args);
-    expect(actual).toBe(expected);
   });
 });
 
