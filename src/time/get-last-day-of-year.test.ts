@@ -1,4 +1,4 @@
-import { getLastDayOfYear } from '.';
+import { getLastDayOfYear } from './get-last-day-of-year';
 import type { Cases } from 'testing';
 
 describe('getLastDayOfYear', () => {

@@ -1,4 +1,4 @@
-import { daysBetweenCalendarDates } from '.';
+import { daysBetweenCalendarDates } from './days-between-calendar-dates';
 import type { Cases } from 'testing';
 
 describe('daysBetweenCalendarDates', () => {

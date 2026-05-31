@@ -1,5 +1,5 @@
+import { getIntervalFromFrequency } from './get-interval-from-frequency';
 import { Frequency } from './types';
-import { getIntervalFromFrequency } from '.';
 import type { Cases } from 'testing';
 
 describe('getIntervalFromFrequency', () => {

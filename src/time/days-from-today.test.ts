@@ -1,4 +1,4 @@
-import { daysFromToday } from '.';
+import { daysFromToday } from './days-from-today';
 import type { Cases } from 'testing';
 
 const resolvedDateTimeFormatOptions = Intl.DateTimeFormat().resolvedOptions();
