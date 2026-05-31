@@ -1,6 +1,6 @@
-import { isHoliday } from './is-holiday.js';
 import { isWeekend } from './is-weekend.js';
+import type { CalendarDate } from './types.js';
 
-export function isBusinessDay(date: Date, holidays: Date[] = []): boolean {
-  return !isWeekend(date) && !isHoliday(date, holidays);
+export function isBusinessDay(date: CalendarDate, holidays: CalendarDate[] = []): boolean {
+  return !isWeekend(date) && !holidays.includes(date);
 }

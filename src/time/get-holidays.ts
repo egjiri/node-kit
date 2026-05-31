@@ -1,5 +1,6 @@
 import { addDays } from './add-days.js';
-import { createCalendarDate, toUtcMidnight } from './calendar-date.js';
+import { createCalendarDate } from './calendar-date.js';
+import { getDayOfWeek } from './get-day-of-week.js';
 import { getNthWeekdayOfMonth } from './get-nth-weekday-of-month.js';
 import { DayOfWeek, isDayOfMonth, Month, Week } from './types.js';
 import type { CalendarDate } from './types.js';
@@ -84,7 +85,7 @@ function getEasterSunday(year: number): CalendarDate {
 // Victoria Day (Last Monday before May 25)
 function getVictoriaDay(year: number): CalendarDate {
   const may25 = createCalendarDate(year, Month.May, 25);
-  const dayOfWeek = toUtcMidnight(may25).getUTCDay();
+  const dayOfWeek = getDayOfWeek(may25);
   const offsetToMonday = (7 - DayOfWeek.Monday + dayOfWeek) % 7 || 7;
   return addDays(may25, -offsetToMonday);
 }
