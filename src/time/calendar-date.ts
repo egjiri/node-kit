@@ -43,7 +43,7 @@ export function normalizeToCalendarDate(value: string): CalendarDate {
 export function addDaysToCalendarDate(calendarDate: CalendarDate, days: number): CalendarDate {
   const date = toUtcMidnight(calendarDate);
   date.setUTCDate(date.getUTCDate() + days);
-  return toCalendarDate(date);
+  return toCalendarDate(date, 'UTC');
 }
 
 export function calendarDateToLocalDate(calendarDate: CalendarDate): Date {
@@ -73,7 +73,7 @@ export function today(timeZone = Intl.DateTimeFormat().resolvedOptions().timeZon
   return toCalendarDate(new Date(), timeZone);
 }
 
-export function toCalendarDate(date: Date, timeZone = 'UTC'): CalendarDate {
+export function toCalendarDate(date: Date, timeZone?: string): CalendarDate {
   const parts = new Intl.DateTimeFormat(undefined, {
     calendar: 'gregory',
     numberingSystem: 'latn',

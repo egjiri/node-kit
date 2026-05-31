@@ -123,14 +123,19 @@ describe('toCalendarDate', () => {
   });
 
   const cases: Cases<typeof toCalendarDate> = [
-    ['formats a date as YYYY-MM-DD', [new Date('2025-07-15T12:00:00.000Z')], '2025-07-15'],
-    ['formats dates using UTC date components by default', [new Date('2025-01-01T04:59:59.000Z')], '2025-01-01'],
+    ['formats dates using local date components by default', [new Date(2025, Month.July, 15, 23, 59, 59, 999)], '2025-07-15'],
     ['formats dates using the provided time zone', [new Date('2025-01-01T04:59:59.000Z'), 'America/Toronto'], '2024-12-31'],
+    ['formats dates using UTC when UTC is provided', [new Date('2025-01-01T04:59:59.000Z'), 'UTC'], '2025-01-01'],
   ];
 
   test.each(cases)('%s', (_, args, expected) => {
     const actual = toCalendarDate(...args);
     expect(actual).toBe(expected);
+  });
+
+  test('throws for invalid dates without a time zone', () => {
+    const actual = () => toCalendarDate(new Date(Number.NaN));
+    expect(actual).toThrow('Invalid time value');
   });
 
   test('throws when Intl formats an invalid calendar date', () => {
