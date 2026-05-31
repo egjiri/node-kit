@@ -5,7 +5,7 @@ const resolvedDateTimeFormatOptions = Intl.DateTimeFormat().resolvedOptions();
 
 describe('daysFromToday', () => {
   beforeAll(() => {
-    vi.useFakeTimers();
+    vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(new Date('2025-05-12T12:00:00.000Z'));
     vi.spyOn(Intl.DateTimeFormat.prototype, 'resolvedOptions').mockReturnValue({
       ...resolvedDateTimeFormatOptions,

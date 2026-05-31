@@ -134,7 +134,7 @@ describe('today', () => {
   const resolvedDateTimeFormatOptions = Intl.DateTimeFormat().resolvedOptions();
 
   beforeEach(() => {
-    vi.useFakeTimers();
+    vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(new Date('2025-01-01T04:59:59.000Z'));
   });
 
