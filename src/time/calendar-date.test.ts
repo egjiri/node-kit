@@ -3,6 +3,7 @@ import {
   calendarDateToLocalDate,
   createCalendarDate,
   isValidCalendarDate,
+  normalizeToCalendarDate,
   parseCalendarDate,
   toCalendarDate,
   today,
@@ -31,6 +32,30 @@ describe('createCalendarDate', () => {
   test.each(invalidCases)('%s', (_, args) => {
     const actual = () => createCalendarDate(...args);
     expect(actual).toThrow(`Invalid calendar date: year=${args[0]}, month=${args[1]}, day=${args[2]}`);
+  });
+});
+
+describe('normalizeToCalendarDate', () => {
+  const cases: Cases<typeof normalizeToCalendarDate> = [
+    ['returns a YYYY-MM-DD calendar date unchanged', ['2025-01-15'], '2025-01-15'],
+    ['converts an MM/DD/YYYY date to a calendar date', ['01/15/2025'], '2025-01-15'],
+    ['preserves years below 100', ['12/31/0099'], '0099-12-31'],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = normalizeToCalendarDate(...args);
+    expect(actual).toBe(expected);
+  });
+
+  const invalidCases = [
+    ['throws for unsupported date formats', '2025-1-15', 'Invalid calendar date string: 2025-1-15. Expected MM/DD/YYYY or YYYY-MM-DD.'],
+    ['throws for invalid calendar dates', '2025-02-29', 'Invalid calendar date string: 2025-02-29. Expected a valid calendar date.'],
+    ['throws for invalid MM/DD/YYYY calendar dates', '02/29/2025', 'Invalid calendar date string: 02/29/2025. Expected a valid calendar date.'],
+  ];
+
+  test.each(invalidCases)('%s', (_, value, expected) => {
+    const actual = () => normalizeToCalendarDate(value);
+    expect(actual).toThrow(expected);
   });
 });
 

@@ -6,6 +6,7 @@ export {
   calendarDateToLocalDate,
   createCalendarDate,
   isValidCalendarDate,
+  normalizeToCalendarDate,
   parseCalendarDate,
   toCalendarDate,
   today,

@@ -2,6 +2,7 @@ import { isDayOfMonth, isMonth } from './types.js';
 import type { CalendarDate, CalendarDateParts, DayOfMonth, Month } from './types.js';
 
 const CALENDAR_DATE_PATTERN = /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
+const MONTH_DAY_YEAR_DATE_PATTERN = /^(?<month>\d{2})\/(?<day>\d{2})\/(?<year>\d{4})$/;
 
 export function createCalendarDate(year: number, month: Month, day: DayOfMonth): CalendarDate {
   const yearText = year.toString().padStart(4, '0');
@@ -11,6 +12,29 @@ export function createCalendarDate(year: number, month: Month, day: DayOfMonth):
 
   if (!isValidCalendarDate(calendarDate)) {
     throw new Error(`Invalid calendar date: year=${year}, month=${month}, day=${day}`);
+  }
+
+  return calendarDate;
+}
+
+export function normalizeToCalendarDate(value: string): CalendarDate {
+  let calendarDate: string | undefined;
+
+  if (CALENDAR_DATE_PATTERN.test(value)) {
+    calendarDate = value;
+  } else {
+    const groups = MONTH_DAY_YEAR_DATE_PATTERN.exec(value)?.groups;
+    if (groups) {
+      calendarDate = `${groups.year}-${groups.month}-${groups.day}`;
+    }
+  }
+
+  if (!calendarDate) {
+    throw new Error(`Invalid calendar date string: ${value}. Expected MM/DD/YYYY or YYYY-MM-DD.`);
+  }
+
+  if (!isValidCalendarDate(calendarDate)) {
+    throw new Error(`Invalid calendar date string: ${value}. Expected a valid calendar date.`);
   }
 
   return calendarDate;
