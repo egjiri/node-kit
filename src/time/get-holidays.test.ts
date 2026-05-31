@@ -45,26 +45,25 @@ describe('getHolidayDates', () => {
   it('returns correct holiday dates for 2025', () => {
     const actual = getHolidayDates(2025);
     const expected = {
-      "New Year's Day": new Date(2025, 0, 1),
-      'Family Day': new Date(2025, 1, 17),
-      'Good Friday': new Date(2025, 3, 18),
-      'Easter Monday': new Date(2025, 3, 21),
-      'Victoria Day': new Date(2025, 4, 19),
-      'Canada Day': new Date(2025, 6, 1),
-      'Civic Holiday': new Date(2025, 7, 4),
-      'Labour Day': new Date(2025, 8, 1),
-      'National Day for Truth and Reconciliation': new Date(2025, 8, 30),
-      Thanksgiving: new Date(2025, 9, 13),
-      'Remembrance Day': new Date(2025, 10, 11),
-      'Christmas Day': new Date(2025, 11, 25),
-      'Boxing Day': new Date(2025, 11, 26),
+      "New Year's Day": '2025-01-01',
+      'Family Day': '2025-02-17',
+      'Good Friday': '2025-04-18',
+      'Easter Monday': '2025-04-21',
+      'Victoria Day': '2025-05-19',
+      'Canada Day': '2025-07-01',
+      'Civic Holiday': '2025-08-04',
+      'Labour Day': '2025-09-01',
+      'National Day for Truth and Reconciliation': '2025-09-30',
+      Thanksgiving: '2025-10-13',
+      'Remembrance Day': '2025-11-11',
+      'Christmas Day': '2025-12-25',
+      'Boxing Day': '2025-12-26',
     };
     expect(actual).toEqual(expected);
   });
 
   it('returns correct Victoria Day when May 25 falls on Monday (edge case)', () => {
     const actual = getHolidayDates(2026)['Victoria Day'];
-    const expected = new Date(2026, 4, 18);
-    expect(actual).toEqual(expected);
+    expect(actual).toBe('2026-05-18');
   });
 });

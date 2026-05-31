@@ -1,6 +1,8 @@
 import { addDays } from './add-days.js';
+import { createCalendarDate, toUtcMidnight } from './calendar-date.js';
 import { getNthWeekdayOfMonth } from './get-nth-weekday-of-month.js';
-import { DayOfWeek, Month, Week } from './types.js';
+import { DayOfWeek, isDayOfMonth, Month, Week } from './types.js';
+import type { CalendarDate } from './types.js';
 
 enum Holiday {
   NewYearsDay = "New Year's Day",
@@ -34,30 +36,30 @@ export function getOntarioHolidays(): OntarioHolidays[] {
 }
 
 // Reference: https://www.statutoryholidays.com/ontario.php
-export function getHolidayDates(year: number): Record<Holiday, Date> {
+export function getHolidayDates(year: number): Record<Holiday, CalendarDate> {
   const easterSunday = getEasterSunday(year);
 
   /* eslint-disable stylistic/no-multi-spaces,stylistic/key-spacing */
   return {
-    [Holiday.NewYearsDay]:    new Date(year, Month.January, 1),                                          // New Year's Day (January 1)
-    [Holiday.FamilyDay]:      getNthWeekdayOfMonth(Week.Third, DayOfWeek.Monday, Month.February, year),  // Family Day (Third Monday in February)
-    [Holiday.GoodFriday]:     addDays(easterSunday, -2),                                                 // Good Friday (Friday before Easter Sunday)
-    [Holiday.EasterMonday]:   addDays(easterSunday, 1),                                                  // Easter Monday (Monday after Easter Sunday)
-    [Holiday.VictoriaDay]:    getVictoriaDay(year),                                                      // Victoria Day (Last Monday before May 25)
-    [Holiday.CanadaDay]:      new Date(year, Month.July, 1),                                             // Canada Day (July 1)
-    [Holiday.CivicHoliday]:   getNthWeekdayOfMonth(Week.First, DayOfWeek.Monday, Month.August, year),    // Civic Holiday (First Monday in August)
-    [Holiday.LabourDay]:      getNthWeekdayOfMonth(Week.First, DayOfWeek.Monday, Month.September, year), // Labour Day (First Monday in September)
-    [Holiday.NationalDayForTruthAndReconciliation]: new Date(year, Month.September, 30),                 // National Day for Truth and Reconciliation
-    [Holiday.Thanksgiving]:   getNthWeekdayOfMonth(Week.Second, DayOfWeek.Monday, Month.October, year),  // Thanksgiving (Second Monday in October)
-    [Holiday.RemembranceDay]: new Date(year, Month.November, 11),                                        // Remembrance Day (November 11)
-    [Holiday.ChristmasDay]:   new Date(year, Month.December, 25),                                        // Christmas Day (December 25)
-    [Holiday.BoxingDay]:      new Date(year, Month.December, 26),                                        // Boxing Day (December 26)
+    [Holiday.NewYearsDay]:    createCalendarDate(year, Month.January, 1),                                 // New Year's Day (January 1)
+    [Holiday.FamilyDay]:      getNthWeekdayOfMonth(Week.Third, DayOfWeek.Monday, Month.February, year),   // Family Day (Third Monday in February)
+    [Holiday.GoodFriday]:     addDays(easterSunday, -2),                                                  // Good Friday (Friday before Easter Sunday)
+    [Holiday.EasterMonday]:   addDays(easterSunday, 1),                                                   // Easter Monday (Monday after Easter Sunday)
+    [Holiday.VictoriaDay]:    getVictoriaDay(year),                                                       // Victoria Day (Last Monday before May 25)
+    [Holiday.CanadaDay]:      createCalendarDate(year, Month.July, 1),                                    // Canada Day (July 1)
+    [Holiday.CivicHoliday]:   getNthWeekdayOfMonth(Week.First, DayOfWeek.Monday, Month.August, year),     // Civic Holiday (First Monday in August)
+    [Holiday.LabourDay]:      getNthWeekdayOfMonth(Week.First, DayOfWeek.Monday, Month.September, year),  // Labour Day (First Monday in September)
+    [Holiday.NationalDayForTruthAndReconciliation]: createCalendarDate(year, Month.September, 30),        // National Day for Truth and Reconciliation
+    [Holiday.Thanksgiving]:   getNthWeekdayOfMonth(Week.Second, DayOfWeek.Monday, Month.October, year),   // Thanksgiving (Second Monday in October)
+    [Holiday.RemembranceDay]: createCalendarDate(year, Month.November, 11),                               // Remembrance Day (November 11)
+    [Holiday.ChristmasDay]:   createCalendarDate(year, Month.December, 25),                               // Christmas Day (December 25)
+    [Holiday.BoxingDay]:      createCalendarDate(year, Month.December, 26),                               // Boxing Day (December 26)
   };
   /* eslint-enable stylistic/no-multi-spaces,stylistic/key-spacing */
 }
 
 // Source: https://gist.github.com/johndyer/0dffbdd98c2046f41180c051f378f343
-function getEasterSunday(year: number): Date {
+function getEasterSunday(year: number): CalendarDate {
   const f = Math.floor;
   // Golden Number - 1
   const G = year % 19;
@@ -72,13 +74,17 @@ function getEasterSunday(year: number): Date {
   const L = I - J;
   const month = 3 + f((L + 40) / 44);
   const day = L + 28 - 31 * f(month / 4);
+  if (!isDayOfMonth(day)) {
+    throw new Error(`Calculated Easter Sunday day ${day} is not a valid day of the month`);
+  }
 
-  return new Date(year, month - 1, day);
+  return createCalendarDate(year, month - 1, day);
 }
 
 // Victoria Day (Last Monday before May 25)
-function getVictoriaDay(year: number): Date {
-  const dayOfWeek = new Date(year, Month.May, 25).getDay();
+function getVictoriaDay(year: number): CalendarDate {
+  const may25 = createCalendarDate(year, Month.May, 25);
+  const dayOfWeek = toUtcMidnight(may25).getUTCDay();
   const offsetToMonday = (7 - DayOfWeek.Monday + dayOfWeek) % 7 || 7;
-  return new Date(year, Month.May, 25 - offsetToMonday);
+  return addDays(may25, -offsetToMonday);
 }
