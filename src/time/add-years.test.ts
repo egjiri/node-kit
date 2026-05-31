@@ -1,16 +1,35 @@
-import { addYears, Month } from '.';
-import type { Cases } from 'testing';
+import { addYears } from './add-years';
+import { calendarDateToLocalDate } from './calendar-date';
+import type { CalendarDate } from './types';
+
+type DateCase = [string, [Date, number], Date];
+type CalendarDateCase = [string, [CalendarDate, number], CalendarDate];
 
 describe('addYears', () => {
-  const cases: Cases<typeof addYears> = [
-    ['add positive years', [new Date(2025, Month.January, 15), 5], new Date(2030, Month.January, 15)],
-    ['add zero years', [new Date(2025, Month.January, 15), 0], new Date(2025, Month.January, 15)],
-    ['subtract years', [new Date(2025, Month.January, 15), -10], new Date(2015, Month.January, 15)],
-    ['handle leap year Feb 29 -> stays Feb 29 when resulting year is leap', [new Date(2024, Month.February, 29), 4], new Date(2028, Month.February, 29)],
-    ['handle leap year Feb 29 -> shifts to Feb 28 when resulting year not leap', [new Date(2024, Month.February, 29), 1], new Date(2025, Month.February, 28)],
+  const cases: CalendarDateCase[] = [
+    ['add positive years', ['2025-01-15', 5], '2030-01-15'],
+    ['add zero years', ['2025-01-15', 0], '2025-01-15'],
+    ['subtract years', ['2025-01-15', -10], '2015-01-15'],
+    ['handle leap year Feb 29 -> stays Feb 29 when resulting year is leap', ['2024-02-29', 4], '2028-02-29'],
+    ['handle leap year Feb 29 -> shifts to Feb 28 when resulting year not leap', ['2024-02-29', 1], '2025-02-28'],
+    ['preserve years below 100', ['0099-12-31', 1], '0100-12-31'],
   ];
-  test.each(cases)('%s', (_, args, expected) => {
-    const actual = addYears(...args);
-    expect(actual.getTime()).toBe(expected.getTime());
+
+  describe('Date input', () => {
+    test.each(cases.map(toDateCase))('%s', (_, args, expected) => {
+      const actual = addYears(...args);
+      expect(actual.getTime()).toBe(expected.getTime());
+    });
+  });
+
+  describe('CalendarDate input', () => {
+    test.each(cases)('%s', (_, args, expected) => {
+      const actual = addYears(...args);
+      expect(actual).toBe(expected);
+    });
   });
 });
+
+function toDateCase([label, [calendarDate, years], expected]: CalendarDateCase): DateCase {
+  return [label, [calendarDateToLocalDate(calendarDate), years], calendarDateToLocalDate(expected)];
+}
