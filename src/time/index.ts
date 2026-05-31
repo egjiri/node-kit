@@ -13,7 +13,7 @@ export {
 } from './calendar-date.js';
 export { daysBetweenCalendarDates } from './days-between-calendar-dates.js';
 export { daysFromToday } from './days-from-today.js';
-export { formatCalendarDate, formatDate } from './format-date.js';
+export { format } from './format.js';
 export { getHolidayDates, getHolidays, getOntarioHolidays } from './get-holidays.js';
 export { getIntervalFromFrequency } from './get-interval-from-frequency.js';
 export { getLastDayOfYear } from './get-last-day-of-year.js';
