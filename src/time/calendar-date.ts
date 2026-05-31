@@ -1,9 +1,6 @@
 import { isDayOfMonth, isMonth } from './types.js';
 import type { CalendarDate, CalendarDateParts, DayOfMonth, Month } from './types.js';
 
-const CALENDAR_DATE_PATTERN = /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/;
-const MONTH_DAY_YEAR_DATE_PATTERN = /^(?<month>\d{2})\/(?<day>\d{2})\/(?<year>\d{4})$/;
-
 export function createCalendarDate(year: number, month: Month, day: DayOfMonth): CalendarDate {
   const yearText = year.toString().padStart(4, '0');
   const monthText = (month + 1).toString().padStart(2, '0');
@@ -18,21 +15,12 @@ export function createCalendarDate(year: number, month: Month, day: DayOfMonth):
 }
 
 export function normalizeToCalendarDate(value: string): CalendarDate {
-  let calendarDate: string | undefined;
-
-  if (CALENDAR_DATE_PATTERN.test(value)) {
-    calendarDate = value;
-  } else {
-    const groups = MONTH_DAY_YEAR_DATE_PATTERN.exec(value)?.groups;
-    if (groups) {
-      calendarDate = `${groups.year}-${groups.month}-${groups.day}`;
-    }
-  }
-
-  if (!calendarDate) {
+  const parts = getCalendarDateStringParts(value) ?? getMonthDayYearDateStringParts(value);
+  if (!parts) {
     throw new Error(`Invalid calendar date string: ${value}. Expected MM/DD/YYYY or YYYY-MM-DD.`);
   }
 
+  const calendarDate = `${parts.year}-${parts.month}-${parts.day}`;
   if (!isValidCalendarDate(calendarDate)) {
     throw new Error(`Invalid calendar date string: ${value}. Expected a valid calendar date.`);
   }
@@ -100,14 +88,14 @@ export function isValidCalendarDate(calendarDate: string): calendarDate is Calen
 }
 
 function getValidCalendarDateParts(calendarDate: string): CalendarDateParts | null {
-  const groups = CALENDAR_DATE_PATTERN.exec(calendarDate)?.groups;
-  if (!groups) {
+  const parts = getCalendarDateStringParts(calendarDate);
+  if (!parts) {
     return null;
   }
 
-  const year = Number(groups.year);
-  const month = Number(groups.month) - 1;
-  const day = Number(groups.day);
+  const year = Number(parts.year);
+  const month = Number(parts.month) - 1;
+  const day = Number(parts.day);
 
   if (!isMonth(month) || !isDayOfMonth(day, month, year)) {
     return null;
@@ -123,4 +111,20 @@ function getCalendarDatePart(parts: Intl.DateTimeFormatPart[], type: 'year' | 'm
   }
 
   return part.value;
+}
+
+function getCalendarDateStringParts(value: string): ReturnType<typeof getDateStringPartsFromPattern> {
+  return getDateStringPartsFromPattern(value, /^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})$/);
+}
+
+function getMonthDayYearDateStringParts(value: string): ReturnType<typeof getDateStringPartsFromPattern> {
+  return getDateStringPartsFromPattern(value, /^(?<month>\d{2})\/(?<day>\d{2})\/(?<year>\d{4})$/);
+}
+
+function getDateStringPartsFromPattern(value: string, pattern: RegExp): Record<'year' | 'month' | 'day', string> | null {
+  const { year, month, day } = pattern.exec(value)?.groups ?? {};
+  if (!year || !month || !day) {
+    return null;
+  }
+  return { year, month, day };
 }

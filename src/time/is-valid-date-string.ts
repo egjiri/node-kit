@@ -1,6 +1,10 @@
+import { normalizeToCalendarDate } from './calendar-date.js';
+
 export function isValidDateString(value: string): boolean {
-  return [
-    /^\d{2}\/\d{2}\/\d{4}$/, // MM/DD/YYYY
-    /^\d{4}-\d{2}-\d{2}$/, // YYYY-MM-DD
-  ].some(pattern => value.match(pattern));
+  try {
+    normalizeToCalendarDate(value);
+    return true;
+  } catch {
+    return false;
+  }
 }
