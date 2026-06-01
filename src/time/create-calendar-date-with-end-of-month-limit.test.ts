@@ -1,6 +1,7 @@
 import { createCalendarDateWithEndOfMonthLimit } from './create-calendar-date-with-end-of-month-limit';
 import { Month } from './types';
 import type { Cases } from 'testing';
+import type { DayOfMonth } from './types';
 
 describe('createCalendarDateWithEndOfMonthLimit', () => {
   const cases: Cases<typeof createCalendarDateWithEndOfMonthLimit> = [
@@ -13,5 +14,10 @@ describe('createCalendarDateWithEndOfMonthLimit', () => {
   test.each(cases)('%s', (_, args, expected) => {
     const actual = createCalendarDateWithEndOfMonthLimit(...args);
     expect(actual).toEqual(expected);
+  });
+
+  test('throws when the limited day is invalid', () => {
+    const actual = () => createCalendarDateWithEndOfMonthLimit(2025, Month.January, 0 as DayOfMonth);
+    expect(actual).toThrow('Invalid day of month after applying end-of-month limit: 0');
   });
 });

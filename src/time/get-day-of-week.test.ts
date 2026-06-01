@@ -3,6 +3,10 @@ import { DayOfWeek } from './types';
 import type { Cases } from 'testing';
 
 describe('getDayOfWeek', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   const cases: Cases<typeof getDayOfWeek> = [
     ['returns Monday', ['2025-01-06'], DayOfWeek.Monday],
     ['returns Tuesday', ['2025-01-07'], DayOfWeek.Tuesday],
@@ -16,5 +20,12 @@ describe('getDayOfWeek', () => {
   test.each(cases)('%s', (_, args, expected) => {
     const actual = getDayOfWeek(...args);
     expect(actual).toBe(expected);
+  });
+
+  test('throws when a UTC day cannot be resolved', () => {
+    vi.spyOn(Date.prototype, 'getUTCDay').mockReturnValue(Number.NaN);
+
+    const actual = () => getDayOfWeek('2025-01-06');
+    expect(actual).toThrow('Invalid day of week for calendar date: 2025-01-06');
   });
 });

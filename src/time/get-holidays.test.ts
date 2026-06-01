@@ -66,4 +66,9 @@ describe('getHolidayDates', () => {
     const actual = getHolidayDates(2026)['Victoria Day'];
     expect(actual).toBe('2026-05-18');
   });
+
+  it('throws when calculated Easter Sunday has an invalid day', () => {
+    const actual = () => getHolidayDates(Number.NaN);
+    expect(actual).toThrow('Calculated Easter Sunday day NaN is not a valid day of the month');
+  });
 });
