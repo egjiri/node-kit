@@ -1,31 +1,27 @@
 import { isDayOfMonth, isMonth } from './types.js';
 import type { CalendarDate, CalendarDateParts, DayOfMonth, Month } from './types.js';
 
+function createCalendarDateFromTextParts(year: string, month: string, day: string): CalendarDate {
+  const calendarDate = `${year}-${month}-${day}`;
+  if (!isValidCalendarDate(calendarDate)) {
+    throw new Error(`Invalid calendar date: year=${Number(year)}, month=${Number(month) - 1}, day=${Number(day)}`);
+  }
+  return calendarDate;
+}
+
 export function createCalendarDate(year: number, month: Month, day: DayOfMonth): CalendarDate {
   const yearText = year.toString().padStart(4, '0');
   const monthText = (month + 1).toString().padStart(2, '0');
   const dayText = day.toString().padStart(2, '0');
-  const calendarDate = `${yearText}-${monthText}-${dayText}`;
-
-  if (!isValidCalendarDate(calendarDate)) {
-    throw new Error(`Invalid calendar date: year=${year}, month=${month}, day=${day}`);
-  }
-
-  return calendarDate;
+  return createCalendarDateFromTextParts(yearText, monthText, dayText);
 }
 
-export function normalizeToCalendarDate(value: string): CalendarDate {
+export function createCalendarDateFromDateString(value: string): CalendarDate {
   const parts = getCalendarDateStringParts(value) ?? getMonthDayYearDateStringParts(value);
   if (!parts) {
     throw new Error(`Invalid calendar date string: ${value}. Expected MM/DD/YYYY or YYYY-MM-DD.`);
   }
-
-  const calendarDate = `${parts.year}-${parts.month}-${parts.day}`;
-  if (!isValidCalendarDate(calendarDate)) {
-    throw new Error(`Invalid calendar date string: ${value}. Expected a valid calendar date.`);
-  }
-
-  return calendarDate;
+  return createCalendarDateFromTextParts(parts.year, parts.month, parts.day);
 }
 
 export function calendarDateToLocalDate(calendarDate: CalendarDate): Date {
@@ -40,7 +36,6 @@ export function parseCalendarDate(calendarDate: string): CalendarDateParts {
   if (!parts) {
     throw new Error(`Invalid calendar date: ${calendarDate}`);
   }
-
   return parts;
 }
 
@@ -68,13 +63,7 @@ export function toCalendarDate(date: Date, timeZone?: string): CalendarDate {
   const year = getCalendarDatePart(parts, 'year').padStart(4, '0');
   const month = getCalendarDatePart(parts, 'month');
   const day = getCalendarDatePart(parts, 'day');
-  const calendarDate = `${year}-${month}-${day}`;
-
-  if (!isValidCalendarDate(calendarDate)) {
-    throw new Error(`Invalid calendar date: ${calendarDate}`);
-  }
-
-  return calendarDate;
+  return createCalendarDateFromTextParts(year, month, day);
 }
 
 export function isValidCalendarDate(calendarDate: string): calendarDate is CalendarDate {

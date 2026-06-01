@@ -4,6 +4,7 @@ import {
   calculateAmountByFrequency,
   calendarDateToLocalDate,
   createCalendarDate,
+  createCalendarDateFromDateString,
   DayOfWeek,
   daysBetweenCalendarDates,
   daysFromToday,
@@ -28,14 +29,12 @@ import {
   isValidDateString,
   isWeekend,
   Month,
-  normalizeToCalendarDate,
   parseCalendarDate,
   RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES,
   RelativeTime,
   timeAgo,
   toCalendarDate,
   today,
-  toUtcMidnight,
   Week,
 } from '.';
 
@@ -50,7 +49,7 @@ test('expors', () => {
     daysFromToday,
     format,
     isValidCalendarDate,
-    normalizeToCalendarDate,
+    createCalendarDateFromDateString,
     parseCalendarDate,
     getHolidays, getOntarioHolidays, getHolidayDates,
     getIntervalFromFrequency,
@@ -65,7 +64,6 @@ test('expors', () => {
     timeAgo,
     today,
     toCalendarDate,
-    toUtcMidnight,
     DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isDayOffset, isMonth,
   ].map(item => expect(item).toBeDefined());
 });

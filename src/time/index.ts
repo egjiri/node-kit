@@ -4,12 +4,11 @@ export { calculateAmountByFrequency } from './calculate-amount-by-frequency.js';
 export {
   calendarDateToLocalDate,
   createCalendarDate,
+  createCalendarDateFromDateString,
   isValidCalendarDate,
-  normalizeToCalendarDate,
   parseCalendarDate,
   toCalendarDate,
   today,
-  toUtcMidnight,
 } from './calendar-date.js';
 export { daysBetweenCalendarDates } from './days-between-calendar-dates.js';
 export { daysFromToday } from './days-from-today.js';

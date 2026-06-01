@@ -1,8 +1,8 @@
 import {
   calendarDateToLocalDate,
   createCalendarDate,
+  createCalendarDateFromDateString,
   isValidCalendarDate,
-  normalizeToCalendarDate,
   parseCalendarDate,
   toCalendarDate,
   today,
@@ -34,26 +34,26 @@ describe('createCalendarDate', () => {
   });
 });
 
-describe('normalizeToCalendarDate', () => {
-  const cases: Cases<typeof normalizeToCalendarDate> = [
+describe('createCalendarDateFromDateString', () => {
+  const cases: Cases<typeof createCalendarDateFromDateString> = [
     ['returns a YYYY-MM-DD calendar date unchanged', ['2025-01-15'], '2025-01-15'],
     ['converts an MM/DD/YYYY date to a calendar date', ['01/15/2025'], '2025-01-15'],
     ['preserves years below 100', ['12/31/0099'], '0099-12-31'],
   ];
 
   test.each(cases)('%s', (_, args, expected) => {
-    const actual = normalizeToCalendarDate(...args);
+    const actual = createCalendarDateFromDateString(...args);
     expect(actual).toBe(expected);
   });
 
   const invalidCases = [
     ['throws for unsupported date formats', '2025-1-15', 'Invalid calendar date string: 2025-1-15. Expected MM/DD/YYYY or YYYY-MM-DD.'],
-    ['throws for invalid calendar dates', '2025-02-29', 'Invalid calendar date string: 2025-02-29. Expected a valid calendar date.'],
-    ['throws for invalid MM/DD/YYYY calendar dates', '02/29/2025', 'Invalid calendar date string: 02/29/2025. Expected a valid calendar date.'],
+    ['throws for invalid calendar dates', '2025-02-29', 'Invalid calendar date: year=2025, month=1, day=29'],
+    ['throws for invalid MM/DD/YYYY calendar dates', '02/29/2025', 'Invalid calendar date: year=2025, month=1, day=29'],
   ];
 
   test.each(invalidCases)('%s', (_, value, expected) => {
-    const actual = () => normalizeToCalendarDate(value);
+    const actual = () => createCalendarDateFromDateString(value);
     expect(actual).toThrow(expected);
   });
 });
@@ -130,7 +130,7 @@ describe('toCalendarDate', () => {
       { type: 'day', value: '30' },
     ]);
 
-    expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow('Invalid calendar date: 2025-02-30');
+    expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow('Invalid calendar date: year=2025, month=1, day=30');
   });
 
   test('throws when Intl omits a required calendar date part', () => {
