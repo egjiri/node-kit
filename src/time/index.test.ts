@@ -37,7 +37,6 @@ import {
   today,
   toUtcMidnight,
   Week,
-  withinXDays,
 } from '.';
 
 test('expors', () => {
@@ -67,7 +66,6 @@ test('expors', () => {
     today,
     toCalendarDate,
     toUtcMidnight,
-    withinXDays,
     DayOfWeek, Frequency, Month, RelativeTime, Week, isDayOfMonth, isDayOfWeek, isDayOffset, isMonth,
   ].map(item => expect(item).toBeDefined());
 });

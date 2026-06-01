@@ -25,7 +25,6 @@ export { getYearlyDates } from './get-yearly-dates.js';
 export { isValidDateString } from './is-valid-date-string.js';
 export { isWeekend } from './is-weekend.js';
 export { timeAgo } from './time-ago.js';
-export { withinXDays } from './within-x-days.js';
 export { DayOfWeek, Frequency, isDayOffset, isDayOfMonth, isDayOfWeek, isMonth, Month, RelativeTime, Week } from './types.js';
 export type { CalendarDate, CalendarDateParts } from './types.js';
 export type { DayOffset } from './types.js';
