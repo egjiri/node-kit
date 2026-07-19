@@ -94,6 +94,16 @@
         "default": "./cjs/objects/index.js"
       }
     },
+    "./path": {
+      "import": {
+        "types": "./esm/types/path/index.d.ts",
+        "default": "./esm/path/index.js"
+      },
+      "require": {
+        "types": "./cjs/types/path/index.d.ts",
+        "default": "./cjs/path/index.js"
+      }
+    },
     "./strings": {
       "import": {
         "types": "./esm/types/strings/index.d.ts",
