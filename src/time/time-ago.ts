@@ -1,7 +1,11 @@
-export function timeAgo(date: Date): string {
-  const formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+export function timeAgo(date: Date, style: 'long' | 'narrow' = 'long'): string {
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (seconds === 0) {
+    return 'now';
+  }
 
-  const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+  const formatter = new Intl.RelativeTimeFormat('en', { style, numeric: 'always' });
+
   if (seconds < 60) {
     return formatter.format(-seconds, 'second');
   }
@@ -17,5 +21,15 @@ export function timeAgo(date: Date): string {
   }
 
   const days = Math.floor(hours / 24);
-  return formatter.format(-days, 'day');
+  if (days < 30) {
+    return formatter.format(-days, 'day');
+  }
+
+  const months = Math.floor(days / 30);
+  if (months < 12) {
+    return formatter.format(-months, 'month');
+  }
+
+  const years = Math.floor(months / 12);
+  return formatter.format(-years, 'year');
 }
