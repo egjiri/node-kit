@@ -20,7 +20,7 @@ function transformKeys(object: Record<string, unknown>, transform: transform) {
   Object.keys(object).forEach(key => {
     let value = object[key];
     if (isObject(value)) {
-      value = transformKeys(value as Record<string, unknown>, transform);
+      value = transformKeys(value, transform);
     }
     key = transformKey(key, transform);
     newObject[key] = value;

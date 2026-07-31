@@ -1,3 +1,3 @@
-export function isObject(value: unknown): boolean {
-  return typeof value === 'object' && !Array.isArray(value) && value !== null && value !== undefined;
+export function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && Object.getPrototypeOf(value) === Object.prototype;
 }
