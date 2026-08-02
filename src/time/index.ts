@@ -21,6 +21,7 @@ export { getNumberOfDaysInMonth } from './get-number-of-days-in-month.js';
 export { getNumberOfDaysInYear } from './get-number-of-days-in-year.js';
 export { getRecurringDates, isRecurringTransactionSupportedFrequency, RECURRING_TRANSACTION_SUPPORTED_FREQUENCIES } from './get-recurring-dates.js';
 export { getYearlyDates } from './get-yearly-dates.js';
+export { isEqual } from './is-equal.js';
 export { isValidDateString } from './is-valid-date-string.js';
 export { isWeekend } from './is-weekend.js';
 export { timeAgo } from './time-ago.js';
