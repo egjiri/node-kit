@@ -3,9 +3,12 @@
 {
   "compilerOptions": {
     "lib": [
-      "ES2022", // Overwrite the default lib which include DOM since this is not a browser environment
+      "ES2022", // Exclude DOM types because this is a Node-only library
+      "ESNext.Temporal", // Native in Node 26, declared by TypeScript 6
     ],
-    "target": "ES2022", // Supported target for Node 20 https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping
+    "target": "ES2022",
+    "rootDir": "src",
+    "ignoreDeprecations": "6.0", // TODO: Migrate baseUrl and legacy Node resolution before TypeScript 7
     "types": [
       "vitest/globals"
     ],

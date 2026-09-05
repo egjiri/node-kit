@@ -8,11 +8,11 @@
   "repository": "git@github.com:egjiri/node-kit.git",
   "type": "module",
   "engines": {
-    "node": "22.17.1",
+    "node": ">=26",
     "pnpm": "10.13.1"
   },
   "volta": {
-    "node": "22.17.1"
+    "node": "26.8.1"
   },
   "scripts": {
     "all": "pnpm run lint && pnpm run build && pnpm run coverage",
@@ -27,14 +27,14 @@
   },
   "devDependencies": {
     "@egjiri/eslint-plugin": "^1.0.0",
-    "@types/node": "^22.18.1",
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
+    "@types/node": "^26.4.1",
+    "@typescript-eslint/eslint-plugin": "^8.58.2",
+    "@typescript-eslint/parser": "^8.58.2",
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.35.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
-    "typescript": "5.9.2",
+    "typescript": "6.0.3",
     "vitest": "^3.2.4"
   },
   "files": [

@@ -14,6 +14,7 @@ A collection of useful Node.js utility functions that can be used across project
 - **📦 Zero Dependencies** - No runtime dependencies
 
 ## Installation
+Requires **Node.js >=26**.
 
 The library is available as an [npm package](https://www.npmjs.com/package/@egjiri/node-kit). To install the package using your favorite package manager run:
 
