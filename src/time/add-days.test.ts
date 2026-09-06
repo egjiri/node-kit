@@ -21,6 +21,16 @@ describe('addDays', () => {
       const actual = addDays(...args);
       expect(actual.getTime()).toBe(expected.getTime());
     });
+
+    test.each([
+      ['spring-forward transition', '2025-03-08', '2025-03-09'],
+      ['fall-back transition', '2025-11-01', '2025-11-02'],
+    ])('preserves local wall-clock time and the input across the %s', (_, start, expected) => {
+      const date = new Date(`${start}T12:34:56.789`);
+      const actual = addDays(date, 1);
+      expect(actual).toEqual(new Date(`${expected}T12:34:56.789`));
+      expect(date).toEqual(new Date(`${start}T12:34:56.789`));
+    });
   });
 
   describe('CalendarDate input', () => {

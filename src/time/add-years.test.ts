@@ -20,6 +20,14 @@ describe('addYears', () => {
       const actual = addYears(...args);
       expect(actual.getTime()).toBe(expected.getTime());
     });
+
+    test('preserves local wall-clock time and the input', () => {
+      const date = new Date(2024, 1, 29, 23, 34, 56, 789);
+      const original = new Date(date);
+      const actual = addYears(date, 1);
+      expect(actual).toEqual(new Date(2025, 1, 28, 23, 34, 56, 789));
+      expect(date).toEqual(original);
+    });
   });
 
   describe('CalendarDate input', () => {

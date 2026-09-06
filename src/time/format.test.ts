@@ -25,6 +25,11 @@ describe('format', () => {
       const actual = format(new Date(Date.UTC(2025, 0, 1, 1)), 'America/Los_Angeles');
       expect(actual).toBe('Tue, Dec 31, 2024');
     });
+
+    it('formats a non-midnight Date using its local calendar date', () => {
+      const actual = format(new Date(2024, 1, 29, 23, 59, 59, 999));
+      expect(actual).toBe('Thu, Feb 29, 2024');
+    });
   });
 
   describe('CalendarDate input', () => {
