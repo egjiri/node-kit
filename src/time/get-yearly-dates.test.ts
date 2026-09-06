@@ -13,12 +13,14 @@ describe('getYearlyDates', () => {
       ],
     ],
     [
-      'returns yearly dates for leap year handling',
-      ['2024-02-29', '2026-02-28'],
+      'returns yearly dates that re-anchor to February 29 in later leap years',
+      ['2024-02-29', '2028-02-29'],
       [
         '2024-02-29',
         '2025-02-28',
         '2026-02-28',
+        '2027-02-28',
+        '2028-02-29',
       ],
     ],
     [
