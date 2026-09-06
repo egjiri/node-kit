@@ -3,7 +3,7 @@ import { removeKeys } from '../src/objects/index.js';
 
 const packageJSON = JSON.parse(readFileSync('package.json', 'utf8'));
 const newPackageJSON = {
-  ...removeKeys(packageJSON, 'scripts', 'devDependencies', 'engines', 'volta', 'private', 'files'),
+  ...removeKeys(packageJSON, 'scripts', 'devDependencies', 'engines', 'volta', 'packageManager', 'private', 'files'),
   engines: { node: packageJSON.engines.node },
 };
 console.log('📝 Updated package.json\n', newPackageJSON);
