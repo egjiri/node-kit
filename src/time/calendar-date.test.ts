@@ -14,8 +14,9 @@ import type { Cases } from 'testing';
 describe('createCalendarDate', () => {
   const cases: Cases<typeof createCalendarDate> = [
     ['returns a calendar date from date parts', [2030, Month.May, 31], '2030-05-31'],
-    ['zero-pads month and day', [2030, Month.January, 1], '2030-01-01'],
+    ['zero-pads years, months, and days', [99, Month.January, 1], '0099-01-01'],
     ['accepts February 29 in a leap year', [2024, Month.February, 29], '2024-02-29'],
+    ['accepts February 29 in year zero', [0, Month.February, 29], '0000-02-29'],
   ];
 
   test.each(cases)('%s', (_, args, expected) => {
@@ -48,6 +49,7 @@ describe('createCalendarDateFromDateString', () => {
 
   const invalidCases = [
     ['throws for unsupported date formats', '2025-1-15', 'Invalid calendar date string: 2025-1-15. Expected MM/DD/YYYY or YYYY-MM-DD.'],
+    ['throws for broader Temporal date formats', '2025-01-15[u-ca=iso8601]', 'Invalid calendar date string: 2025-01-15[u-ca=iso8601]. Expected MM/DD/YYYY or YYYY-MM-DD.'],
     ['throws for invalid calendar dates', '2025-02-29', 'Invalid calendar date: year=2025, month=1, day=29'],
     ['throws for invalid MM/DD/YYYY calendar dates', '02/29/2025', 'Invalid calendar date: year=2025, month=1, day=29'],
   ];
@@ -59,16 +61,15 @@ describe('createCalendarDateFromDateString', () => {
 });
 
 describe('calendarDateToLocalDate', () => {
-  test('returns a date at local midnight', () => {
-    const actual = calendarDateToLocalDate('2030-05-31');
+  const cases: Cases<typeof calendarDateToLocalDate> = [
+    ['returns a date at local midnight', ['2030-05-31'], new Date('2030-05-31T00:00:00.000')],
+    ['preserves years below 100', ['0099-05-31'], new Date('0099-05-31T00:00:00.000')],
+    ['preserves February 29 in year zero', ['0000-02-29'], new Date('0000-02-29T00:00:00.000')],
+  ];
 
-    expect(actual.getFullYear()).toBe(2030);
-    expect(actual.getMonth()).toBe(Month.May);
-    expect(actual.getDate()).toBe(31);
-    expect(actual.getHours()).toBe(0);
-    expect(actual.getMinutes()).toBe(0);
-    expect(actual.getSeconds()).toBe(0);
-    expect(actual.getMilliseconds()).toBe(0);
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = calendarDateToLocalDate(...args);
+    expect(actual).toEqual(expected);
   });
 });
 
@@ -96,20 +97,23 @@ describe('parseCalendarDate', () => {
 });
 
 describe('toUtcMidnight', () => {
-  test('returns a date at UTC midnight', () => {
-    const actual = toUtcMidnight('2030-05-31');
-    expect(actual.toISOString()).toBe('2030-05-31T00:00:00.000Z');
+  const cases: Cases<typeof toUtcMidnight> = [
+    ['returns a date at UTC midnight', ['2030-05-31'], new Date('2030-05-31T00:00:00.000Z')],
+    ['preserves years below 100', ['0099-12-31'], new Date('0099-12-31T00:00:00.000Z')],
+    ['preserves February 29 in year zero', ['0000-02-29'], new Date('0000-02-29T00:00:00.000Z')],
+  ];
+
+  test.each(cases)('%s', (_, args, expected) => {
+    const actual = toUtcMidnight(...args);
+    expect(actual).toEqual(expected);
   });
 });
 
 describe('toCalendarDate', () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
   const cases: Cases<typeof toCalendarDate> = [
     ['formats dates using local date components by default', [new Date(2025, Month.July, 15, 23, 59, 59, 999)], '2025-07-15'],
-    ['formats dates using the provided time zone', [new Date('2025-01-01T04:59:59.000Z'), 'America/Toronto'], '2024-12-31'],
+    ['formats the instant before midnight in the provided time zone', [new Date('2025-01-01T04:59:59.999Z'), 'America/Toronto'], '2024-12-31'],
+    ['formats midnight in the provided time zone', [new Date('2025-01-01T05:00:00.000Z'), 'America/Toronto'], '2025-01-01'],
     ['formats dates using UTC when UTC is provided', [new Date('2025-01-01T04:59:59.000Z'), 'UTC'], '2025-01-01'],
   ];
 
@@ -123,25 +127,9 @@ describe('toCalendarDate', () => {
     expect(actual).toThrow('Invalid time value');
   });
 
-  test('throws when Intl formats an invalid calendar date', () => {
-    vi.spyOn(Intl.DateTimeFormat.prototype, 'formatToParts').mockReturnValue([
-      { type: 'year', value: '2025' },
-      { type: 'month', value: '02' },
-      { type: 'day', value: '30' },
-    ]);
-
-    expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow('Invalid calendar date: year=2025, month=1, day=30');
-  });
-
-  test('throws when Intl omits a required calendar date part', () => {
-    vi.spyOn(Intl.DateTimeFormat.prototype, 'formatToParts').mockReturnValue([
-      { type: 'year', value: '2025' },
-      { type: 'month', value: '02' },
-    ]);
-
-    expect(() => toCalendarDate(new Date('2025-02-01T00:00:00.000Z'))).toThrow(
-      'Unable to format calendar date: missing day',
-    );
+  test('throws for invalid time zones', () => {
+    const actual = () => toCalendarDate(new Date('2025-01-01T00:00:00.000Z'), 'Not/A_Time_Zone');
+    expect(actual).toThrow(RangeError);
   });
 });
 
@@ -180,6 +168,7 @@ describe('isValidCalendarDate', () => {
   const cases: Cases<typeof isValidCalendarDate> = [
     ['returns true for a valid calendar date', ['2025-01-01'], true],
     ['returns true for February 29 in a leap year', ['2024-02-29'], true],
+    ['returns true for February 29 in year zero', ['0000-02-29'], true],
     ['returns false for February 29 in a non-leap year', ['2025-02-29'], false],
     ['returns false for day after a 30-day month', ['2025-04-31'], false],
     ['returns false for day 00', ['2025-01-00'], false],
@@ -188,6 +177,7 @@ describe('isValidCalendarDate', () => {
     ['returns false when month is not two digits', ['2025-1-01'], false],
     ['returns false when day is not two digits', ['2025-01-1'], false],
     ['returns false for non-calendar-date format', ['01/01/2025'], false],
+    ['returns false for a Temporal calendar annotation', ['2025-01-01[u-ca=iso8601]'], false],
   ];
 
   test.each(cases)('%s', (_, args, expected) => {

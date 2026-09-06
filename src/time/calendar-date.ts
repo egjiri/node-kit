@@ -1,4 +1,3 @@
-import { isDayOfMonth, isMonth } from './types.js';
 import type { CalendarDate, CalendarDateParts, DayOfMonth, Month } from './types.js';
 
 function createCalendarDateFromTextParts(year: string, month: string, day: string): CalendarDate {
@@ -27,7 +26,7 @@ export function createCalendarDateFromDateString(value: string): CalendarDate {
 export function calendarDateToLocalDate(calendarDate: CalendarDate): Date {
   const { year, month, day } = parseCalendarDate(calendarDate);
   const date = new Date(year, month, day);
-  date.setFullYear(year);
+  date.setFullYear(year, month, day);
   return date;
 }
 
@@ -42,7 +41,7 @@ export function parseCalendarDate(calendarDate: string): CalendarDateParts {
 export function toUtcMidnight(calendarDate: CalendarDate): Date {
   const { year, month, day } = parseCalendarDate(calendarDate);
   const date = new Date(Date.UTC(year, month, day));
-  date.setUTCFullYear(year);
+  date.setUTCFullYear(year, month, day);
   return date;
 }
 
@@ -50,20 +49,20 @@ export function today(timeZone = Intl.DateTimeFormat().resolvedOptions().timeZon
   return toCalendarDate(new Date(), timeZone);
 }
 
-export function toCalendarDate(date: Date, timeZone?: string): CalendarDate {
-  const parts = new Intl.DateTimeFormat(undefined, {
-    calendar: 'gregory',
-    numberingSystem: 'latn',
-    timeZone,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).formatToParts(date);
+export function toCalendarDate(
+  date: Date,
+  timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone,
+): CalendarDate {
+  const epochMilliseconds = date.getTime();
+  if (!Number.isFinite(epochMilliseconds)) {
+    throw new RangeError('Invalid time value');
+  }
 
-  const year = getCalendarDatePart(parts, 'year').padStart(4, '0');
-  const month = getCalendarDatePart(parts, 'month');
-  const day = getCalendarDatePart(parts, 'day');
-  return createCalendarDateFromTextParts(year, month, day);
+  const calendarDate = Temporal.Instant.fromEpochMilliseconds(epochMilliseconds)
+    .toZonedDateTimeISO(timeZone)
+    .toPlainDate()
+    .toString();
+  return createCalendarDateFromDateString(calendarDate);
 }
 
 export function isValidCalendarDate(calendarDate: string): calendarDate is CalendarDate {
@@ -71,29 +70,18 @@ export function isValidCalendarDate(calendarDate: string): calendarDate is Calen
 }
 
 function getValidCalendarDateParts(calendarDate: string): CalendarDateParts | null {
-  const parts = getCalendarDateStringParts(calendarDate);
-  if (!parts) {
+  const strParts = getCalendarDateStringParts(calendarDate);
+  if (!strParts) {
     return null;
   }
 
-  const year = Number(parts.year);
-  const month = Number(parts.month) - 1;
-  const day = Number(parts.day);
+  const parts = {
+    year: Number(strParts.year),
+    month: Number(strParts.month) - 1,
+    day: Number(strParts.day),
+  };
 
-  if (!isMonth(month) || !isDayOfMonth(day, month, year)) {
-    return null;
-  }
-
-  return { year, month, day };
-}
-
-function getCalendarDatePart(parts: Intl.DateTimeFormatPart[], type: 'year' | 'month' | 'day'): string {
-  const part = parts.find(part => part.type === type);
-  if (!part) {
-    throw new Error(`Unable to format calendar date: missing ${type}`);
-  }
-
-  return part.value;
+  return isCalendarDateParts(parts) ? parts : null;
 }
 
 function getCalendarDateStringParts(value: string): ReturnType<typeof getDateStringPartsFromPattern> {
@@ -110,4 +98,13 @@ function getDateStringPartsFromPattern(value: string, pattern: RegExp): Record<'
     return null;
   }
   return { year, month, day };
+}
+
+function isCalendarDateParts(parts: { year: number; month: number; day: number }): parts is CalendarDateParts {
+  try {
+    Temporal.PlainDate.from({ ...parts, month: parts.month + 1 }, { overflow: 'reject' });
+    return true;
+  } catch {
+    return false;
+  }
 }
